@@ -12,7 +12,6 @@ class StudentPage extends Component {
   render() {
     return (
       <React.StrictMode>
-      <Header/>
         <div className="main">
           <Tab.Container id="left-tabs-example" defaultActiveKey="fifth">
             <Nav variant="pills" className="flex-column">

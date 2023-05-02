@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import { Button, Dropdown, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 function Header() {
   const state = { loggedIn: false };
@@ -29,16 +30,15 @@ function Header() {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item href="#/profile">Profile</Dropdown.Item>
+            <Dropdown.Item href="/profile">Profile</Dropdown.Item>
             <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       );
     } else {
       return (
-        <Button onClick={loginForm} variant="outline-dark">
-          Login
-        </Button>
+        <Link className="btn btn-primary float-right border border-dark" to="/login">Login</Link>
+         
       );
     }
   };

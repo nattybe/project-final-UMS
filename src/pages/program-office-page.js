@@ -12,7 +12,6 @@ class ProgramOfficePage extends Component {
   render() {
     return (
       <div>
-        <Header />
         <div className="main">
           <Tab.Container id="left-tabs-example" defaultActiveKey="dashboard">
             <Nav variant="pills" className="flex-column">

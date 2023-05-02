@@ -9,7 +9,6 @@ class LibrairanPage extends Component {
   render() {
     return (
       <div>
-        <Header />
         <div className="main">
           <Tab.Container id="left-tabs-example" defaultActiveKey="second">
             <Nav variant="pills" className="flex-column">
