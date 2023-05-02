@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { Route, Router } from "react-router-dom";
+import { BrowserRouter as Route, Router, Switch } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.css";
 import "./Font Awesom/css/fontawesome-all.min.css";
 import reportWebVitals from "./reportWebVitals";
@@ -11,32 +11,15 @@ import InstructorPage from "./pages/instructor-page";
 import LibrairanPage from "./pages/librairan-page";
 import ProgramOfficePage from "./pages/program-office-page";
 import ErrorPage from "./pages/errorPage";
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ProgramOfficePage />
-    {/* <Router>
+  <App></App>
+    {/* <ProgramOfficePage /> */}
     
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-        <Route path="student">
-          <StudentPage />
-        </Route>
-        <Route path='instructor'>
-          <InstructorPage />
-        </Route>
-        <Route path='library'>
-          <LibrairanPage/>
-        </Route>
-        <Route path='programoffice'>
-        <ProgramOfficePage/>
-        </Route>
-        <Route path='*'>
-        <ErrorPage/>
-        </Route>
-    </Router> */}
+    
   </React.StrictMode>
 );
 
