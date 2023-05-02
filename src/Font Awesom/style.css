@@ -1,0 +1,23 @@
+.clear{
+
+    display: flex;
+}
+.nospace{
+    /*  display: inline-flex; */
+
+    
+}
+li{
+    padding: 10px;
+
+}
+ul{
+    
+}
+.one_quarter{
+
+}
+.first{
+}
+.btmspace-50{
+}

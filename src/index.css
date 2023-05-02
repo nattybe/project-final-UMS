@@ -1,13 +1,227 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+/*--------------------------------------- Header ---------------------------------------*/
+.ali {
+  justify-content: flex-end;
+}
+.mr-auto button {
+  margin: auto;
+  height: 25px;
+  font-size: 10px;
+}
+.navbar {
+  justify-content: space-between !important;
+}
+.nav-links {
+  display: flex;
+  /* width: 30%; */
+  flex-basis: auto;
+  align-items: center;
+}
+nav {
+  justify-content: flex-end;
+}
+.nav-links a,
+.nav-links button {
+  margin: 0 20px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/*--------------------------------------- SideBar ---------------------------------------*/
+.side-bar {
+  min-width: 300px;
+}
+.head{
+  text-align: center;
+}
+.side-bar .body {
+  margin-top: 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.side-bar .body .btn {
+  margin: 10px;
+  width: 200px;
+}
+.side-buttons {
+  margin: 5px;
+  width: 200px;
+  text-align: center;
+}
+.side-buttons .nav-link {
+  background: #000;
+  font-size: large;
+}
+/*--------------------------------------- Login ---------------------------------------*/
+.main{
+  display:flex;
+}
+.main .shadow{
+  margin-top: 50px !important ;
+}
+.main .shadow .image{
+  display: flex;
+ justify-content: center;
+ padding: 20px;
+}
+.main .shadow h3{
+  text-align: center;
+}
+.main .shadow form{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+ 
+}
+/* .main .shadow form input */
+.main .shadow form button{
+  width: fit-content;
+  align-self: center;
+}
+.tab-content {
+  width: 100%;
+}
+/*--------------------------------------- Comp ---------------------------------------*/
+.comp-body-container {
+  overflow: hidden;
+  background: #edf1f391;
+}
+.comp-body-container h3 {
+  text-align: center;
+}
+.comp-body-container div {
+  min-width: 200px;
+  text-align: start;
+}
+.comp-body-container div div {
+  text-align: start;
+}
+.comp-body-container div div i {
+  line-height: 1.1;
+  font-size: 60px;
+}
+/*--------------------------------------- Search ---------------------------------------*/
+.search-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.search-box input {
+  border-top: transparent;
+  border-left: transparent;
+  border-radius: 20px;
+  /* border-bottom-left-radius: 1px; */
+  width: 550px;
+  text-indent: 10px;
+  height: 40px;
+}
+.search-box select {
+  margin: 0 10px;
+  border-radius: 20px;
+  width: 110px;
+  text-indent: 10px;
+}
+.search-box button {
+  border-radius: 30px;
+  width: 40px;
+  margin-left: -35px;
+  color: rgb(47, 47, 255);
+  text-shadow: #000;
+}
+
+.s-dashboards {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-ta {
+  display: flex;
+}
+.dashboard-avatar img {
+  width: 250px;
+  height: 250px;
+}
+.dashboard-avatar {
+  display: inline-flex;
+}
+.download {
+  display: flex;
+  justify-content: flex-end;
+}
+.item div i {
+  margin-right: 10px;
+}
+.tab-pane {
+  margin: 30px;
+  overflow: hidden;
+}
+.section-choose {
+  display: flex;
+  justify-content: space-between;
+}
+.section-choose section {
+  display: flex;
+}
+.notify-title input {
+  margin-left: 50px;
+  margin-bottom: 20px;
+  width: 300px;
+}
+.notify-description input {
+  margin-left: 0px;
+  width: 300px;
+  height: 200px;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+.buttons select{
+  margin: 0 30px; 
+}
+.resource-com div i{
+  font-size: 300px !important;
+  margin-top: 20PX;
+  margin-left: 120PX;
+}
+#addfile{
+  width: 300px;
+  height: 350px;
+  position: fixed;
+  margin-left: 160PX;
+}
+
+.buttons{
+  display: flex;
+  margin: 10px 0;
+  justify-content: space-around;
+}
+.resource-com{
+  display: flex;
+  flex-direction: row;
+}
+.resource-com div{
+  width: 50%;
+}
+.description input{
+  height: 150px;
+}
+.download button{
+  margin: 20px;
+}
+.PCC {
+
+}
+/*--------------------------------------- Mobile ---------------------------------------*/
+
+@media (max-width: 912px) {
+  .side-bar {
+    background-color: aqua;
+  }
+  .tab-content .tab-pane .table {
+    overflow-x: hidden;
+  }
+  .tab-pane div {
+    overflow: hidden;
+  }
 }
