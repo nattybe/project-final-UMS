@@ -15,6 +15,7 @@ class HomePage extends Component {
           <ul className="m-3"><Link className="btn btn-primary float-right border border-dark" to="/instructor">Instructor</Link></ul>
           <ul className="m-3"><Link className="btn btn-primary float-right border border-dark" to="/library">Library</Link></ul>
           <ul className="m-3"><Link className="btn btn-primary float-right border border-dark" to="/programoffice">Program Office</Link></ul>
+          <ul className="m-3"><Link className="btn btn-primary float-right border border-dark" to="/registrar">Registrar Office</Link></ul>
         </ul>
       </div>
     );

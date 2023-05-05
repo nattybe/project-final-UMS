@@ -7,6 +7,7 @@ import LibrarianAddResource from "../Comp/librarian/l-addresource";
 import ProgramCreateCourse from "../Comp/program/create-course";
 import ProgramViewCourse from "../Comp/program/pViewCourse";
 import InstructorNotify from "../Comp/instructor/i-Notify";
+import ProgramDashboard from "../Comp/program/p-dashboeard";
 
 class ProgramOfficePage extends Component {
   render() {
@@ -75,7 +76,7 @@ class ProgramOfficePage extends Component {
             </Nav>
             <Tab.Content>
               <Tab.Pane eventKey="dashboard">
-                <LibrarianDashboard />
+                <ProgramDashboard />
               </Tab.Pane>
               <Tab.Pane eventKey="uploadSchedule">
                 <LibrarianAddResource />

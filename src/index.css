@@ -33,7 +33,7 @@ nav {
 .side-bar {
   min-width: 300px;
 }
-.head{
+.head {
   text-align: center;
 }
 .side-bar .body {
@@ -56,33 +56,35 @@ nav {
   font-size: large;
 }
 /*--------------------------------------- Login ---------------------------------------*/
-.main{
-  display:flex;
+.main {
+  display: flex;
 }
-.main .shadow{
+.main .shadow {
   margin-top: 50px !important ;
 }
-.main .shadow .image{
+.main .shadow .image {
   display: flex;
- justify-content: center;
- padding: 20px;
+  justify-content: center;
+  padding: 20px;
 }
-.main .shadow h3{
+.main .shadow h3 {
   text-align: center;
 }
-.main .shadow form{
+.main .shadow form {
   display: flex;
   flex-direction: column;
   padding: 20px;
- 
 }
 /* .main .shadow form input */
-.main .shadow form button{
+.main .shadow form button {
   width: fit-content;
   align-self: center;
 }
 .tab-content {
   width: 100%;
+}
+.main .nav {
+  margin-top: 20px;
 }
 /*--------------------------------------- Comp ---------------------------------------*/
 .comp-body-container {
@@ -176,41 +178,89 @@ nav {
   margin-bottom: 20px;
   text-align: justify;
 }
-.buttons select{
-  margin: 0 30px; 
+.buttons select {
+  margin: 0 30px;
 }
-.resource-com div i{
+.resource-com div i {
   font-size: 300px !important;
-  margin-top: 20PX;
-  margin-left: 120PX;
+  margin-top: 20px;
+  margin-left: 120px;
 }
-#addfile{
+#addfile {
   width: 300px;
   height: 350px;
   position: fixed;
-  margin-left: 160PX;
+  margin-left: 160px;
 }
 
-.buttons{
+.buttons {
   display: flex;
   margin: 10px 0;
   justify-content: space-around;
 }
-.resource-com{
+.resource-com {
   display: flex;
   flex-direction: row;
 }
-.resource-com div{
+.resource-com div {
   width: 50%;
 }
-.description input{
+.description input {
   height: 150px;
 }
-.download button{
+.download button {
   margin: 20px;
 }
 .PCC {
-
+}
+.registrar-dashboard {
+  flex-direction: column;
+}
+.info-boxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100px;
+  margin: 70px;
+  background: #068fd391;
+  align-items: center;
+  box-shadow: 0 0 20px rgb(0, 255, 170);
+  border-radius: 10px;
+}
+.avatar-boxes .boxers {
+  margin-top: 30px;
+  margin-left: 70px;
+  border-top-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+.avatar-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar-info {
+  margin: 10px;
+}
+.avatar-info p {
+  margin-top: 40px;
+}
+.info-boxes section {
+  text-align: center;
+  font-size: larger;
+}
+.info-boxes-box {
+  justify-items: center;
+}
+.stud-avatar-boxes{
+  flex-direction: row;
+}
+.divers{
+  display: flex;
+  flex-direction: column;
+}
+.stud-avatar-boxes .tabled{
+  padding: 20px 100px;
+  
 }
 /*--------------------------------------- Mobile ---------------------------------------*/
 

@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 function Header() {
-  const state = { loggedIn: false };
+  const state = { loggedIn: true };
   const log = {
     name: "Natnael",
     role: "wh",
@@ -45,22 +45,26 @@ function Header() {
   return (
     <Navbar bg="primary" sticky="top" variant="light" expand="lg">
       <div className="nav-links">
-        <Navbar.Brand href="/">
-          <img
+        <Navbar.Brand>
+        <Link to="/">
+        <img
             src="logoUU.png"
             width="40"
             height="40"
             className="d-inline-block align-top"
             alt="UULogo"
           />
+        </Link>
+          
         </Navbar.Brand>
-        <Nav.Link href="#home">
+        <Nav.Link href="/">
           <i class="fas fa-home fa-lg  "></i>
         </Nav.Link>
       </div>
       <div className="nav-links">
         <Nav.Link href="#home">
-          <i class="fas fa-comments fa-lg  " />
+        <Link className="nav-link" to="/messages"> <i class="fas fa-comments fa-lg  " /></Link>
+         
         </Nav.Link>
         <Nav.Link href="#link">
           <i class="fas fa-bell fa-lg  " />

@@ -12,6 +12,21 @@ class Body extends Component {
           <h3>Login</h3>
           <form>
             <div className="form-group">
+              <label htmlFor="loginas">Login As</label>
+              <select className="form-control" name="loginas" id="loginas">
+                <option value="">...</option>
+                <option value="student">Student</option>
+                <option value="instructor">instructor</option>
+                <option value="librarian">librarian</option>
+                <option value="registrar">Registrar</option>
+                <option value="programOfficer">Program officer</option>
+              </select>
+
+              <small id="emailHelp" className="form-text text-muted">
+                {/* Email that you have used while registration. */}
+              </small>
+            </div>
+            <div className="form-group">
               <label htmlFor="email">Email address</label>
               <input
                 type="text"
@@ -22,7 +37,7 @@ class Body extends Component {
                 placeholder="Enter Your ID"
               />
               <small id="emailHelp" className="form-text text-muted">
-                Email that you have used while registration.
+                {/* Email that you have used while registration. */}
               </small>
             </div>
             <div className="form-group">

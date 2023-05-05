@@ -1,0 +1,66 @@
+import React from "react";
+import { Nav, Tab } from "react-bootstrap";
+import RegistrarDashboard from "../Comp/registrar/dashboard";
+import RegisterStudent from "../Comp/registrar/register";
+import ViewStudent from "../Comp/registrar/veiw";
+import InstructorNotify from "../Comp/instructor/i-Notify";
+
+function RegistrarPage() {
+  return (
+    <div className="main">
+          <Tab.Container id="left-tabs-example" defaultActiveKey="second">
+            <Nav variant="pills" className="flex-column">
+              <Nav.Item className="side-buttons">
+                <Nav.Link
+                  eventKey="first"
+                  className="side-buttons border border-2 border-dark"
+                >
+                  Dashboard
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item className="side-buttons">
+                <Nav.Link
+                  eventKey="second"
+                  className="side-buttons border border-2 border-dark"
+                >
+                  Register student
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item className="side-buttons">
+                <Nav.Link
+                  eventKey="third"
+                  className="side-buttons border border-2 border-dark"
+                >
+                   Students
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item className="side-buttons">
+                <Nav.Link
+                  eventKey="fourth"
+                  className="side-buttons border border-2 border-dark"
+                >
+                   Notify
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+            <Tab.Content>
+              <Tab.Pane eventKey="first">
+              <RegistrarDashboard />
+              </Tab.Pane>
+              <Tab.Pane eventKey="second">
+                <RegisterStudent />
+              </Tab.Pane>
+              <Tab.Pane eventKey="third">
+                <ViewStudent />
+              </Tab.Pane>
+              <Tab.Pane eventKey="fourth">
+                <InstructorNotify />
+                
+              </Tab.Pane>
+            </Tab.Content>
+          </Tab.Container>
+        </div>
+  );
+}
+
+export default RegistrarPage;

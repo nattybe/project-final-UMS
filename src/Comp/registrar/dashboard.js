@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProgramDashboard() {
+function RegistrarDashboard() {
   const state = {
     Id: "UU7431R",
     Name: "James Bond",
@@ -49,4 +49,4 @@ function ProgramDashboard() {
   );
 }
 
-export default ProgramDashboard;
+export default RegistrarDashboard;

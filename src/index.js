@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { BrowserRouter as Route, Router, Switch } from "react-router-dom"
+import { BrowserRouter as Route, Router, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Font Awesom/css/fontawesome-all.min.css";
 import reportWebVitals from "./reportWebVitals";
@@ -12,14 +12,15 @@ import LibrairanPage from "./pages/librairan-page";
 import ProgramOfficePage from "./pages/program-office-page";
 import ErrorPage from "./pages/errorPage";
 import App from "./App";
+import RegistrarPage from "./pages/registrarPage";
+import Header from "./Comp/header";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-  <App/>
+    <App />
+    {/* <Header></Header> */}
     {/* <ProgramOfficePage /> */}
-    
-    
   </React.StrictMode>
 );
 

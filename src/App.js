@@ -11,6 +11,7 @@ import ProgramOfficePage from "./pages/program-office-page";
 import ErrorPage from "./pages/errorPage";
 import LoginPage from "./pages/loginPage";
 import Header from "./Comp/header";
+import RegistrarPage from "./pages/registrarPage";
 
 const App = () => {
   return (
@@ -34,6 +35,8 @@ const App = () => {
         </Route>
         <Route path="/login">
           <LoginPage/>
+        </Route><Route path="/registrar">
+          <RegistrarPage/>
         </Route>
         <Route path="*">
           <ErrorPage />
