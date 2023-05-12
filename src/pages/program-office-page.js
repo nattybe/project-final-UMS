@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import Header from "../Comp/header";
 import { Nav, Tab } from "react-bootstrap";
-import LibrarianDashboard from "../Comp/librarian/l-dashboard";
 import LibrarianViewResource from "../Comp/librarian/l-viewresource";
 import LibrarianAddResource from "../Comp/librarian/l-addresource";
 import ProgramCreateCourse from "../Comp/program/create-course";
 import ProgramViewCourse from "../Comp/program/pViewCourse";
 import InstructorNotify from "../Comp/instructor/i-Notify";
 import ProgramDashboard from "../Comp/program/p-dashboeard";
+import OfferingCourse from "../Comp/program/offeringCourse";
+import AssignInstructor from "../Comp/program/assignInstructor";
 
 class ProgramOfficePage extends Component {
   render() {
@@ -24,14 +25,7 @@ class ProgramOfficePage extends Component {
                   Dashboard
                 </Nav.Link>
               </Nav.Item>
-              <Nav.Item className="side-buttons">
-                <Nav.Link
-                  eventKey="uploadSchedule"
-                  className="side-buttons border border-2 border-dark"
-                >
-                  Upload Schedule
-                </Nav.Link>
-              </Nav.Item>
+              
               <Nav.Item className="side-buttons">
                 <Nav.Link
                   eventKey="CreateCourse"
@@ -48,7 +42,22 @@ class ProgramOfficePage extends Component {
                   Offering Course
                 </Nav.Link>
               </Nav.Item>
-
+              <Nav.Item className="side-buttons">
+                <Nav.Link
+                  eventKey="AssignInstructor"
+                  className="side-buttons border border-2 border-dark"
+                >
+                  Assign Instructor
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item className="side-buttons">
+                <Nav.Link
+                  eventKey="uploadSchedule"
+                  className="side-buttons border border-2 border-dark"
+                >
+                  Upload Schedule
+                </Nav.Link>
+              </Nav.Item>
               <Nav.Item className="side-buttons">
                 <Nav.Link
                   eventKey="ViewCourse"
@@ -62,15 +71,7 @@ class ProgramOfficePage extends Component {
                   eventKey="Notify"
                   className="side-buttons border border-2 border-dark"
                 >
-                    Notify
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item className="side-buttons">
-                <Nav.Link
-                  eventKey="AssignInstructor"
-                  className="side-buttons border border-2 border-dark"
-                >
-                    Assign Instructor
+                  Notify
                 </Nav.Link>
               </Nav.Item>
             </Nav>
@@ -83,8 +84,9 @@ class ProgramOfficePage extends Component {
               </Tab.Pane>
               <Tab.Pane eventKey="CreateCourse">
                 <ProgramCreateCourse />
-              </Tab.Pane><Tab.Pane eventKey="OfferingCourses">
-                <LibrarianDashboard />
+              </Tab.Pane>
+              <Tab.Pane eventKey="OfferingCourses">
+                <OfferingCourse />
               </Tab.Pane>
               <Tab.Pane eventKey="ViewCourse">
                 <ProgramViewCourse />
@@ -93,7 +95,7 @@ class ProgramOfficePage extends Component {
                 <InstructorNotify />
               </Tab.Pane>
               <Tab.Pane eventKey="AssignInstructor">
-                <LibrarianViewResource />
+                <AssignInstructor />
               </Tab.Pane>
             </Tab.Content>
           </Tab.Container>

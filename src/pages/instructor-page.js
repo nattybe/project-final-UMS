@@ -7,6 +7,7 @@ import StudentSchedule from "../Comp/std/s-schedule";
 import StudentList from "../Comp/instructor/i-StudentList";
 import InstructorNotify from "../Comp/instructor/i-Notify";
 import InstructorGrade from "../Comp/instructor/i-grade";
+import InstructorDashboard from "../Comp/instructor/i-dashboard";
 
 export default class InstructorPage extends Component {
   render() {
@@ -74,7 +75,7 @@ export default class InstructorPage extends Component {
             </Nav>
             <Tab.Content>
               <Tab.Pane eventKey="first">
-                {/* <StudentDashboard />   */}
+                <InstructorDashboard />  
               </Tab.Pane>
               <Tab.Pane eventKey="second"><InstructorGrade/></Tab.Pane>
               <Tab.Pane eventKey="third">

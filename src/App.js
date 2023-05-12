@@ -12,6 +12,7 @@ import ErrorPage from "./pages/errorPage";
 import LoginPage from "./pages/loginPage";
 import Header from "./Comp/header";
 import RegistrarPage from "./pages/registrarPage";
+import Footer from "./pages/footer";
 
 const App = () => {
   return (
@@ -41,8 +42,8 @@ const App = () => {
         <Route path="*">
           <ErrorPage />
         </Route>
-        
       </Switch>
+      <Footer/>
     </Router>
   );
 };

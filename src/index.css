@@ -1,9 +1,8 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family:'Times New Roman', Times, serif !important;
 }
 /*--------------------------------------- Header ---------------------------------------*/
+
 .ali {
   justify-content: flex-end;
 }
@@ -28,7 +27,25 @@ nav {
 .nav-links button {
   margin: 0 20px;
 }
-
+.tab-pane{
+  /* width: 1000px; */
+  /* overflow: scroll; */
+}
+/*--------------------------------------- notify ---------------------------------------*/
+.view-notify-item{
+  border-end-start-radius:20px ;
+  border-start-end-radius: 20px;
+}
+.view-notify-item h5{
+  font-weight: 700;
+  text-decoration: underline;
+}
+.view-notify-item section{
+}
+.view-notify-body-cont{
+  height: 500px;
+  overflow-y: scroll;
+}
 /*--------------------------------------- SideBar ---------------------------------------*/
 .side-bar {
   min-width: 300px;
@@ -55,6 +72,11 @@ nav {
   background: #000;
   font-size: large;
 }
+/*--------------------------------------- Offering Course ---------------------------------------*/
+.oc-input{
+  width: 150px;
+}
+
 /*--------------------------------------- Login ---------------------------------------*/
 .main {
   display: flex;
@@ -155,6 +177,13 @@ nav {
 .item div i {
   margin-right: 10px;
 }
+.student-item{
+  display: flex;
+  flex-direction: row;
+}
+.item div img {
+  width: 150px;
+}
 .tab-pane {
   margin: 30px;
   overflow: hidden;
@@ -251,16 +280,40 @@ nav {
 .info-boxes-box {
   justify-items: center;
 }
-.stud-avatar-boxes{
+.stud-avatar-boxes {
   flex-direction: row;
 }
-.divers{
+.divers {
   display: flex;
   flex-direction: column;
 }
-.stud-avatar-boxes .tabled{
+.stud-avatar-boxes .tabled {
   padding: 20px 100px;
-  
+}
+.assign-instructor div select{
+  height: 30px;
+  margin-bottom: 30px;
+}
+.assign-instructor div{
+  display: contents;
+}
+.filter-by select{
+  margin-right: 20px;
+}
+.loginasselect{
+display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    /* appearance: none; */
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 /*--------------------------------------- Mobile ---------------------------------------*/
 
@@ -274,4 +327,11 @@ nav {
   .tab-pane div {
     overflow: hidden;
   }
+}
+
+/*--------------------------------------- Footer ---------------------------------------*/
+.footer{
+  /* position: fixed;
+  bottom: 0;
+  width: 100%; */
 }

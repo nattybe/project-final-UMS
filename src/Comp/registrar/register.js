@@ -55,6 +55,7 @@ function RegisterStudent() {
               type="file"
               name="stdphoto"
               id="stdphoto"
+              accept="image/*"
               onChange={(e) => {
                 setPhoto(e.target.value);
               }}

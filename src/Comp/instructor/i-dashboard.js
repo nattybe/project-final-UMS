@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 
-export default class StudentDashboard extends Component {
+export default class InstructorDashboard extends Component {
   render() {
     const state = {
       Id: "UU7431R",
@@ -29,7 +29,7 @@ export default class StudentDashboard extends Component {
               </div>
             </div>
             <div className="tabled">
-            <h3>Today's Plan</h3>
+              <h3>Today's Plan</h3>
               <table class="table">
                 <thead>
                   <tr>
@@ -58,62 +58,58 @@ export default class StudentDashboard extends Component {
               </table>
             </div>
           </div>
-          {/* <div className="tabled">
-            <h3>Grade</h3>
+          <div className="tabled">
+            <h3>Section list</h3>
             <table className="table border">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Code</th>
-                  <th scope="col">Score</th>
-                  <th scope="col">Cr/Hr</th>
+                  <th scope="col">Name</th>
+                  {/* <th scope="col">Score</th>
+                  <th scope="col">Cr/Hr</th> */}
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>CCS1R1N6/12</td>
                 </tr>
                 <tr>
                   <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>CCS1R1N1/12</td>
                 </tr>
                 <tr>
                   <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>CCS1R1N2/12</td>
                 </tr>
                 <tr>
                   <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>CCS1R1N3/12</td>
                 </tr>
                 <tr>
                   <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
+                  <td>CCS1R1N4/12</td>
                 </tr>
                 <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
+                  <th scope="row">1</th>
+                  <td>CCS1R1N5/12</td>
                 </tr>
                 <tr>
-                  <th scope="row">3</th>
-                  <td colspan="2">Larry the Bird</td>
-                  <td>@twitter</td>
+                  <th scope="row">1</th>
+                  <td>CCS1R1N6/12</td>
                 </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>CCS1R1N7/12</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>CCS1R1N8/12</td>
+                </tr>
+                
               </tbody>
             </table>
-          </div> */}
+          </div>
         </div>
         <div className="info-boxes-box d-flex"></div>
       </div>

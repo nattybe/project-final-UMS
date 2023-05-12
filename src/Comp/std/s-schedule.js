@@ -4,7 +4,7 @@ class StudentSchedule extends Component {
   render() {
     return (
       <div className="container comp-body-container border">
-      <h3>Grade Summary</h3>
+      <h3>Schedule</h3>
         <Table striped bordered hover responsive>
           <thead>
             <tr>

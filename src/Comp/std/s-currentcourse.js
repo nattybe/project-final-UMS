@@ -13,9 +13,9 @@ export default class StudentCurrentCourse extends Component {
     return (
       <Container className="border comp-body-container">
         <h3>Current Courses</h3>
-        <div className="flex search-box">
-        <h4>Search By</h4>
-        <select name="SearchBy" id="SearchBy">
+        {/* <div className="flex search-box">
+          <h4>Search By</h4>
+          <select name="SearchBy" id="SearchBy">
             <option value="Code">Code</option>
             <option value="Title">Title</option>
             <option value="Department">Department</option>
@@ -24,10 +24,12 @@ export default class StudentCurrentCourse extends Component {
             type="search"
             name="search-resource"
             id="search"
-            placeholder="Search" 
+            placeholder="Search"
           />
-          <button><i className="fas fa-search"/></button>
-        </div>
+          <button>
+            <i className="fas fa-search" />
+          </button>
+        </div> */}
         <div className="flex ">
           {courses.map((course) => {
             return (

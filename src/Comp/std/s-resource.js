@@ -17,9 +17,10 @@ class StudentResource extends Component {
         <div className="flex search-box">
         <h4>Search By</h4>
           <select name="SearchBy" id="SearchBy">
-            <option value="ID">ID</option>
+            {/* <option value="ID">ID</option> */}
             <option value="Name">Name</option>
-            <option value="Authority">Authority</option>
+            <option value="Category">Category</option>
+            <option value="Department">Department</option>
           </select>
           <input
             type="search"
