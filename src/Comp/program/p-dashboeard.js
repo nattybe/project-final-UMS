@@ -27,13 +27,13 @@ function ProgramDashboard() {
           </div>
         </div>
         <div className="info-boxes">
-          <section>Total Employees</section>
+          <section>Total Students</section>
           <h2>{state.TE}</h2>
         </div>
       </div>
       <div className="info-boxes-box d-flex">
         <div className="info-boxes">
-          <section>Total Resources</section>
+          <section>Total Departments</section>
           <h2>{state.TR}</h2>
         </div>
         <div className="info-boxes">
@@ -41,7 +41,7 @@ function ProgramDashboard() {
           <h2>{state.TI}</h2>
         </div>
         <div className="info-boxes">
-          <section>Total Students</section>
+          <section>Total Courses</section>
           <h2>{state.TS}</h2>
         </div>
       </div>

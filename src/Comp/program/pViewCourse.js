@@ -14,9 +14,9 @@ export default function ProgramViewCourse() {
       <div className="flex search-box">
         <h4>Search By</h4>
         <select name="SearchBy" id="SearchBy">
-          <option value="ID">ID</option>
-          <option value="Name">Name</option>
-          <option value="Authority">Authority</option>
+          <option value="ID">Course Code</option>
+          <option value="Name">Course Name</option>
+          <option value="Authority">Department</option>
         </select>
         <input
           type="search"

@@ -24,7 +24,7 @@ export default class InstructorGrade extends Component {
             </select>
           </div>
 
-          <Button>Print</Button>
+          {/* <Button>Print</Button> */}
         </div>
 
         <Table striped bordered hover>

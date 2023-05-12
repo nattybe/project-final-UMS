@@ -13,14 +13,17 @@ class InstructorNotify extends Component {
         </div>
         <div className="row">
           <div className="notify-description">
-            Description: <input type="text" placeholder="Description" />
+            <label htmlFor="">Description: </label><textarea name="" id="" placeholder="Detail information" cols="60" rows="7"></textarea>
           </div>
         </div>
         <div className="buttons">
-          Post For: 
-          <select name="notify-for" id="notify-for">
-            <option value="Department">Department</option>
-          </select>
+          <div className="d-flex flex-column">
+            <label htmlFor="">Post For</label>
+            <select name="notify-for" id="notify-for">
+              <option value="Department">Department</option>
+            </select>
+          </div>
+
           <Button> Post</Button>
         </div>
       </Container>

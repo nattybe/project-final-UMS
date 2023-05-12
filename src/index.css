@@ -208,7 +208,8 @@ nav {
   text-align: justify;
 }
 .buttons select {
-  margin: 0 30px;
+  /* margin: 0 30px; */
+  width: 110px;
 }
 .resource-com div i {
   font-size: 300px !important;

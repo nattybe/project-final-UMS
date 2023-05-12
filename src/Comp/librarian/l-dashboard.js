@@ -28,21 +28,21 @@ export default class LibrarianDashboard extends Component {
             </div>
           </div>
           <div className="info-boxes">
-            <section>Total Employees</section>
+            <section>Total Resources</section>
             <h2>{state.TE}</h2>
           </div>
         </div>
         <div className="info-boxes-box d-flex">
           <div className="info-boxes">
-            <section>Total Resources</section>
+            <section>Resources added by you</section>
             <h2>{state.TR}</h2>
           </div>
           <div className="info-boxes">
-            <section>Total Instructors</section>
+            <section>Resources added this week</section>
             <h2>{state.TI}</h2>
           </div>
           <div className="info-boxes">
-            <section>Total Students</section>
+            <section>Resources added today</section>
             <h2>{state.TS}</h2>
           </div>
         </div>

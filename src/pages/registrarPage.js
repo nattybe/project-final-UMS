@@ -31,7 +31,7 @@ function RegistrarPage() {
                   eventKey="third"
                   className="side-buttons border border-2 border-dark"
                 >
-                   Students
+                   View Students
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item className="side-buttons">

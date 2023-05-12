@@ -13,6 +13,7 @@ import LoginPage from "./pages/loginPage";
 import Header from "./Comp/header";
 import RegistrarPage from "./pages/registrarPage";
 import Footer from "./pages/footer";
+import ChatMessage from "./Comp/message";
 
 const App = () => {
   return (
@@ -39,11 +40,14 @@ const App = () => {
         </Route><Route path="/registrar">
           <RegistrarPage/>
         </Route>
+        <Route path="/messages">
+          <ChatMessage />
+        </Route>
         <Route path="*">
           <ErrorPage />
         </Route>
       </Switch>
-      <Footer/>
+      {/* <Footer/> */}
     </Router>
   );
 };
