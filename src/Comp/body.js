@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
 function Body() {
   const [Res, setRes] = useState({ nothing: "to see here" });
   const [loginas, setloginas] = useState("student");
@@ -52,13 +51,105 @@ function Body() {
         <h3>Login</h3>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Reset Password</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>{loginas}</p>
-            <p>{ID}</p>
-            <p>{password}</p>
-            <p>{url}</p>
+          <form method="get reset-password-form">
+          <div className="form-group">
+            <label htmlFor="loginas" value="dummy">
+              Login As
+            </label>
+            <select
+              className="loginasselect"
+              onChange={(e) => {
+                setloginas(e.target.value);
+                // console.log(loginas);
+              }}
+              name="loginas"
+              id="loginas"
+            >
+              {/* <option value="...">...</option> */}
+              <option value="student">Student</option>
+              <option value="instructor">instructor</option>
+              <option value="librarian">librarian</option>
+              <option value="registrar">Registrar</option>
+              <option value="programOfficer">Program officer</option>
+            </select>
+
+            <small id="emailHelp" className="form-text text-muted">
+              {/* Email that you have used while registration. */}
+            </small>
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">ID</label>
+            <input
+              type="text"
+              name="ID"
+              className="form-control"
+              id="ID"
+              aria-describedby="ID"
+              placeholder="Enter Your ID"
+              onChange={(e) => {
+                setID(e.target.value);
+                // console.log(ID);
+              }}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Enter your old password</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              id="password"
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                // console.log(password);
+              }}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Enter Your new Password</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              id="password"
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                // console.log(password);
+              }}
+            />
+          </div><div className="form-group">
+            <label htmlFor="password">Confirm Your new Password</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              id="password"
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+                // console.log(password);
+              }}
+            />
+          </div>
+          <div className="buttons">
+          <Button variant="danger">Cancel</Button>
+          <button
+            type="submit"
+            onClick={(e) => {
+              loginsubmit(e);
+            }}
+            className="btn btn-primary float-right"
+          >
+            Reset
+          </button>
+          </div>
+          
+        </form>
           </Modal.Body>
         </Modal>
         <form method="get">
@@ -116,6 +207,7 @@ function Body() {
               }}
             />
           </div>
+          <a href="#" onClick={handleShow}>forget password?</a>
           {/* <div className="form-check">
             <input
               type="checkbox"

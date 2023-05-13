@@ -4,6 +4,7 @@ import RegistrarDashboard from "../Comp/registrar/dashboard";
 import RegisterStudent from "../Comp/registrar/register";
 import ViewStudent from "../Comp/registrar/veiw";
 import InstructorNotify from "../Comp/instructor/i-Notify";
+import AddUser from "../Comp/registrar/addUser";
 
 function RegistrarPage() {
   return (
@@ -36,6 +37,14 @@ function RegistrarPage() {
               </Nav.Item>
               <Nav.Item className="side-buttons">
                 <Nav.Link
+                  eventKey="addUsers"
+                  className="side-buttons border border-2 border-dark"
+                >
+                   Add User
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item className="side-buttons">
+                <Nav.Link
                   eventKey="fourth"
                   className="side-buttons border border-2 border-dark"
                 >
@@ -55,7 +64,9 @@ function RegistrarPage() {
               </Tab.Pane>
               <Tab.Pane eventKey="fourth">
                 <InstructorNotify />
-                
+              </Tab.Pane>
+              <Tab.Pane eventKey="addUsers">
+                <AddUser />
               </Tab.Pane>
             </Tab.Content>
           </Tab.Container>

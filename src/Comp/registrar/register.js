@@ -36,21 +36,34 @@ function RegisterStudent() {
   const submithandler = (e) => {
     e.preventDefault();
     // alert("Submitted " + stdPhoto + " " + stdSex);
-    
+
     const info = [
-      stdPhoto,stdFName,stdMName,stdLName,
-      stdAge,stdSex,stdNationality,
-      stdCountry,stdCity,stdSubCity,stdWoreda,stdHouseNo,
-      stdEmail,stdEmail2,stdPhone,stdPhone2,
+      stdPhoto,
+      stdFName,
+      stdMName,
+      stdLName,
+      stdAge,
+      stdSex,
+      stdNationality,
+      stdCountry,
+      stdCity,
+      stdSubCity,
+      stdWoreda,
+      stdHouseNo,
+      stdEmail,
+      stdEmail2,
+      stdPhone,
+      stdPhone2,
     ];
     alert(info);
   };
   return (
-    <div className="border comp-body-container p-3">
+    <div className="border my-register-form comp-body-container p-3">
       <h3>Register Student</h3>
       <div className="reg-stud">
         <form action="">
           <div className="student-photo">
+          <section>Select Photo</section>
             <input
               type="file"
               name="stdphoto"
@@ -139,66 +152,70 @@ function RegisterStudent() {
             </div>
           </div>
 
-          <div className="address d-flex">
-            <div className="first-name">
-              <section>Country</section>
-              <input
-                type="text"
-                name="Country"
-                id="Country"
-                placeholder="Country"
-                onChange={(e) => {
-                  setStdCountry(e.target.value);
-                }}
-              />
+          <div className="address row">
+            <div className="d-flex">
+              <div className="first-name">
+                <section>Country</section>
+                <input
+                  type="text"
+                  name="Country"
+                  id="Country"
+                  placeholder="Country"
+                  onChange={(e) => {
+                    setStdCountry(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="first-name">
+                <section>City</section>
+                <input
+                  type="text"
+                  name="first"
+                  id="first"
+                  placeholder="city"
+                  onChange={(e) => {
+                    setStdCity(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="first-name">
+                <section>SubCity</section>
+                <input
+                  type="text"
+                  name="first"
+                  id="first"
+                  placeholder="Subcity"
+                  onChange={(e) => {
+                    setStdSubCity(e.target.value);
+                  }}
+                />
+              </div>
             </div>
-            <div className="first-name">
-              <section>City</section>
-              <input
-                type="text"
-                name="first"
-                id="first"
-                placeholder="city"
-                onChange={(e) => {
-                  setStdCity(e.target.value);
-                }}
-              />
-            </div>
-            <div className="first-name">
-              <section>SubCity</section>
-              <input
-                type="text"
-                name="first"
-                id="first"
-                placeholder="Subcity"
-                onChange={(e) => {
-                  setStdSubCity(e.target.value);
-                }}
-              />
-            </div>
-            <div className="first-name">
-              <section>Woreda</section>
-              <input
-                type="number"
-                name="first"
-                id="first"
-                placeholder="Woreda"
-                onChange={(e) => {
-                  setStdWoreda(e.target.value);
-                }}
-              />
-            </div>
-            <div className="first-name">
-              <section>House no</section>
-              <input
-                type="text"
-                name="first"
-                id="first"
-                placeholder="H.no"
-                onChange={(e) => {
-                  setStdHouseNo(e.target.value);
-                }}
-              />
+            <div className="d-flex">
+              <div className="first-name">
+                <section>Woreda</section>
+                <input
+                  type="number"
+                  name="first"
+                  id="first"
+                  placeholder="Woreda"
+                  onChange={(e) => {
+                    setStdWoreda(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="first-name">
+                <section>House no</section>
+                <input
+                  type="text"
+                  name="first"
+                  id="first"
+                  placeholder="H.no"
+                  onChange={(e) => {
+                    setStdHouseNo(e.target.value);
+                  }}
+                />
+              </div>
             </div>
           </div>
           <div className="contact d-flex">
@@ -293,66 +310,70 @@ function RegisterStudent() {
                 </div>
               </div>
 
-              <div className="emergency-address d-flex">
-                <div className="first-name">
-                  <section>Country</section>
-                  <input
-                    type="text"
-                    name="first"
-                    id="first"
-                    placeholder="Country"
-                    onChange={(e) => {
-                      setStdEMergencyCountry(e.target.value);
-                    }}
-                  />
+              <div className="emergency-address row">
+                <div className="d-flex">
+                  <div className="first-name">
+                    <section>Country</section>
+                    <input
+                      type="text"
+                      name="first"
+                      id="first"
+                      placeholder="Country"
+                      onChange={(e) => {
+                        setStdEMergencyCountry(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="first-name">
+                    <section>City</section>
+                    <input
+                      type="text"
+                      name="first"
+                      id="first"
+                      placeholder="City"
+                      onChange={(e) => {
+                        setStdEMergencyCity(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="first-name">
+                    <section>SubCity</section>
+                    <input
+                      type="text"
+                      name="first"
+                      id="first"
+                      placeholder="Subcity"
+                      onChange={(e) => {
+                        setStdEMergencySubCity(e.target.value);
+                      }}
+                    />
+                  </div>
                 </div>
-                <div className="first-name">
-                  <section>City</section>
-                  <input
-                    type="text"
-                    name="first"
-                    id="first"
-                    placeholder="City"
-                    onChange={(e) => {
-                      setStdEMergencyCity(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="first-name">
-                  <section>SubCity</section>
-                  <input
-                    type="text"
-                    name="first"
-                    id="first"
-                    placeholder="Subcity"
-                    onChange={(e) => {
-                      setStdEMergencySubCity(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="first-name">
-                  <section>Woreda</section>
-                  <input
-                    type="number"
-                    name="first"
-                    id="first"
-                    placeholder="Country"
-                    onChange={(e) => {
-                      setStdEMergencyWoreda(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="first-name">
-                  <section>House no</section>
-                  <input
-                    type="text"
-                    name="first"
-                    id="first"
-                    placeholder="H.no"
-                    onChange={(e) => {
-                      setStdEMergencyHouseNo(e.target.value);
-                    }}
-                  />
+                <div className="d-flex">
+                  <div className="first-name">
+                    <section>Woreda</section>
+                    <input
+                      type="number"
+                      name="first"
+                      id="first"
+                      placeholder="Country"
+                      onChange={(e) => {
+                        setStdEMergencyWoreda(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className="first-name">
+                    <section>House no</section>
+                    <input
+                      type="text"
+                      name="first"
+                      id="first"
+                      placeholder="H.no"
+                      onChange={(e) => {
+                        setStdEMergencyHouseNo(e.target.value);
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="emergency-contact d-flex">

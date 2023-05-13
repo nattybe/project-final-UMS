@@ -1,5 +1,5 @@
 body {
-  font-family:'Times New Roman', Times, serif !important;
+  font-family: "Times New Roman", Times, serif !important;
 }
 /*--------------------------------------- Header ---------------------------------------*/
 
@@ -27,22 +27,22 @@ nav {
 .nav-links button {
   margin: 0 20px;
 }
-.tab-pane{
+.tab-pane {
   /* width: 1000px; */
   /* overflow: scroll; */
 }
 /*--------------------------------------- notify ---------------------------------------*/
-.view-notify-item{
-  border-end-start-radius:20px ;
+.view-notify-item {
+  border-end-start-radius: 20px;
   border-start-end-radius: 20px;
 }
-.view-notify-item h5{
+.view-notify-item h5 {
   font-weight: 700;
   text-decoration: underline;
 }
-.view-notify-item section{
+.view-notify-item section {
 }
-.view-notify-body-cont{
+.view-notify-body-cont {
   height: 500px;
   overflow-y: scroll;
 }
@@ -73,7 +73,7 @@ nav {
   font-size: large;
 }
 /*--------------------------------------- Offering Course ---------------------------------------*/
-.oc-input{
+.oc-input {
   width: 150px;
 }
 
@@ -177,7 +177,7 @@ nav {
 .item div i {
   margin-right: 10px;
 }
-.student-item{
+.student-item {
   display: flex;
   flex-direction: row;
 }
@@ -291,30 +291,88 @@ nav {
 .stud-avatar-boxes .tabled {
   padding: 20px 100px;
 }
-.assign-instructor div select{
+.assign-instructor div select {
   height: 30px;
   margin-bottom: 30px;
 }
-.assign-instructor div{
+.assign-instructor div {
   display: contents;
 }
-.filter-by select{
+.filter-by select {
   margin-right: 20px;
 }
-.loginasselect{
-display: block;
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    /* appearance: none; */
-    border-radius: 0.375rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+.loginasselect {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  /* appearance: none; */
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.reset-password-form input{
+
+}
+.sent-from section{
+  align-self: center;
+}
+.sent-from img{
+ width: 50px;
+ margin: 10px;
+ /* background: #000; */
+ border-radius: 50%;
+}
+.message-holder{
+  border: 1px solid #000 ;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 350px;
+  padding: 5px;
+  
+  
+}
+.sent-message{
+  /* justify-self: end; */
+  align-self: flex-end;
+  width: fit-content;
+  background-color: chartreuse;
+  border: 2px solid #000;
+  border-end-end-radius: 0px !important;
+  /* margin: 4px 4px 0 0; */
+  padding: 0 3px;
+  border-radius: 5px;
+  max-width: 50%;
+  box-shadow: 0 0 10px rgb(112, 214, 10);
+  margin-top: 5px;
+}
+.received-message{
+  width: fit-content;
+  background-color: aqua;
+  border: 2px solid #000;
+  border-radius: 5px;
+  border-end-start-radius: 0px !important;
+  /* margin: 0 0 4px 4px; */
+  max-width: 50%;
+  margin-top: 5px;
+  box-shadow: 0 0 10px aqua;
+  padding: 0 3px;
+
+}
+.message-send-btn{
+
+}
+.my-register-form input {
+  
+  width: 190px;
+  margin-right: 20px;
+  margin-bottom: 10px;
 }
 /*--------------------------------------- Mobile ---------------------------------------*/
 
@@ -331,7 +389,7 @@ display: block;
 }
 
 /*--------------------------------------- Footer ---------------------------------------*/
-.footer{
+.footer {
   /* position: fixed;
   bottom: 0;
   width: 100%; */

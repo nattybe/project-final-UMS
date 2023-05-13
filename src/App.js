@@ -14,6 +14,7 @@ import Header from "./Comp/header";
 import RegistrarPage from "./pages/registrarPage";
 import Footer from "./pages/footer";
 import ChatMessage from "./Comp/message";
+import Profile from "./Comp/profile";
 
 const App = () => {
   return (
@@ -42,6 +43,9 @@ const App = () => {
         </Route>
         <Route path="/messages">
           <ChatMessage />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
         <Route path="*">
           <ErrorPage />
