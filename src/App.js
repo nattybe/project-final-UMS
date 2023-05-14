@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Routes } from "react-router-dom";
+// import { Routes } from "react-router-dom";
 import HomePage from "./pages/home-page";
 import StudentPage from "./pages/student-page";
 import InstructorPage from "./pages/instructor-page";
@@ -12,11 +12,17 @@ import ErrorPage from "./pages/errorPage";
 import LoginPage from "./pages/loginPage";
 import Header from "./Comp/header";
 import RegistrarPage from "./pages/registrarPage";
-import Footer from "./pages/footer";
 import ChatMessage from "./Comp/message";
 import Profile from "./Comp/profile";
 
 const App = () => {
+  const state = {
+    loginas: 'student',
+    hi: "true",
+  };
+  
+
+  window.sessionStorage.setItem("login", JSON.stringify(state));
   return (
     <Router>
     <Header/>
@@ -51,7 +57,6 @@ const App = () => {
           <ErrorPage />
         </Route>
       </Switch>
-      {/* <Footer/> */}
     </Router>
   );
 };

@@ -21,9 +21,16 @@ class InstructorNotify extends Component {
             <label htmlFor="">Post For</label>
             <select name="notify-for" id="notify-for">
               <option value="Department">Department</option>
+              <option value="Department">Section</option>
+              {/* <option value="Department"></option> */}
             </select>
           </div>
-
+          <div className="d-flex flex-column">
+            <label htmlFor="">Post For</label>
+            <select name="notify-for" id="notify-for">
+              <option value="Department">Computer Science</option>
+            </select>
+          </div>
           <Button> Post</Button>
         </div>
       </Container>

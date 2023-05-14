@@ -27,7 +27,7 @@ function ProgramDashboard() {
           </div>
         </div>
         <div className="info-boxes">
-          <section>Total Students</section>
+          <section>Total Sections</section>
           <h2>{state.TE}</h2>
         </div>
       </div>

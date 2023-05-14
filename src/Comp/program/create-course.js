@@ -12,7 +12,11 @@ function ProgramCreateCourse() {
             <input type="text" />
           </div>
           <div className="PCC-itmes ms-3">
-            <section>Course Code:</section>
+            <section>Course Prerequisite:</section>
+            <input type="text" />
+          </div>
+          <div className="PCC-itmes ms-3">
+            <section>Department:</section>
             <input type="text" />
           </div>
         </div>
@@ -25,13 +29,17 @@ function ProgramCreateCourse() {
             <section>Credit Hour:</section>
             <input type="text" />
           </div>
+          <div className="PCC-itmes   ms-3">
+            <section>Contact Hour:</section>
+            <input type="text" />
+          </div>
         </div>
 
         <div className="description react-com mt-4">
           <section>Description:</section>
           <textarea
             rows={5}
-            cols={50}
+            cols={77}
             type="text"
             placeholder="About the course"
           />

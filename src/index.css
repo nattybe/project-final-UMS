@@ -31,6 +31,14 @@ nav {
   /* width: 1000px; */
   /* overflow: scroll; */
 }
+.home-page-bod .carousel-item img{
+  height: 500px;
+  /* width: 500px; */
+}
+.carousel{
+  /* margin: 100px!important; */
+}
+
 /*--------------------------------------- notify ---------------------------------------*/
 .view-notify-item {
   border-end-start-radius: 20px;
@@ -389,8 +397,23 @@ nav {
 }
 
 /*--------------------------------------- Footer ---------------------------------------*/
-.footer {
-  /* position: fixed;
-  bottom: 0;
-  width: 100%; */
+.footer{
+  padding: 0 10px;
+}
+.footer section{
+  font-size: large;
+  font-weight: 700;
+  margin-left: 60px;
+}
+.footer ul li{
+  list-style: none;
+  margin-top: 10px;
+}
+.footer ul li a{
+  /* color: #000; */
+  text-decoration: none;
+}
+.footer ul li i{
+  margin-left: 10px;
+  font-size: 20px;
 }

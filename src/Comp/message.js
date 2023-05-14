@@ -58,7 +58,10 @@ function ChatMessage() {
             placeholder="Write Message"
             className="form-control m-1"
           />
-          <Button className="message-send-btn">Send</Button>
+          <Button className="message-send-btn" onClick={()=>{
+            let stateData=JSON.parse(window.sessionStorage.getItem("login"))
+            alert("Message "+ stateData.hi );
+          }}>Send</Button>
         </div>
       </div>
     </Container>
