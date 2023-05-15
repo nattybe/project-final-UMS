@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Dropdown, Modal, Nav, Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 function Header() {
   const [notification, setNotification] = useState([
@@ -47,7 +47,7 @@ function Header() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const state = { loggedIn: true };
+  const state = { loggedIn: false };
   const log = {
     name: "Natnael",
     role: "wh",
@@ -90,6 +90,7 @@ function Header() {
     }
   };
   return (
+    <>
     <Navbar bg="primary" sticky="top" variant="light" expand="lg">
       <div className="nav-links">
         <Navbar.Brand>
@@ -138,6 +139,10 @@ function Header() {
       </div>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
     </Navbar>
+      <div>
+        <Outlet/>
+      </div>
+    </>
   );
 }
 

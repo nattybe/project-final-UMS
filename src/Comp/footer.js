@@ -35,11 +35,7 @@ function Footer() {
           <li>Al-Amoudi campus-Gerji(Addiss Ababa)</li>
           <li>Keranyo campus-Keranyo(Addiss Ababa)</li>
           <li>Geferssa campus-Burayou(Addiss Ababa)</li>
-        </ul>
-      </div>
-      <div className="col">
-        <section>Campuses</section>
-        <ul>
+
           <li>Adama campus-Adama</li>
           <li>Rukiya campus-Dessie</li>
           <li>CMC/Arega campus-CMC</li>

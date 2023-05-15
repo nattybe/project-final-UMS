@@ -13,7 +13,7 @@ class StudentPage extends Component {
     return (
       <React.StrictMode>
         <div className="main">
-          <Tab.Container id="left-tabs-example" defaultActiveKey="fifth">
+          <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Nav variant="pills" className="flex-column">
               <Nav.Item className="side-buttons">
                 <Nav.Link

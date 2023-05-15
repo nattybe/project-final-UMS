@@ -14,7 +14,7 @@ export default class InstructorPage extends Component {
     return (
       <div>
         <div className="main">
-          <Tab.Container id="left-tabs-example" defaultActiveKey="fifth">
+          <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Nav variant="pills" className="flex-column">
               <Nav.Item className="side-buttons">
                 <Nav.Link
