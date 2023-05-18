@@ -6,6 +6,8 @@ import {
   Route,
   createRoutesFromElements,
   RouterProvider,
+  Outlet,
+  Navigate,
 } from "react-router-dom";
 // import { Routes } from "react-router-dom";
 import HomePage from "./pages/home-page";
@@ -19,7 +21,10 @@ import Header from "./Comp/header";
 import RegistrarPage from "./pages/registrarPage";
 import ChatMessage from "./Comp/message";
 import Profile from "./Comp/profile";
-
+const PrivateRoutes = () => {
+  const auth = true;
+  return auth ? <Outlet /> : <Navigate to="messages" />;
+};
 const App = () => {
   // const oldRoutes = [
   //   <Router>
@@ -61,10 +66,7 @@ const App = () => {
   // const router=createBrowserRouter(
   //   createRoutesFromElements
   // );
-  const state = {
-    loginas: "student",
-    hi: "true",
-  };
+
   const routes = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Header />} errorElement={<ErrorPage />}>
@@ -73,10 +75,12 @@ const App = () => {
         <Route path="profile" element={<Profile />} />
         <Route path="messages" element={<ChatMessage />} />
         <Route path="registrar" element={<RegistrarPage />} />
-        <Route path="programoffice" element={<ProgramOfficePage />} />
-        <Route path="instructor" element={<InstructorPage />} />
-        <Route path="student" element={<StudentPage />} />
-        <Route path="librarian" element={<LibrairanPage />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="programoffice" element={<ProgramOfficePage />} />
+          <Route path="instructor" element=<InstructorPage /> />
+          <Route path="student" element={<StudentPage />} />
+          <Route path="librarian" element={<LibrairanPage />} />
+        </Route>
         <Route />
       </Route>
     )

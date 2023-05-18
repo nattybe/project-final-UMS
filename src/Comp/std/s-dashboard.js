@@ -1,64 +1,79 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 
-export default class StudentDashboard extends Component {
-  render() {
-    const state = {
-      Id: "UU7431R",
-      Name: "James Bond",
-      Address: "Addiss ababa,ethiopia",
-      PhoneNo: "0987654321",
-      TE: 321,
-      TR: 342,
-      TI: 21,
-      TS: 534,
-    };
-    return (
-      <div className="border comp-body-container registrar-dashboard d-flex">
-        <div className="stud-avatar-boxes avatar-boxes d-flex">
-          <div className="divers">
-            <div className="stud-boxer boxers bg-info border-3 border-dark border d-flex">
-              <div className="avatar-photo">
-                <img src="./logo192.png" alt="" />
-                <section>ID: {state.Id}</section>
-              </div>
-              <div className="avatar-info">
-                <p>Name: {state.Name}</p>
-                <p>Address: {state.Address}</p>
-                <p>Phone No: {state.PhoneNo}</p>
-              </div>
+export default function StudentDashboard(props) {
+  const [loggerInfo, setLoggerInfo] = useState();
+
+  const getLogger = () => {
+    let logger = JSON.parse(window.sessionStorage.getItem("logger"));
+    console.log("logger => GetLogger " + logger);
+    setLoggerInfo(logger);
+  };
+
+  useEffect(() => {
+    if (loggerInfo) {
+      console.log(loggerInfo);
+    } else {
+      getLogger();
+    }
+  }, [loggerInfo]);
+  const avatorMaker=()=>{
+    if(loggerInfo){
+      const id=loggerInfo.S_ID
+      const name=(loggerInfo.S_FIRSTNAME+" "+loggerInfo.S_LASTNAME)
+      const address=(loggerInfo.S_CITY+", "+loggerInfo.S_SUBCITY)
+      const phone=loggerInfo.S_PHONENO_1
+      return(
+        <div className="stud-boxer boxers bg-info border-3 border-dark border d-flex">
+            <div className="avatar-photo">
+              <img src="./logo192.png" alt="" />
+              <section>ID: {id}</section>
             </div>
-            <div className="tabled">
-            <h3>Today's Plan</h3>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Time</th>
-                    <th scope="col">Task</th>
-                    <th scope="col">Room</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>IP</td>
-                    <td>34</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>DB</td>
-                    <td>Lab 5</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">7</th>
-                    <td>DBMS</td>
-                    <td>Lab 8</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="avatar-info">
+              <p>Name: {name}</p>
+              <p>Address: {address}</p>
+              <p>Phone No: {phone}</p>
             </div>
           </div>
-          {/* <div className="tabled">
+      )
+    }
+  }
+  return (
+    <div className="border comp-body-container registrar-dashboard d-flex">
+      <div className="stud-avatar-boxes avatar-boxes d-flex">
+        <div className="divers">
+          {avatorMaker()}
+          <div className="tabled">
+            <h3>Today's Plan</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Time</th>
+                  <th scope="col">Task</th>
+                  <th scope="col">Room</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>IP</td>
+                  <td>34</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>DB</td>
+                  <td>Lab 5</td>
+                </tr>
+                <tr>
+                  <th scope="row">7</th>
+                  <td>DBMS</td>
+                  <td>Lab 8</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        {/* <div className="tabled">
             <h3>Grade</h3>
             <table className="table border">
               <thead>
@@ -114,9 +129,8 @@ export default class StudentDashboard extends Component {
               </tbody>
             </table>
           </div> */}
-        </div>
-        <div className="info-boxes-box d-flex"></div>
       </div>
-    );
-  }
+      <div className="info-boxes-box d-flex"></div>
+    </div>
+  );
 }

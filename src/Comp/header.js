@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Dropdown, Modal, Nav, Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Navigate, Outlet } from "react-router-dom";
 
 function Header() {
   const [notification, setNotification] = useState([
@@ -46,37 +46,53 @@ function Header() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [loggerInfo, setLoggerInfo] = useState();
 
-  const state = { loggedIn: false };
-  const log = {
-    name: "Natnael",
-    role: "wh",
+  const getLogger = () => {
+    let logger = JSON.parse(window.sessionStorage.getItem("logger"));
+    console.log("logger => GetLogger " + logger);
+    setLoggerInfo(logger);
   };
-  // const [Name,setName]=useState('Natty');
-  // const [Role,setRole]=useState('role');
+
+  useEffect(() => {
+    if (loggerInfo) {
+      // alert(loggerInfo.S_ID);
+      console.log(loggerInfo);
+    } else {
+      getLogger();
+    }
+  }, [loggerInfo]);
 
   const logout = () => {
-    state.loggedIn = false;
-    log.name = "";
+    window.sessionStorage.removeItem("logger");
+    // <a href="/home" id="LinkLogin"></a>
+    // documnet.getElementById("LinkLogin").click();
+    window.open("/", "_self")
+  };
 
-    alert("LogOut " + state.loggedIn);
-  };
-  const loginForm = () => {
-    this.render();
-  };
   const logger = () => {
-    if (state.loggedIn) {
+    if (loggerInfo) {
       return (
-        <Dropdown>
-          <Dropdown.Toggle variant="primary" id="dropdown-basic">
-            {log.name}
-          </Dropdown.Toggle>
+        <>
+          <Nav.Link href="/">
+            <Link className="nav-link" to="/messages">
+              <i class="fas fa-comments fa-lg" />
+            </Link>
+          </Nav.Link>
+          <Nav.Link role="button" onClick={handleShow}>
+            <i class="fas fa-bell fa-lg" />
+          </Nav.Link>
+          <Dropdown>
+            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+              {loggerInfo.S_FIRSTNAME +" "+ loggerInfo.S_LASTNAME}
+            </Dropdown.Toggle>
 
-          <Dropdown.Menu>
-            <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-            <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+            <Dropdown.Menu>
+              <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+              <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </>
       );
     } else {
       return (
@@ -91,27 +107,41 @@ function Header() {
   };
   return (
     <>
-    <Navbar bg="primary" sticky="top" variant="light" expand="lg">
-      <div className="nav-links">
-        <Navbar.Brand>
-          <Link to="/">
-            <img
-              src="logoUU.png"
-              width="40"
-              height="40"
-              className="d-inline-block align-top"
-              alt="UULogo"
-            />
-          </Link>
-        </Navbar.Brand>
-        <Nav.Link href="/">
-          <i class="fas fa-home fa-lg  "></i>
-        </Nav.Link>
-      </div>
-      <div className="nav-links">
-        <Nav.Link href="#home">
+      <Navbar bg="primary" sticky="top" variant="light" expand="lg">
+        <div className="nav-links">
+          <Navbar.Brand>
+            <Link to="/">
+              <img
+                src="logoUU.png"
+                width="40"
+                height="40"
+                className="d-inline-block align-top"
+                alt="UULogo"
+              />
+            </Link>
+          </Navbar.Brand>
+          <Nav.Link href="/">
+            <i class="fas fa-home fa-lg" />
+          </Nav.Link>
+          <Dropdown>
+            <Dropdown.Toggle variant="danger" id="dropdown-basic">
+              Navigate
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item role="list" ><Link to="/profile">Profile</Link></Dropdown.Item>
+              <Dropdown.Item role="list" ><Link to="/login">login</Link></Dropdown.Item>
+              <Dropdown.Item role="list" ><Link to="/messages">messages</Link></Dropdown.Item>
+              <Dropdown.Item role="list" ><Link to="/student">student</Link></Dropdown.Item>
+              <Dropdown.Item role="list" ><Link to="/instructor">instructor</Link></Dropdown.Item>
+              <Dropdown.Item role="list" ><Link to="/librarian">librarian</Link></Dropdown.Item>
+              <Dropdown.Item role="list" ><Link to="/registrar">registrar</Link></Dropdown.Item>
+              <Dropdown.Item role="list" ><Link to="/programoffice">programoffice</Link></Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+        <div className="nav-links">
           <Modal show={show} onHide={handleClose}>
-            <Modal.Header className="bg-primary"  closeButton>
+            <Modal.Header className="bg-primary" closeButton>
               <Modal.Title>Notification</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -127,20 +157,12 @@ function Header() {
               </Container>
             </Modal.Body>
           </Modal>
-          <Link className="nav-link" to="/messages">
-            {" "}
-            <i class="fas fa-comments fa-lg  " />
-          </Link>
-        </Nav.Link>
-        <Nav.Link role="button" onClick={handleShow}>
-          <i class="fas fa-bell fa-lg  " />
-        </Nav.Link>
-        {logger()}
-      </div>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    </Navbar>
+          {logger()}
+        </div>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      </Navbar>
       <div>
-        <Outlet/>
+        <Outlet />
       </div>
     </>
   );
