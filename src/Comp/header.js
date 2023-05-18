@@ -136,6 +136,7 @@ function Header() {
               <Dropdown.Item role="list" ><Link to="/librarian">librarian</Link></Dropdown.Item>
               <Dropdown.Item role="list" ><Link to="/registrar">registrar</Link></Dropdown.Item>
               <Dropdown.Item role="list" ><Link to="/programoffice">programoffice</Link></Dropdown.Item>
+              <Dropdown.Item role="list" ><Link to="/department">department</Link></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>

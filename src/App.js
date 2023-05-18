@@ -21,6 +21,8 @@ import Header from "./Comp/header";
 import RegistrarPage from "./pages/registrarPage";
 import ChatMessage from "./Comp/message";
 import Profile from "./Comp/profile";
+import DepartmentDashboard from "./Comp/department/depDashboard";
+import DepartmentPage from "./pages/departmentPage";
 const PrivateRoutes = () => {
   const auth = true;
   return auth ? <Outlet /> : <Navigate to="messages" />;
@@ -75,6 +77,7 @@ const App = () => {
         <Route path="profile" element={<Profile />} />
         <Route path="messages" element={<ChatMessage />} />
         <Route path="registrar" element={<RegistrarPage />} />
+        <Route path="department" element={<DepartmentPage />} />
         <Route element={<PrivateRoutes />}>
           <Route path="programoffice" element={<ProgramOfficePage />} />
           <Route path="instructor" element=<InstructorPage /> />
