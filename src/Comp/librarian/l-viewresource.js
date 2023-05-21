@@ -9,7 +9,7 @@ export default function LibrarianViewResource() {
   const [deleteItem, setdeleteItem] = useState();
 
   const [deleteShow, setDeleteShow] = useState(false);
-  
+
   const handleClose = () => setDeleteShow(false);
   const handleShow = () => setDeleteShow(true);
   const books = [];
@@ -45,6 +45,17 @@ export default function LibrarianViewResource() {
           <h6 className="ms-5">Description: {deleteItem.R_DESCRIPTION}</h6>
         </>
       );
+    } else {
+      return (
+        <>
+          <h4>Are you sure you want to delete this resource?</h4>
+          {/* <p>{deleteItem.R_ID}</p> */}
+          <h6 className="ms-5">Name: TCP/IP Bible</h6>
+          <h6 className="ms-5">Category: Networking</h6>
+          <h6 className="ms-5">Author: Rob Scrimger</h6>
+          <h6 className="ms-5">Description: it says right in the name</h6>
+        </>
+      );
     }
   };
   const deleteHandler = (book) => {
@@ -56,7 +67,7 @@ export default function LibrarianViewResource() {
     if (typeof deleteItem !== "undefined") {
       const url = "http://localhost/proje/deleteResource.php";
       const delFD = new FormData();
-      delFD.append("R_ID",deleteItem.R_ID);
+      delFD.append("R_ID", deleteItem.R_ID);
       const fetchData = await fetch(url, {
         method: "POST",
         headers: {
@@ -66,12 +77,13 @@ export default function LibrarianViewResource() {
       });
       const resData = await fetchData.json();
       console.log(resData);
-      if(resData.status ==="success"){
+      if (resData.status === "success") {
         handleClose();
         alert("Item deleted successfully");
       }
     }
   };
+
   const fil = () => {
     if (typeof resource !== "undefined") {
       if (resource.status === "success") {
@@ -152,7 +164,28 @@ export default function LibrarianViewResource() {
           <i className="fas fa-search" />
         </button>
       </div>
-      <div className="flex book-render">{fil()}</div>
+      <div className="flex book-render">
+        <div className="item border row bg-light m-1">
+          <div className="col d-flex">
+            <i className="fas fa-book fa-lg  col" />
+            <div className="col">
+              <div>Tittle: TCP/IP Bible</div>
+              <div>Category: Networking</div>
+            </div>
+            <div className="col">
+              <div>Author: Rob Scrimger</div>
+              <div>Description:it says right in the name</div>
+            </div>
+          </div>
+          <div className="col download">
+            <Button>Edit</Button>
+            <Button variant="danger" onClick={() => setDeleteShow(true)}>
+              Delete
+            </Button>
+          </div>
+        </div>
+        {fil()}
+      </div>
     </Container>
   );
 }

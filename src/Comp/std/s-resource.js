@@ -24,7 +24,7 @@ function StudentResource() {
         Accept: "application/json",
       },
       body: searchFD,
-    })
+    });
     const resdata = await fetchData.json();
     setResource(resdata);
     // console.log(resource);
@@ -93,6 +93,96 @@ function StudentResource() {
         </button>
       </div>
       <div className="flex ">
+        <div className="item border row bg-light m-1">
+          <div className="col d-flex">
+            <i className="fas fa-book fa-lg  col" />
+            <div className="col">
+              <div>Tittle: TCP/IP Bible</div>
+              <div>Category:Networking</div>
+            </div>
+            <div className="col">
+              <div>Author: Rob Scrimger</div>
+              <div>Department: Computer Science</div>
+            </div>
+          </div>
+          <div className="col download">
+            <a href="#">
+              <i className="fas fa-download" />
+            </a>
+          </div>
+        </div>
+        <div className="item border row bg-light m-1">
+          <div className="col d-flex">
+            <i className="fas fa-book fa-lg  col" />
+            <div className="col">
+              <div>Tittle: TCP/IP Bible</div>
+              <div>Category:Networking</div>
+            </div>
+            <div className="col">
+              <div>Author: Rob Scrimger</div>
+              <div>Department: Computer Science</div>
+            </div>
+          </div>
+          <div className="col download">
+            <a href="#">
+              <i className="fas fa-download" />
+            </a>
+          </div>
+        </div>
+        <div className="item border row bg-light m-1">
+          <div className="col d-flex">
+            <i className="fas fa-book fa-lg  col" />
+            <div className="col">
+              <div>Tittle: TCP/IP Bible</div>
+              <div>Category:Networking</div>
+            </div>
+            <div className="col">
+              <div>Author: Rob Scrimger</div>
+              <div>Department: Computer Science</div>
+            </div>
+          </div>
+          <div className="col download">
+            <a href="#">
+              <i className="fas fa-download" />
+            </a>
+          </div>
+        </div>
+        <div className="item border row bg-light m-1">
+          <div className="col d-flex">
+            <i className="fas fa-book fa-lg  col" />
+            <div className="col">
+              <div>Tittle: TCP/IP Bible</div>
+              <div>Category:Networking</div>
+            </div>
+            <div className="col">
+              <div>Author: Rob Scrimger</div>
+              <div>Department: Computer Science</div>
+            </div>
+          </div>
+          <div className="col download">
+            <a href="#">
+              <i className="fas fa-download" />
+            </a>
+          </div>
+        </div>
+        <div className="item border row bg-light m-1">
+          <div className="col d-flex">
+            <i className="fas fa-book fa-lg  col" />
+            <div className="col">
+              <div>Tittle: TCP/IP Bible</div>
+              <div>Category:Networking</div>
+            </div>
+            <div className="col">
+              <div>Author: Rob Scrimger</div>
+              <div>Department: Computer Science</div>
+            </div>
+          </div>
+          <div className="col download">
+            <a href="#">
+              <i className="fas fa-download" />
+            </a>
+          </div>
+        </div>
         {resourceFiller()}
       </div>
     </Container>

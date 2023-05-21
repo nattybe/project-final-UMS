@@ -188,12 +188,12 @@ function Body() {
               name="loginas"
               id="loginas"
             >
-              {/* <option value="...">...</option> */}
-              <option value="student">Student</option>
+              <option value="students">Student</option>
               <option value="instructor">instructor</option>
               <option value="librarian">librarian</option>
               <option value="registrar">Registrar</option>
               <option value="programOfficer">Program officer</option>
+              <option value="department_members">Department head</option>
             </select>
 
             <small id="emailHelp" className="form-text text-muted">

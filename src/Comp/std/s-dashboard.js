@@ -26,13 +26,27 @@ export default function StudentDashboard(props) {
       return(
         <div className="stud-boxer boxers bg-info border-3 border-dark border d-flex">
             <div className="avatar-photo">
-              <img src="./logo192.png" alt="" />
+              <img src="./avatar.jpg" alt="" />
               <section>ID: {id}</section>
             </div>
             <div className="avatar-info">
               <p>Name: {name}</p>
               <p>Address: {address}</p>
               <p>Phone No: {phone}</p>
+            </div>
+          </div>
+      )
+    }else{
+      return(
+        <div className="stud-boxer boxers bg-info border-3 border-dark border d-flex">
+            <div className="avatar-photo">
+              <img src="./avatar.jpg" alt="" />
+              <section>ID: </section>
+            </div>
+            <div className="avatar-info">
+              <p>Name: </p>
+              <p>Address: </p>
+              <p>Phone No: </p>
             </div>
           </div>
       )

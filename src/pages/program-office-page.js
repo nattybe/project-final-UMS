@@ -9,6 +9,7 @@ import InstructorNotify from "../Comp/instructor/i-Notify";
 import ProgramDashboard from "../Comp/program/p-dashboeard";
 import OfferingCourse from "../Comp/program/offeringCourse";
 import AssignInstructor from "../Comp/program/assignInstructor";
+import UploadSchedule from "../Comp/program/uploadSchedule";
 
 class ProgramOfficePage extends Component {
   render() {
@@ -80,7 +81,7 @@ class ProgramOfficePage extends Component {
                 <ProgramDashboard />
               </Tab.Pane>
               <Tab.Pane eventKey="uploadSchedule">
-                <LibrarianAddResource />
+                <UploadSchedule />
               </Tab.Pane>
               <Tab.Pane eventKey="CreateCourse">
                 <ProgramCreateCourse />

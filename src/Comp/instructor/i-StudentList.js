@@ -23,17 +23,15 @@ export default class StudentList extends Component {
               <option value="CCS1R1N6/16">CCS1R1N6/16</option>
             </select>
           </div>
-
-          <Button>Print</Button>
+          <Button className="mt-3 mb-1">Print section student list</Button>
         </div>
-
         <Table striped bordered hover>
           <thead>
             <tr>
               <th>#</th>
               <th>Student ID</th>
               <th>Student Name</th>
-              <th colSpan={9}>{""} </th>
+              <th>Grade %</th>
             </tr>
           </thead>
           <tbody>
@@ -41,32 +39,37 @@ export default class StudentList extends Component {
               <td>1</td>
               <td colSpan="1">UU79706</td>
               <td>Natnael Belihu</td>
-              <td colSpan={4}></td>
+              <td>
+                <input type="number" />
+                <button>Add</button>
+              </td>
             </tr>
             <tr>
               <td>1</td>
               <td colSpan="1">UU79706</td>
               <td>Natnael Belihu</td>
+              <td>
+                <input type="number" />
+                <button>Add</button>
+              </td>
             </tr>
             <tr>
               <td>1</td>
               <td colSpan="1">UU79706</td>
               <td>Natnael Belihu</td>
+              <td>
+                <input type="number" />
+                <button>Add</button>
+              </td>
             </tr>
             <tr>
               <td>1</td>
               <td colSpan="1">UU79706</td>
               <td>Natnael Belihu</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td colSpan="1">UU79706</td>
-              <td>Natnael Belihu</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td colSpan="1">UU79706</td>
-              <td>Natnael Belihu</td>
+              <td>
+                <input type="number" />
+                <button>Add</button>
+              </td>
             </tr>
           </tbody>
         </Table>

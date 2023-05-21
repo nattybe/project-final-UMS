@@ -32,11 +32,21 @@ nav {
   /* overflow: scroll; */
 }
 .home-page-bod .carousel-item img{
-  height: 500px;
+  height: 90dvh;
   /* width: 500px; */
 }
-.carousel{
+.second-carou .carousel-item img{
+  height:70dvh;
+  
+  }
+.second-carou .carousel{
   /* margin: 100px!important; */
+  margin: 20px 0;
+  margin-right: 20px;
+}
+.about-background section h3{
+  text-align: justify;
+  text-justify: distribute-all-lines;
 }
 
 /*--------------------------------------- notify ---------------------------------------*/
@@ -276,6 +286,13 @@ nav {
   flex-direction: column;
   align-items: center;
 }
+.avatar-photo img{
+  width: 200px;
+  border-radius: 50%;
+  margin: 20px;
+  src: local('/LogoUU.png');
+  
+}
 .avatar-info {
   margin: 10px;
 }
@@ -432,4 +449,12 @@ nav {
 .alert-by-me .alert{
   width: 400px;
   height: 200px;
+}
+/*--------------------------------------- schedule-maker ---------------------------------------*/
+
+
+/*--------------------------------------- profile ---------------------------------------*/
+
+.profile img{
+    width: 300px;
 }
