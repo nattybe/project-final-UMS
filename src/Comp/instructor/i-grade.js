@@ -33,7 +33,7 @@ export default class InstructorGrade extends Component {
               <th>#</th>
               <th>Student ID</th>
               <th>Student Name</th>
-              <th >Grade %</th>
+              <th>Grade %</th>
             </tr>
           </thead>
           <tbody>
@@ -41,25 +41,37 @@ export default class InstructorGrade extends Component {
               <td>1</td>
               <td colSpan="1">UU79706</td>
               <td>Natnael Belihu</td>
-              <td ><input type="number" /><button>Add</button></td>
+              <td>
+                <input type="number" />
+                <button>Add</button>
+              </td>
             </tr>
             <tr>
               <td>1</td>
               <td colSpan="1">UU79706</td>
               <td>Natnael Belihu</td>
-              <td ><input type="number" /><button>Add</button></td>
+              <td>
+                <input type="number" />
+                <button>Add</button>
+              </td>
             </tr>
             <tr>
               <td>1</td>
               <td colSpan="1">UU79706</td>
               <td>Natnael Belihu</td>
-              <td ><input type="number" /><button>Add</button></td>
+              <td>
+                <input type="number" />
+                <button>Add</button>
+              </td>
             </tr>
             <tr>
               <td>1</td>
               <td colSpan="1">UU79706</td>
               <td>Natnael Belihu</td>
-              <td ><input type="number" /><button>Add</button></td>
+              <td>
+                <input type="number" />
+                <button>Add</button>
+              </td>
             </tr>
           </tbody>
         </Table>

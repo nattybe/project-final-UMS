@@ -6,6 +6,7 @@ import ViewStudent from "../Comp/registrar/veiw";
 import InstructorNotify from "../Comp/instructor/i-Notify";
 import AddUser from "../Comp/registrar/addUser";
 import ViewUser from "../Comp/registrar/viewUser";
+import CreateSection from "../Comp/registrar/createsection";
 
 function RegistrarPage() {
   return (
@@ -44,6 +45,15 @@ function RegistrarPage() {
               Add User
             </Nav.Link>
           </Nav.Item>
+
+          <Nav.Item className="side-buttons">
+            <Nav.Link
+              eventKey="CreateSection"
+              className="side-buttons border border-2 border-dark"
+            >
+              Create Section
+            </Nav.Link>
+          </Nav.Item>
           <Nav.Item className="side-buttons">
             <Nav.Link
               eventKey="viewUsers"
@@ -71,6 +81,11 @@ function RegistrarPage() {
           <Tab.Pane eventKey="third">
             <ViewStudent />
           </Tab.Pane>
+
+          <Tab.Pane eventKey="CreateSection">
+            <CreateSection />
+          </Tab.Pane>
+
           <Tab.Pane eventKey="fourth">
             <InstructorNotify />
           </Tab.Pane>

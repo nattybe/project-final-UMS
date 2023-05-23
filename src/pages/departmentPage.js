@@ -1,11 +1,13 @@
 import React from 'react'
 import { Nav, Tab } from 'react-bootstrap'
 import DepartmentDashboard from '../Comp/department/depDashboard'
-import ProgramCreateCourse from '../Comp/program/create-course'
-import OfferingCourse from '../Comp/program/offeringCourse'
-import ProgramViewCourse from '../Comp/program/pViewCourse'
+import ProgramCreateCourse from '../Comp/department/create-course'
+import OfferingCourse from '../Comp/department/offeringCourse'
+import ProgramViewCourse from '../Comp/department/pViewCourse'
 import InstructorNotify from '../Comp/instructor/i-Notify'
-import AssignInstructor from '../Comp/program/assignInstructor'
+import AssignInstructor from '../Comp/department/assignInstructor'
+import ViewGrades from '../Comp/department/depViewGrades'
+import EditOfferingCourse from '../Comp/department/editOfferingCourse'
 
 function DepartmentPage() {
   return (
@@ -34,7 +36,15 @@ function DepartmentPage() {
                   eventKey="OfferingCourses"
                   className="side-buttons border border-2 border-dark"
                 >
-                  Offering Course
+                  Create Offering Course
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item className="side-buttons">
+                <Nav.Link
+                  eventKey="view-oc"
+                  className="side-buttons border border-2 border-dark"
+                >
+                  Edit Offering Course
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item className="side-buttons">
@@ -59,6 +69,15 @@ function DepartmentPage() {
                   className="side-buttons border border-2 border-dark"
                 >
                   View Course
+                </Nav.Link>
+              </Nav.Item>
+
+              <Nav.Item className="side-buttons">
+                <Nav.Link
+                  eventKey="view-grades"
+                  className="side-buttons border border-2 border-dark"
+                >
+                  Grades
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item className="side-buttons">
@@ -91,6 +110,12 @@ function DepartmentPage() {
               </Tab.Pane>
               <Tab.Pane eventKey="AssignInstructor">
                 <AssignInstructor />
+              </Tab.Pane>
+              <Tab.Pane eventKey="view-grades">
+                <ViewGrades />
+              </Tab.Pane>
+              <Tab.Pane eventKey="view-oc">
+                <EditOfferingCourse />
               </Tab.Pane>
             </Tab.Content>
           </Tab.Container>

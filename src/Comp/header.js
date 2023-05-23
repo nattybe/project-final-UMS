@@ -67,7 +67,7 @@ function Header() {
     window.sessionStorage.removeItem("logger");
     // <a href="/home" id="LinkLogin"></a>
     // documnet.getElementById("LinkLogin").click();
-    window.open("/", "_self")
+    window.open("/", "_self");
   };
 
   const logger = () => {
@@ -84,7 +84,7 @@ function Header() {
           </Nav.Link>
           <Dropdown>
             <Dropdown.Toggle variant="primary" id="dropdown-basic">
-              {loggerInfo.S_FIRSTNAME +" "+ loggerInfo.S_LASTNAME}
+              {loggerInfo.S_FIRSTNAME + " " + loggerInfo.S_LASTNAME}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -123,20 +123,46 @@ function Header() {
           <Nav.Link href="/">
             <i class="fas fa-home fa-lg" />
           </Nav.Link>
+          <dialog open>
+            <p>Greetings, one and all!</p>
+            <form method="dialog">
+
+            <button>hello</button>
+            </form>
+          </dialog>
+
           <Dropdown>
             <Dropdown.Toggle variant="danger" id="dropdown-basic">
               Navigate
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item role="list" ><Link to="/profile">Profile</Link></Dropdown.Item>
-              <Dropdown.Item role="list" ><Link to="/login">login</Link></Dropdown.Item>
-              <Dropdown.Item role="list" ><Link to="/messages">messages</Link></Dropdown.Item>
-              <Dropdown.Item role="list" ><Link to="/student">student</Link></Dropdown.Item>
-              <Dropdown.Item role="list" ><Link to="/instructor">instructor</Link></Dropdown.Item>
-              <Dropdown.Item role="list" ><Link to="/librarian">librarian</Link></Dropdown.Item>
-              <Dropdown.Item role="list" ><Link to="/registrar">registrar</Link></Dropdown.Item>
-              <Dropdown.Item role="list" ><Link to="/programoffice">programoffice</Link></Dropdown.Item>
-              <Dropdown.Item role="list" ><Link to="/department">department</Link></Dropdown.Item>
+              <Dropdown.Item role="list">
+                <Link to="/profile">Profile</Link>
+              </Dropdown.Item>
+              <Dropdown.Item role="list">
+                <Link to="/login">login</Link>
+              </Dropdown.Item>
+              <Dropdown.Item role="list">
+                <Link to="/messages">messages</Link>
+              </Dropdown.Item>
+              <Dropdown.Item role="list">
+                <Link to="/student">student</Link>
+              </Dropdown.Item>
+              <Dropdown.Item role="list">
+                <Link to="/instructor">instructor</Link>
+              </Dropdown.Item>
+              <Dropdown.Item role="list">
+                <Link to="/librarian">librarian</Link>
+              </Dropdown.Item>
+              <Dropdown.Item role="list">
+                <Link to="/registrar">registrar</Link>
+              </Dropdown.Item>
+              <Dropdown.Item role="list">
+                <Link to="/programoffice">programoffice</Link>
+              </Dropdown.Item>
+              <Dropdown.Item role="list">
+                <Link to="/department">department</Link>
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>

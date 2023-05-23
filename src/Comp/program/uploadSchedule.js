@@ -2,12 +2,14 @@ import React from "react";
 import { Button, Table } from "react-bootstrap";
 
 function UploadSchedule() {
+  const fakeschedule = [1, 2, 3, 4, 5, 6, 7, 8, 9,10];
+  const fakeRoom = [1,2,3,4,5,6,7,8,9,10,11,12]
   return (
     <div className="comp-body-container">
       <h3>Upload Schedule</h3>
       <div>
         <div>
-          <div className="border m-2 ps-2">
+          <div className="border filter-Section m-2 ps-2">
             <h5>filter Section</h5>
             <div className="d-flex">
               <div className="inp">
@@ -23,7 +25,6 @@ function UploadSchedule() {
                 </select>
               </div>
               <Button className="h-75">Filter</Button>
-
             </div>
           </div>
 
@@ -55,32 +56,118 @@ function UploadSchedule() {
                   {/* <option value="">database</option> */}
                 </select>
               </div>
-              <Button className="h-75" variant="success">Assign</Button>
+              <Button className="h-75" variant="success">
+                Assign
+              </Button>
             </div>
           </div>
-          <Table striped bordered hover className="schedule-maker-table">
+          <Table
+            striped
+            bordered
+            responsive
+            hover
+            className="schedule-maker-table"
+          >
             <thead>
               <tr>
-                <th>Room</th>
-                <th>Mon</th>
-                <th>Tues</th>
-                <th>Wed</th>
-                <th>Thr</th>
-                <th>Fri</th>
-                <th>Sat</th>
-                <th>Sun</th>
+                <th colSpan={3}>
+                  Choose Week Date:
+                  <select className="ms-1" name="" id="">
+                    <option value="">Monday</option>
+                    <option value="">Tuesday</option>
+                    <option value="">Wednesday</option>
+                    <option value="">Thursday</option>
+                    <option value="">Friday</option>
+                    <option value="">Saturday</option>
+                    <option value="">Sunday</option>
+                  </select>
+                </th>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th colSpan={10}>Period</th>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <th>
+                  <section>Room</section>
+                </th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="bg-primary">1</td>
                 <td>1</td>
+                {fakeschedule.map((sch) => {
+                  return (
+                    <td className="bg-primary schedule-items">
+                      <div className="info-but">
+                        <div className="infos">
+                          <section>Section</section>
+                          <section>Course</section>
+                        </div>
+                        <Button>Remove</Button>
+                      </div>
+                    </td>
+                  );
+                })}
+              </tr><tr>
                 <td>1</td>
+                {fakeschedule.map((sch) => {
+                  return (
+                    <td className="bg-primary schedule-items">
+                      <div className="info-but">
+                        <div className="infos">
+                          <section>Section</section>
+                          <section>Course</section>
+                        </div>
+                        <Button>Remove</Button>
+                      </div>
+                    </td>
+                  );
+                })}
+              </tr><tr>
                 <td>1</td>
+                {fakeschedule.map((sch) => {
+                  return (
+                    <td className="bg-primary schedule-items">
+                      <div className="info-but">
+                        <div className="infos">
+                          <section>Section</section>
+                          <section>Course</section>
+                        </div>
+                        <Button>Remove</Button>
+                      </div>
+                    </td>
+                  );
+                })}
+              </tr><tr>
                 <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+                {fakeschedule.map((sch) => {
+                  return (
+                    <td className="bg-primary schedule-items">
+                      <div className="info-but">
+                        <div className="infos">
+                          <section>Section</section>
+                          <section>Course</section>
+                        </div>
+                        <Button>Remove</Button>
+                      </div>
+                    </td>
+                  );
+                })}
               </tr>
             </tbody>
           </Table>

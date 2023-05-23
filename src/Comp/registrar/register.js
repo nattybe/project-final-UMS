@@ -2,6 +2,22 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 function RegisterStudent() {
+  const checker = (e) => {
+    if (e.target.checked) {
+      document.getElementById("ofcourse").style.display = "flex";
+    } else {
+      document.getElementById("ofcourse").style.display = "none";
+    }
+  };
+  const tvetHandler = (e) => {
+    // alert(e.target.checked)
+    if (e.target.checked) {
+      document.getElementById("TVETDIV").style.display = "flex";
+    } else {
+      document.getElementById("TVETDIV").style.display = "none";
+    }
+  };
+
   const [stdFName, setStdFName] = useState();
   const [stdLName, setStdLName] = useState();
   const [stdMName, setStdMName] = useState();
@@ -61,9 +77,9 @@ function RegisterStudent() {
     <div className="border my-register-form comp-body-container p-3">
       <h3>Register Student</h3>
       <div className="reg-stud">
-        <form action="">
+        <form className="form" action="">
           <div className="student-photo">
-          <section>Select Photo</section>
+            <section>Select Photo</section>
             <input
               type="file"
               name="stdphoto"
@@ -74,7 +90,7 @@ function RegisterStudent() {
               }}
             />
           </div>
-          <div className="student-name d-flex">
+          <div className="student-name d-flex border mt-2">
             <div className="first-name">
               <section>First Name </section>
               <input
@@ -112,7 +128,7 @@ function RegisterStudent() {
               />
             </div>
           </div>
-          <div className="identity d-flex">
+          <div className="identity d-flex flex-wrap  border mt-2">
             <div className="std-sex">
               <section>Sex</section>
               <select
@@ -138,7 +154,26 @@ function RegisterStudent() {
                 }}
               />
             </div>
-            <div className="first-name">
+            <div className="blood-type">
+              <section>Blood Type</section>
+              <select
+                name="sex"
+                id="sex"
+                onChange={(e) => {
+                  setStdSex(e.target.value);
+                }}
+              >
+                <option value="">A</option>
+                <option value="">A+</option>
+                <option value="">B</option>
+                <option value="">B+</option>
+                <option value="">AB</option>
+                <option value="">O</option>
+                <option value="">O+</option>
+                <option value="">O-</option>
+              </select>
+            </div>
+            <div className="nationality">
               <section>Nationality</section>
               <input
                 type="text"
@@ -150,9 +185,36 @@ function RegisterStudent() {
                 }}
               />
             </div>
+            <div className="martial-status">
+              <section>Martial Status</section>
+              <select name="" id="">
+                <option value="">Single</option>
+                <option value="">Married</option>
+                <option value="">Divorce</option>
+                <option value="">Widowed</option>
+              </select>
+            </div>
+            <div className="disabilities ms-5 border">
+              <section>Do you have any disabilities</section>
+              <div>
+                <input
+                  type="checkbox"
+                  name=""
+                  id="aretheydisabled"
+                  value={"disabled"}
+                  onClick={(e) => checker(e)}
+                  style={{ width: "unset" }}
+                />{" "}
+                yes
+              </div>
+              <div id="ofcourse" style={{display:'none'}}>
+              if you have any
+              <input type="text" name=""  />
+              </div>
+            </div>
           </div>
 
-          <div className="address row">
+          <div className="address row border mt-2">
             <div className="d-flex">
               <div className="first-name">
                 <section>Country</section>
@@ -218,7 +280,7 @@ function RegisterStudent() {
               </div>
             </div>
           </div>
-          <div className="contact d-flex">
+          <div className="contact d-flex  border mt-2">
             <div className="phone-no">
               <section>Phone No</section>
               <input
@@ -268,10 +330,223 @@ function RegisterStudent() {
               />
             </div>
           </div>
-          <div className="emergency">
+          <div className="educational border mt-2">
+            <h5>Educational Background</h5>
+            <div className="d-flex border m-1">
+              <div className="phone-no">
+                <section>Name of high school</section>
+                <input
+                  type="text"
+                  name=""
+                  id="first"
+                  placeholder=""
+                  onChange={(e) => {
+                    setStdPhone(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="phone-no">
+                <section>Grade 10 result</section>
+                <input
+                  type="text"
+                  name=""
+                  id="first"
+                  placeholder=""
+                  onChange={(e) => {
+                    setStdPhone(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="phone-no">
+                <section>Year</section>
+                <input
+                  type="number"
+                  name=""
+                  id="first"
+                  placeholder=""
+                  onChange={(e) => {
+                    setStdPhone(e.target.value);
+                  }}
+                />
+              </div>
+            </div>
+            <div className="d-flex border m-1">
+              <div className="phone-no">
+                <section>Name of Preparatory</section>
+                <input
+                  type="text"
+                  name=""
+                  id="first"
+                  placeholder=""
+                  onChange={(e) => {
+                    setStdPhone(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="phone-no">
+                <section>Grade 12 result</section>
+                <input
+                  type="text"
+                  name=""
+                  id="first"
+                  placeholder=""
+                  onChange={(e) => {
+                    setStdPhone(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="phone-no">
+                <section>Year</section>
+                <input
+                  type="number"
+                  name=""
+                  id="first"
+                  placeholder=""
+                  onChange={(e) => {
+                    setStdPhone(e.target.value);
+                  }}
+                />
+              </div>
+            </div>
+            <div className="TVET border mt-2">
+              <h5>
+                TVET
+              </h5>
+              <div
+                className="d-flex border m-1"
+                id="TVETDIV"
+                style={{ display: "none" }}
+              >
+                <div className="phone-no">
+                  <section>Name of College</section>
+                  <input
+                    type="text"
+                    name=""
+                    id="first"
+                    placeholder=""
+                    onChange={(e) => {
+                      setStdPhone(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="phone-no">
+                  <section>Program</section>
+                  <input
+                    type="text"
+                    name=""
+                    id="first"
+                    placeholder=""
+                    onChange={(e) => {
+                      setStdPhone(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="phone-no">
+                  <section>Year</section>
+                  <input
+                    type="number"
+                    name=""
+                    id="first"
+                    placeholder=""
+                    onChange={(e) => {
+                      setStdPhone(e.target.value);
+                    }}
+                  />
+                </div>
+
+                <div className="phone-no">
+                  <section>Level</section>
+                  <input
+                    type="number"
+                    name=""
+                    id="first"
+                    placeholder=""
+                    onChange={(e) => {
+                      setStdPhone(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="degree border mt-2">
+              <h5>
+                Degree 
+              </h5>
+              <div
+                className="d-flex border m-1"
+                id="TVETDIV"
+                style={{ display: "none" }}
+              >
+                <div className="phone-no">
+                  <section>Name of College/University</section>
+                  <input
+                    type="text"
+                    name=""
+                    id="first"
+                    placeholder=""
+                    onChange={(e) => {
+                      setStdPhone(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="phone-no">
+                  <section>Degree Awarded</section>
+                  <input
+                    type="text"
+                    name=""
+                    id="first"
+                    placeholder=""
+                    onChange={(e) => {
+                      setStdPhone(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="phone-no">
+                  <section>Year</section>
+                  <input
+                    type="number"
+                    name=""
+                    id="first"
+                    placeholder=""
+                    onChange={(e) => {
+                      setStdPhone(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="border m-2">
+              <div className="d-flex">
+                <div className="">
+                  <section>Program</section>
+                  <select name="" id="">
+                    <option value="">Degree</option>
+                    <option value="">Diploma</option>
+                    <option value="">Masters</option>
+                  </select>
+                </div>
+                <div className="">
+                  <section>Administration</section>
+                  <select name="" id="">
+                    <option value="">Extension</option>
+                    <option value="">Regular</option>
+                  </select>
+                </div>
+                <div className="">
+                  <section>Department</section>
+                  <select name="" id="">
+                    <option value="">Computer Science</option>
+                    <option value="">Marketing Management</option>
+                    <option value="">Accounting</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="emergency border p-2">
             <section className="h5">Emergency Contact</section>
             <div className="con">
-              <div className="emergency-name d-flex">
+              <div className="emergency-name d-flex border mt-2">
                 <div className="first-name">
                   <section>First Name</section>
                   <input
@@ -310,8 +585,8 @@ function RegisterStudent() {
                 </div>
               </div>
 
-              <div className="emergency-address row">
-                <div className="d-flex">
+              <div className="emergency-address d-flex flex-wrap border mt-2">
+                
                   <div className="first-name">
                     <section>Country</section>
                     <input
@@ -347,7 +622,7 @@ function RegisterStudent() {
                         setStdEMergencySubCity(e.target.value);
                       }}
                     />
-                  </div>
+                
                 </div>
                 <div className="d-flex">
                   <div className="first-name">
@@ -376,7 +651,7 @@ function RegisterStudent() {
                   </div>
                 </div>
               </div>
-              <div className="emergency-contact d-flex">
+              <div className="emergency-contact d-flex border mt-2">
                 <div className="phone-no">
                   <section>Phone No</section>
                   <input
@@ -402,7 +677,7 @@ function RegisterStudent() {
                   />
                 </div>
               </div>
-              <div className="buttons">
+              <div className="buttons mt-2">
                 <Button variant="danger" type="reset">
                   Cancel
                 </Button>

@@ -101,50 +101,46 @@ function Profile() {
                 />
               </div>
             </div>
-          <div className="identity ms-3 border p-2 h-100">
-            <div className="std-sex">
-              <section>Sex</section>
-              <select
-                name="sex"
-                id="sex"
-                onChange={(e) => {
-                  setStdSex(e.target.value);
-                }}
-              >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
+            <div className="identity ms-3 border p-2 h-100">
+              <div className="std-sex">
+                <section>Sex</section>
+                <select
+                  name="sex"
+                  id="sex"
+                  onChange={(e) => {
+                    setStdSex(e.target.value);
+                  }}
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div className="age">
+                <section>Age</section>
+                <input
+                  type="number"
+                  placeholder="69"
+                  name="age"
+                  id="age"
+                  onChange={(e) => {
+                    setStdAge(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="first-name">
+                <section>Nationality</section>
+                <input
+                  type="text"
+                  placeholder="Nice"
+                  name="nationality"
+                  id="nationality"
+                  onChange={(e) => {
+                    setStdNationality(e.target.value);
+                  }}
+                />
+              </div>
             </div>
-            <div className="age">
-              <section>Age</section>
-              <input
-                type="number"
-                placeholder="69"
-                name="age"
-                id="age"
-                onChange={(e) => {
-                  setStdAge(e.target.value);
-                }}
-              />
-            </div>
-            <div className="first-name">
-              <section>Nationality</section>
-              <input
-                type="text"
-                placeholder="Nice"
-                name="nationality"
-                id="nationality"
-                onChange={(e) => {
-                  setStdNationality(e.target.value);
-                }}
-              />
-            </div>
-          </div>
-          </div>
-
-
-          <div className="address row">
-            <div className="d-flex">
+            <div className="address border ms-3 p-2">
               <div className="first-name">
                 <section>Country</section>
                 <input
@@ -181,8 +177,6 @@ function Profile() {
                   }}
                 />
               </div>
-            </div>
-            <div className="d-flex">
               <div className="first-name">
                 <section>Woreda</section>
                 <input
@@ -208,61 +202,62 @@ function Profile() {
                 />
               </div>
             </div>
+            <div className="contact ms-3 p-2 border">
+              <div className="phone-no">
+                <section>Phone No</section>
+                <input
+                  type="tel"
+                  name="phone"
+                  id="first"
+                  placeholder="0987654321"
+                  onChange={(e) => {
+                    setStdPhone(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="phone-no">
+                <section>Phone No 2</section>
+                <input
+                  type="text"
+                  name="phone"
+                  id="first"
+                  placeholder="0987654322"
+                  onChange={(e) => {
+                    setStdPhone2(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="email">
+                <section>Email</section>
+                <input
+                  type="email"
+                  name="email"
+                  id="first"
+                  placeholder="example@unity.com"
+                  onChange={(e) => {
+                    setStdEmail(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="email">
+                <section>Email 2</section>
+                <input
+                  type="email"
+                  name="email"
+                  id="first"
+                  placeholder="example@unity.com"
+                  onChange={(e) => {
+                    setStdEmail2(e.target.value);
+                  }}
+                />
+              </div>
+            </div>
           </div>
-          <div className="contact d-flex">
-            <div className="phone-no">
-              <section>Phone No</section>
-              <input
-                type="tel"
-                name="phone"
-                id="first"
-                placeholder="0987654321"
-                onChange={(e) => {
-                  setStdPhone(e.target.value);
-                }}
-              />
-            </div>
-            <div className="phone-no">
-              <section>Phone No 2</section>
-              <input
-                type="text"
-                name="phone"
-                id="first"
-                placeholder="0987654322"
-                onChange={(e) => {
-                  setStdPhone2(e.target.value);
-                }}
-              />
-            </div>
-            <div className="email">
-              <section>Email</section>
-              <input
-                type="email"
-                name="email"
-                id="first"
-                placeholder="example@unity.com"
-                onChange={(e) => {
-                  setStdEmail(e.target.value);
-                }}
-              />
-            </div>
-            <div className="email">
-              <section>Email 2</section>
-              <input
-                type="email"
-                name="email"
-                id="first"
-                placeholder="example@unity.com"
-                onChange={(e) => {
-                  setStdEmail2(e.target.value);
-                }}
-              />
-            </div>
-          </div>
-          <div className="emergency">
+
+          <div className="emergency border">
             <section className="h5">Emergency Contact</section>
             <div className="con">
-              <div className="emergency-name d-flex">
+              <div className="emergency-name border ms-3 mt-2 d-flex">
                 <div className="first-name">
                   <section>First Name</section>
                   <input
@@ -301,44 +296,42 @@ function Profile() {
                 </div>
               </div>
 
-              <div className="emergency-address row">
-                <div className="d-flex">
-                  <div className="first-name">
-                    <section>Country</section>
-                    <input
-                      type="text"
-                      name="first"
-                      id="first"
-                      placeholder="Country"
-                      onChange={(e) => {
-                        setStdEMergencyCountry(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div className="first-name">
-                    <section>City</section>
-                    <input
-                      type="text"
-                      name="first"
-                      id="first"
-                      placeholder="City"
-                      onChange={(e) => {
-                        setStdEMergencyCity(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div className="first-name">
-                    <section>SubCity</section>
-                    <input
-                      type="text"
-                      name="first"
-                      id="first"
-                      placeholder="Subcity"
-                      onChange={(e) => {
-                        setStdEMergencySubCity(e.target.value);
-                      }}
-                    />
-                  </div>
+              <div className="emergency-address  border ms-3 mt-2 d-flex">
+                <div className="first-name">
+                  <section>Country</section>
+                  <input
+                    type="text"
+                    name="first"
+                    id="first"
+                    placeholder="Country"
+                    onChange={(e) => {
+                      setStdEMergencyCountry(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="first-name">
+                  <section>City</section>
+                  <input
+                    type="text"
+                    name="first"
+                    id="first"
+                    placeholder="City"
+                    onChange={(e) => {
+                      setStdEMergencyCity(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="first-name">
+                  <section>SubCity</section>
+                  <input
+                    type="text"
+                    name="first"
+                    id="first"
+                    placeholder="Subcity"
+                    onChange={(e) => {
+                      setStdEMergencySubCity(e.target.value);
+                    }}
+                  />
                 </div>
                 <div className="d-flex">
                   <div className="first-name">
@@ -367,7 +360,7 @@ function Profile() {
                   </div>
                 </div>
               </div>
-              <div className="emergency-contact d-flex">
+              <div className="emergency-contact  border ms-3 mt-2 d-flex">
                 <div className="phone-no">
                   <section>Phone No</section>
                   <input
@@ -404,21 +397,21 @@ function Profile() {
             </div>
           </div>
         </form>
-      </div>
-      {/* <div className="change-password d-flex flex-column">
-            <div className="old">
-            <label htmlFor="">Old password</label>
-                <input type="text" name="" id="" />
-            </div>
-            <div className="old">
+        <div className="change-password d-flex flex-row border p-2">
+          <div className="old d-flex">
+            
+            <input type="text" name="" id="" />
+          </div>
+          <div className="old">
             <label htmlFor="">New password</label>
-                <input type="text" name="" id="" />
-            </div>
-            <div className="old">
+            <input type="text" name="" id="" />
+          </div>
+          <div className="old">
             <label htmlFor="">Repeat new password</label>
-                <input type="text" name="" id="" />
-            </div>
-        </div> */}
+            <input type="text" name="" id="" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

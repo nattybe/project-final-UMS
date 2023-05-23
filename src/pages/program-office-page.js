@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import Header from "../Comp/header";
 import { Nav, Tab } from "react-bootstrap";
-import LibrarianViewResource from "../Comp/librarian/l-viewresource";
-import LibrarianAddResource from "../Comp/librarian/l-addresource";
-import ProgramCreateCourse from "../Comp/program/create-course";
-import ProgramViewCourse from "../Comp/program/pViewCourse";
+import AssignInstructor from "../Comp/department/assignInstructor";
 import InstructorNotify from "../Comp/instructor/i-Notify";
+import ProgramViewCourse from "../Comp/department/pViewCourse";
+import OfferingCourse from "../Comp/department/offeringCourse";
+import ProgramCreateCourse from "../Comp/department/create-course";
 import ProgramDashboard from "../Comp/program/p-dashboeard";
-import OfferingCourse from "../Comp/program/offeringCourse";
-import AssignInstructor from "../Comp/program/assignInstructor";
 import UploadSchedule from "../Comp/program/uploadSchedule";
 
 class ProgramOfficePage extends Component {

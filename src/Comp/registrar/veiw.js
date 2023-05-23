@@ -96,7 +96,7 @@ function ViewStudent() {
                   <Button className="m-2" variant="warning">
                     Edit
                   </Button>
-                  <Button className="m-2">View gpa</Button>
+                  <Button className="m-2">Edit Grade</Button>
                 </div>
                 <div className="m-1">
                   <Button className="m-2" variant="danger">

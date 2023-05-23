@@ -323,6 +323,10 @@ nav {
 .assign-instructor div {
   display: contents;
 }
+.emergency input{
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
 .filter-by select {
   margin-right: 20px;
 }
@@ -452,7 +456,22 @@ nav {
 }
 /*--------------------------------------- schedule-maker ---------------------------------------*/
 
-
+.schedule-items .infos{
+  min-width: min-content;
+  max-width: min-content;
+}
+.schedule-items .info-but{
+  min-width: min-content;
+  max-width: min-content;
+}
+.schedule-items .info-but button{
+  margin-left:10px;
+  height: fit-content;
+  /* height: 25px; */
+  padding: 0 5px;
+  min-height: min-content;
+  background:rgb(158, 6, 6);
+}
 /*--------------------------------------- profile ---------------------------------------*/
 
 .profile img{
