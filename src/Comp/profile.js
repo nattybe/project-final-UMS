@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
 function Profile() {
@@ -56,88 +56,114 @@ function Profile() {
     ];
     alert(info);
   };
+  useEffect(() => {
+    if (true) {
+      document.querySelectorAll("select").forEach((sel) => {
+        sel.setAttribute("disabled", true);
+      });
+      document.querySelectorAll("input").forEach((sel) => {
+        sel.setAttribute("disabled", true);
+      });
+      document.getElementsByName("pass").forEach((sel) => {
+        sel.removeAttribute("disabled");
+      });
+    } else {
+      document.querySelectorAll("input").forEach((sel) => {
+        sel.removeAttribute("disabled");
+      });
+      document.querySelectorAll("select").forEach((sel) => {
+        sel.removeAttribute("disabled");
+      });
+      document.querySelector("select").removeAttribute("disabled");
+    }
+  });
   return (
     <div className="comp-body-container m-4 shadow border">
       <h3>Profile</h3>
+      {/* <button onClick={() => {}}>clo</button> */}
       <div className="profile">
         <form action="">
           <div className=" d-flex">
             <img src="./avatar.jpg" alt="" />
-            <div className="student-name ms-3 border p-2 h-100">
-              <div className="first-name">
-                <section>First Name </section>
-                <input
-                  type="text"
-                  name="first"
-                  id="first"
-                  placeholder="First Name"
-                  onChange={(e) => {
-                    setStdFName(e.target.value);
-                  }}
-                />
+            <div className="names">
+              <div className="student-name ms-3 border p-2">
+                <div className="first-name">
+                  <section>First Name </section>
+                  <input
+                    id="firstNames"
+                    type="text"
+                    name="first"
+                    // id="first"
+                    placeholder="First Name"
+                    onChange={(e) => {
+                      setStdFName(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="middle-name">
+                  <section>Middle Name</section>
+                  <input
+                    type="text"
+                    name="middle"
+                    id="middle"
+                    placeholder="Middle Name"
+                    onChange={(e) => {
+                      setStdMName(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="Last-name">
+                  <section>Last Name</section>
+                  <input
+                    type="text"
+                    name="last"
+                    id="last"
+                    placeholder="Last Name"
+                    onChange={(e) => {
+                      setStdLName(e.target.value);
+                    }}
+                  />
+                </div>
               </div>
-              <div className="middle-name mt-5">
-                <section>Middle Name</section>
-                <input
-                  type="text"
-                  name="middle"
-                  id="middle"
-                  placeholder="Middle Name"
-                  onChange={(e) => {
-                    setStdMName(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="Last-name mt-5">
-                <section>Last Name</section>
-                <input
-                  type="text"
-                  name="last"
-                  id="last"
-                  placeholder="Last Name"
-                  onChange={(e) => {
-                    setStdLName(e.target.value);
-                  }}
-                />
-              </div>
-            </div>
-            <div className="identity ms-3 border p-2 h-100">
-              <div className="std-sex">
-                <section>Sex</section>
-                <select
-                  name="sex"
-                  id="sex"
-                  onChange={(e) => {
-                    setStdSex(e.target.value);
-                  }}
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
-              <div className="age">
-                <section>Age</section>
-                <input
-                  type="number"
-                  placeholder="69"
-                  name="age"
-                  id="age"
-                  onChange={(e) => {
-                    setStdAge(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="first-name">
-                <section>Nationality</section>
-                <input
-                  type="text"
-                  placeholder="Nice"
-                  name="nationality"
-                  id="nationality"
-                  onChange={(e) => {
-                    setStdNationality(e.target.value);
-                  }}
-                />
+
+              <div className="identity ms-3 mt-2 border p-2">
+                <div className="std-sex">
+                  <section>Sex</section>
+                  <select
+                    name="sex"
+                    id="sex"
+                    onChange={(e) => {
+                      setStdSex(e.target.value);
+                    }}
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+                <div className="age">
+                  <section>Age</section>
+                  <input
+                    type="number"
+                    placeholder="69"
+                    name="age"
+                    id="age"
+                    onChange={(e) => {
+                      setStdAge(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="first-name">
+                  <section>Nationality</section>
+                  <input
+                    type="text"
+                    placeholder="Nice"
+                    name="nationality"
+                    id="nationality"
+                    onChange={(e) => {
+                      setStdNationality(e.target.value);
+                    }}
+                  />
+                </div>
               </div>
             </div>
             <div className="address border ms-3 p-2">
@@ -250,6 +276,23 @@ function Profile() {
                     setStdEmail2(e.target.value);
                   }}
                 />
+              </div>
+            </div>
+            <div className="change-password d-flex flex-column border p-2">
+              <div className="old ms-1 mt-3">
+                <section>Old Password</section>
+                <input type="text" name="pass" id="" className="passers" />
+              </div>
+              <div className="old ms-1 mt-3">
+                <section>New Password</section>
+                <input type="text" name="pass" id="" className="passers" />
+              </div>
+              <div className="old ms-1 mt-3">
+                <section>Repeat New Password</section>
+                <input type="text" name="pass" id="" className="passers" />
+              </div>
+              <div className="buttons">
+                <Button>Change</Button>
               </div>
             </div>
           </div>
@@ -397,20 +440,6 @@ function Profile() {
             </div>
           </div>
         </form>
-        <div className="change-password d-flex flex-row border p-2">
-          <div className="old d-flex">
-            
-            <input type="text" name="" id="" />
-          </div>
-          <div className="old">
-            <label htmlFor="">New password</label>
-            <input type="text" name="" id="" />
-          </div>
-          <div className="old">
-            <label htmlFor="">Repeat new password</label>
-            <input type="text" name="" id="" />
-          </div>
-        </div>
       </div>
     </div>
   );

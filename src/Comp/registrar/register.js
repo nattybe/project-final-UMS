@@ -530,6 +530,7 @@ function RegisterStudent() {
                   <select name="" id="">
                     <option value="">Extension</option>
                     <option value="">Regular</option>
+                    <option value="">Distance</option>
                   </select>
                 </div>
                 <div className="">
@@ -538,6 +539,14 @@ function RegisterStudent() {
                     <option value="">Computer Science</option>
                     <option value="">Marketing Management</option>
                     <option value="">Accounting</option>
+                  </select>
+                </div>
+                <div className="">
+                  <section>Section</section>
+                  <select name="" id="">
+                    <option value="">N1</option>
+                    <option value="">N2</option>
+                    <option value="">N3</option>
                   </select>
                 </div>
               </div>

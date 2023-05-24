@@ -36,19 +36,19 @@ export default function ProgramViewCourse() {
                 <i className="fas fa-book fa-lg  col" />
                 <div className="col">
                   <div>
-                    Course Tittle: 
+                    Course Tittle:
                     <section>{book.title}</section>
                   </div>
                 </div>
                 <div className="col">
                   <div>
-                    Credit Hour: 
+                    Credit Hour:
                     <section>{book.category}</section>
                   </div>
                 </div>
                 <div className="col">
-                    Contact Hour: 
-                    <section>{book.link}</section>
+                  Contact Hour:
+                  <section>{book.link}</section>
                 </div>
               </div>
               <div className="col download">

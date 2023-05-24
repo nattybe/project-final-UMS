@@ -7,6 +7,8 @@ import InstructorNotify from "../Comp/instructor/i-Notify";
 import AddUser from "../Comp/registrar/addUser";
 import ViewUser from "../Comp/registrar/viewUser";
 import CreateSection from "../Comp/registrar/createsection";
+import CreateDepartment from "../Comp/registrar/createDepartment";
+import ViewDepartment from "../Comp/registrar/viewDepartment";
 
 function RegistrarPage() {
   return (
@@ -48,6 +50,22 @@ function RegistrarPage() {
 
           <Nav.Item className="side-buttons">
             <Nav.Link
+              eventKey="createDepartment"
+              className="side-buttons border border-2 border-dark"
+            >
+              Create Department
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item className="side-buttons">
+            <Nav.Link
+              eventKey="departments"
+              className="side-buttons border border-2 border-dark"
+            >
+              Departments
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item className="side-buttons">
+            <Nav.Link
               eventKey="CreateSection"
               className="side-buttons border border-2 border-dark"
             >
@@ -75,6 +93,9 @@ function RegistrarPage() {
           <Tab.Pane eventKey="first">
             <RegistrarDashboard />
           </Tab.Pane>
+          <Tab.Pane eventKey="createDepartment">
+            <CreateDepartment />
+          </Tab.Pane>
           <Tab.Pane eventKey="second">
             <RegisterStudent />
           </Tab.Pane>
@@ -84,6 +105,9 @@ function RegistrarPage() {
 
           <Tab.Pane eventKey="CreateSection">
             <CreateSection />
+          </Tab.Pane>
+          <Tab.Pane eventKey="departments">
+            <ViewDepartment />
           </Tab.Pane>
 
           <Tab.Pane eventKey="fourth">

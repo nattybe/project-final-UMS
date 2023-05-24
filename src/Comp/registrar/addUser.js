@@ -165,7 +165,6 @@ function AddUser() {
                 />
               </div>
             </div>
-
             <div className="address row">
               <div className="d-flex">
                 <div className="first-name">
@@ -278,6 +277,33 @@ function AddUser() {
                   placeholder="example@unity.com"
                   onChange={(e) => {
                     setStdEmail2(e.target.value);
+                  }}
+                />
+              </div>
+            </div>
+            
+            <div className="contact d-flex">
+              <div className="phone-no">
+                <section>Qualification</section>
+                <input
+                  type="text"
+                  name="phone"
+                  id="first"
+                  placeholder="Qualification"
+                  onChange={(e) => {
+                    setStdPhone(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="phone-no">
+                <section>Position</section>
+                <input
+                  type="text"
+                  name="phone"
+                  id="first"
+                  placeholder="position"
+                  onChange={(e) => {
+                    setStdPhone2(e.target.value);
                   }}
                 />
               </div>

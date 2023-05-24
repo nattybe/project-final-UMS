@@ -327,9 +327,13 @@ nav {
   margin-left: 10px;
   margin-bottom: 5px;
 }
+.change-password .buttons{
+  align-self: self-end;
+}
 .filter-by select {
   margin-right: 20px;
 }
+
 .loginasselect {
   display: block;
   width: 100%;
@@ -476,4 +480,24 @@ nav {
 
 .profile img{
     width: 300px;
+}
+.profile input{
+  disabled: true;
+}
+/*--------------------------------------- Dialog ---------------------------------------*/
+
+.diag{
+  min-width: 500px;
+  /* height: 500px; */
+  border-radius: 10px;
+  /* border-color: transparent; */
+  border-width: 1PX;
+  padding: 10px;
+  /* background-color: ; */
+}
+.diag h5{
+  color: rgb(146, 3, 3);
+}
+.diag h4{
+  text-align: center;
 }

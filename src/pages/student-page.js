@@ -6,6 +6,7 @@ import StudentSchedule from "../Comp/std/s-schedule";
 import StudentResource from "../Comp/std/s-resource";
 import StudentContact from "../Comp/std/s-contact";
 import StudentCurrentCourse from "../Comp/std/s-currentcourse";
+import Enroll from "../Comp/std/enroll";
 function StudentPage() {
   
   const [loggerInfo, setLoggerInfo] = useState();
@@ -77,6 +78,14 @@ function StudentPage() {
                 Current Course
               </Nav.Link>
             </Nav.Item>
+            <Nav.Item className="side-buttons">
+              <Nav.Link
+                eventKey="enroll"
+                className="side-buttons border border-2 border-dark"
+              >
+                Enroll
+              </Nav.Link>
+            </Nav.Item>
           </Nav>
           <Tab.Content>
             <Tab.Pane eventKey="first">
@@ -96,6 +105,9 @@ function StudentPage() {
             </Tab.Pane>
             <Tab.Pane eventKey="sixth">
               <StudentCurrentCourse />
+            </Tab.Pane>
+            <Tab.Pane eventKey="enroll">
+              <Enroll />
             </Tab.Pane>
           </Tab.Content>
         </Tab.Container>

@@ -26,14 +26,6 @@ export default class InstructorPage extends Component {
               </Nav.Item>
               <Nav.Item className="side-buttons">
                 <Nav.Link
-                  eventKey="second"
-                  className="side-buttons border border-2 border-dark"
-                >
-                  Grade
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item className="side-buttons">
-                <Nav.Link
                   eventKey="third"
                   className="side-buttons border border-2 border-dark"
                 >

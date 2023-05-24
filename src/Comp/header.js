@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Container, Dropdown, Modal, Nav, Navbar } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Dropdown,
+  Modal,
+  Nav,
+  Navbar,
+} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, NavLink, Navigate, Outlet } from "react-router-dom";
+import Profile from "./profile";
 
 function Header() {
   const [notification, setNotification] = useState([
@@ -69,7 +77,15 @@ function Header() {
     // documnet.getElementById("LinkLogin").click();
     window.open("/", "_self");
   };
-
+  const loginer = () => {
+    // che.append(<Profile/>)
+    const che = document.getElementById("loginer");
+    che.showModal();
+  };
+  const closer = () => {
+    const che = document.getElementById("loginer");
+    che.close();
+  };
   const logger = () => {
     if (loggerInfo) {
       return (
@@ -123,14 +139,11 @@ function Header() {
           <Nav.Link href="/">
             <i class="fas fa-home fa-lg" />
           </Nav.Link>
-          <dialog open>
-            <p>Greetings, one and all!</p>
-            <form method="dialog">
-
-            <button>hello</button>
-            </form>
+          <dialog id="loginer" className="diag">
+          <div><Button className="" onClick={closer}>X</Button></div>
+            <Profile />
           </dialog>
-
+          {/* <Button onClick={loginer}>Showdiag</Button> */}
           <Dropdown>
             <Dropdown.Toggle variant="danger" id="dropdown-basic">
               Navigate

@@ -1,15 +1,25 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 
 export default function StudentList() {
+
+  const [gradeShow, setgradeShow]=useState(true);
   //  const [addGradeshow,setaddGradeshow]=useState();
   const setaddGradeshow = () => {
-    let gradeShow = document.getElementsByClassName("grade-input");
-    gradeShow.forEach(element => {
-      element.style.display = "block";
-    });
+    if (gradeShow) {
+    setgradeShow(false)
+    }else{
+      setgradeShow(true)
+    }
   };
-
+useEffect(()=>{
+  if(gradeShow){
+    document.getElementsByName("grade-input").forEach(element=>element.style.display = "none");
+  }else{
+    document.getElementsByName("grade-input").forEach(element=>element.style.display = "block");
+    document.getElementsByName("grade-input").forEach(element=>element.removeAttribute('disabled'));
+  }
+})
   return (
     <Container className="border comp-body-container">
       <h3>Student List</h3>
@@ -30,7 +40,7 @@ export default function StudentList() {
             <option value="CCS1R1N6/16">CCS1R1N6/16</option>
           </select>
         </div>
-        <Button onClick={() => setaddGradeshow("hidden")} className="mt-3 mb-1">
+        <Button onClick={() =>setaddGradeshow() } className="mt-3 mb-1">
           Add Grade
         </Button>
         <Button className="mt-3 mb-1">Print section student list</Button>
@@ -50,7 +60,7 @@ export default function StudentList() {
             <td colSpan="1">UU79706</td>
             <td>Natnael Belihu</td>
             <td>
-              <input type="number" className="grade-input" id="helloitem" />
+              <input type="number" Name="grade-input" id="helloitem" />
             </td>
           </tr>
           <tr>
@@ -58,7 +68,7 @@ export default function StudentList() {
             <td colSpan="1">UU79706</td>
             <td>Natnael Belihu</td>
             <td>
-              <input type="number" className="grade-input" id="helloitem" />
+              <input type="number" Name="grade-input" id="helloitem" />
             </td>
           </tr>
           <tr>
@@ -66,7 +76,7 @@ export default function StudentList() {
             <td colSpan="1">UU79706</td>
             <td>Natnael Belihu</td>
             <td>
-              <input type="number" className="grade-input" id="helloitem" />
+              <input type="number" Name="grade-input" id="helloitem" />
             </td>
           </tr>
         </tbody>
