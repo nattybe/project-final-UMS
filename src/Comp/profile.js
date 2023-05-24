@@ -57,7 +57,7 @@ function Profile() {
     alert(info);
   };
   useEffect(() => {
-    if (true) {
+    if (false) {
       document.querySelectorAll("select").forEach((sel) => {
         sel.setAttribute("disabled", true);
       });

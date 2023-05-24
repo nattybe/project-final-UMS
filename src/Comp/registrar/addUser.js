@@ -36,8 +36,6 @@ function AddUser() {
 
   const submithandler = (e) => {
     e.preventDefault();
-    // alert("Submitted " + stdPhoto + " " + stdSex);
-
     const info = [
       stdPhoto,
       stdFName,
@@ -60,6 +58,10 @@ function AddUser() {
       alert(info);
     }
   };
+  const authHandler=(e)=>{
+    let autho=e.target.value;
+    alert(autho);
+  }
   return (
     <div className="comp-body-container my-register-form border">
       <h3>Add User</h3>
@@ -81,10 +83,11 @@ function AddUser() {
             </div>
             <div className="select-auth">
             <section>User Authority</section>
-                <select name="" id="">
+                <select name="" id="" onChange={(e)=>authHandler(e)}>
                     <option value="Registrar">Registrar</option>
                     <option value="Librarian">Librarian</option>
                     <option value="Instructor">Instructor</option>
+                    <option value="department">Department</option>
                 </select>
             </div>
           </div>

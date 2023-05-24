@@ -18,16 +18,17 @@ function ViewDepartment() {
     const [named, setNamed] = useState();
     const saveHandler = (name) => {
       if (name === named) {
-        alert(named + ' is ' +name);
-      }else{
-        alert(props.name + ' is props.named');
+        alert(named + " is " + name);
+      } else {
+        alert(props.name + " is props.named");
       }
     };
     return (
       <tr>
         <td>{props.id}</td>
         <td>
-          <input type="text" onChange={(e)=>setNamed(e.target.value)}/>
+          {/* <input type="text" onChange={(e) => setNamed(e.target.value)} /> */}
+          {props.name}
         </td>
         <td>{props.auth}</td>
         <td>
@@ -142,7 +143,7 @@ function ViewDepartment() {
             </div>
           </div>
           <div className="col download">
-            <Button onClick={(e) => addMembersdiag(e)}>Add Members</Button>
+            {/* <Button onClick={(e) => addMembersdiag(e)}>Add Members</Button> */}
             <Button variant="warning" onClick={(e) => editdiag(e)}>
               Edit
             </Button>
