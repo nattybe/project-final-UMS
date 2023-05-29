@@ -140,11 +140,15 @@ function Header() {
             <i class="fas fa-home fa-lg" />
           </Nav.Link>
           <dialog id="loginer" className="diag">
-          <div><Button className="" onClick={closer}>X</Button></div>
+            <div>
+              <Button className="" onClick={closer}>
+                X
+              </Button>
+            </div>
             <Profile />
           </dialog>
           {/* <Button onClick={loginer}>Showdiag</Button> */}
-          {/* <Dropdown>
+          <Dropdown> 
             <Dropdown.Toggle variant="danger" id="dropdown-basic">
               Navigate
             </Dropdown.Toggle>
@@ -177,7 +181,7 @@ function Header() {
                 <Link to="/department">department</Link>
               </Dropdown.Item>
             </Dropdown.Menu>
-          </Dropdown> */}
+          </Dropdown>
         </div>
         <div className="nav-links">
           <Modal show={show} onHide={handleClose}>
@@ -197,7 +201,11 @@ function Header() {
               </Container>
             </Modal.Body>
           </Modal>
+          <Nav.Link role="button" onClick={handleShow}>
+            <i class="fas fa-bell fa-lg" />
+          </Nav.Link>
           {logger()}
+          
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
       </Navbar>

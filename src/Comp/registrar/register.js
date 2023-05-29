@@ -73,14 +73,100 @@ function RegisterStudent() {
     ];
     alert(info);
   };
+  const validate = () => {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll("needs-validation");
+    var formRS = document.getElementById("register-student");
+    formRS.classList.add("was-validated");
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  };
+  const sne = (e) => {
+    e.preventDefault();
+    validate();
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+
+    alert("submited");
+  };
+  const createFormData = () => {
+    const formData = new FormData();
+
+    formData.append("S_id", "12345");
+    formData.append("S_fname", "John");
+    formData.append("S_lname", "Smith");
+    formData.append("S_age", 25);
+    formData.append("S_sex", "Male");
+    formData.append("S_Nationality", "American");
+    formData.append("S_city", "New York");
+    formData.append("S_subcity", "");
+    formData.append("S_woreda", "");
+    formData.append("S_HNO", "123 Main St");
+    formData.append("S_phone_no1", "555-1234");
+    formData.append("S_phone_no2", "555-5678");
+    formData.append("S_bloodtype", "");
+    formData.append("S_martialStatus", "");
+    formData.append("S_disabilities", "");
+    formData.append("S_highschool_name", "");
+    formData.append("S_grade_10_score", "");
+    formData.append("S_grade_10_year", "");
+    formData.append("S_preparatoryschool_name", "");
+    formData.append("S_grade_12_score", "");
+    formData.append("S_grade_12_year", "");
+    formData.append("S_tvet_nameofcollege", "");
+    formData.append("S_tvet_program", "");
+    formData.append("S_tvet_year", "");
+    formData.append("S_tvet_level", "");
+    formData.append("S_degree_nameof_institute", "");
+    formData.append("S_degree_degree_awarded", "");
+    formData.append("S_degree_year", "");
+    formData.append("S_password", "securepassword");
+    formData.append("S_email", "john.smith@example.com");
+    formData.append("S_section", "A1");
+    formData.append("S_CGPA", 3.5);
+    formData.append("S_Department", "Computer Science");
+    // Add the photo file to the form data
+    const photoFile = document.getElementById("photo").files[0];
+    if (photoFile) {
+      formData.append("S_photo", photoFile);
+    }
+    formData.append("S_emergency_contact_firstname", "Jane");
+    formData.append("S_emergency_contact_fmiddlename", "");
+    formData.append("S_emergency_contact_lastname", "Doe");
+    formData.append("S_emergency_contact_city", "Los Angeles");
+    formData.append("S_emergency_contact_subcity", "");
+    formData.append("S_emergency_contact_woreda", "");
+    formData.append("S_emergency_contact_HNO", "456 Elm St");
+    formData.append("S_emergency_contact_phone_no1", "555-2468");
+    formData.append("S_emergency_contact_phone_no2", "");
+  };
   return (
     <div className="border my-register-form comp-body-container p-3">
       <h3>Register Student</h3>
       <div className="reg-stud">
-        <form className="form" action="">
+        <form
+          className="form needs-validation"
+          validate
+          id="register-student"
+          action=""
+        >
           <div className="student-photo">
             <section>Select Photo</section>
             <input
+              // required
               type="file"
               name="stdphoto"
               id="stdphoto"
@@ -94,6 +180,8 @@ function RegisterStudent() {
             <div className="first-name">
               <section>First Name </section>
               <input
+                className="form-control"
+                required
                 type="text"
                 name="first"
                 id="first"
@@ -102,12 +190,14 @@ function RegisterStudent() {
                   setStdFName(e.target.value);
                 }}
               />
+              {/* <div class = "valid-feedback"> Valid data. </div><div class = "invalid-feedback"> Please fill the user name. </div>  */}
             </div>
             <div className="middle-name">
               <section>Middle Name</section>
               <input
                 type="text"
                 name="middle"
+                className="form-control"
                 id="middle"
                 placeholder="Middle Name"
                 onChange={(e) => {
@@ -121,6 +211,7 @@ function RegisterStudent() {
                 type="text"
                 name="last"
                 id="last"
+                className="form-control"
                 placeholder="Last Name"
                 onChange={(e) => {
                   setStdLName(e.target.value);
@@ -132,6 +223,7 @@ function RegisterStudent() {
             <div className="std-sex">
               <section>Sex</section>
               <select
+                className="form-control"
                 name="sex"
                 id="sex"
                 onChange={(e) => {
@@ -145,6 +237,7 @@ function RegisterStudent() {
             <div className="age">
               <section>Age</section>
               <input
+                className="form-control"
                 type="number"
                 placeholder="69"
                 name="age"
@@ -207,9 +300,9 @@ function RegisterStudent() {
                 />{" "}
                 yes
               </div>
-              <div id="ofcourse" style={{display:'none'}}>
-              if you have any
-              <input type="text" name=""  />
+              <div id="ofcourse" style={{ display: "none" }}>
+                if you have any
+                <input type="text" name="" />
               </div>
             </div>
           </div>
@@ -409,9 +502,7 @@ function RegisterStudent() {
               </div>
             </div>
             <div className="TVET border mt-2">
-              <h5>
-                TVET
-              </h5>
+              <h5>TVET</h5>
               <div
                 className="d-flex border m-1"
                 id="TVETDIV"
@@ -469,9 +560,7 @@ function RegisterStudent() {
               </div>
             </div>
             <div className="degree border mt-2">
-              <h5>
-                Degree 
-              </h5>
+              <h5>Degree</h5>
               <div
                 className="d-flex border m-1"
                 id="TVETDIV"
@@ -595,43 +684,41 @@ function RegisterStudent() {
               </div>
 
               <div className="emergency-address d-flex flex-wrap border mt-2">
-                
-                  <div className="first-name">
-                    <section>Country</section>
-                    <input
-                      type="text"
-                      name="first"
-                      id="first"
-                      placeholder="Country"
-                      onChange={(e) => {
-                        setStdEMergencyCountry(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div className="first-name">
-                    <section>City</section>
-                    <input
-                      type="text"
-                      name="first"
-                      id="first"
-                      placeholder="City"
-                      onChange={(e) => {
-                        setStdEMergencyCity(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div className="first-name">
-                    <section>SubCity</section>
-                    <input
-                      type="text"
-                      name="first"
-                      id="first"
-                      placeholder="Subcity"
-                      onChange={(e) => {
-                        setStdEMergencySubCity(e.target.value);
-                      }}
-                    />
-                
+                <div className="first-name">
+                  <section>Country</section>
+                  <input
+                    type="text"
+                    name="first"
+                    id="first"
+                    placeholder="Country"
+                    onChange={(e) => {
+                      setStdEMergencyCountry(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="first-name">
+                  <section>City</section>
+                  <input
+                    type="text"
+                    name="first"
+                    id="first"
+                    placeholder="City"
+                    onChange={(e) => {
+                      setStdEMergencyCity(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="first-name">
+                  <section>SubCity</section>
+                  <input
+                    type="text"
+                    name="first"
+                    id="first"
+                    placeholder="Subcity"
+                    onChange={(e) => {
+                      setStdEMergencySubCity(e.target.value);
+                    }}
+                  />
                 </div>
                 <div className="d-flex">
                   <div className="first-name">
@@ -690,7 +777,7 @@ function RegisterStudent() {
                 <Button variant="danger" type="reset">
                   Cancel
                 </Button>
-                <Button variant="primary" onClick={submithandler} type="Submit">
+                <Button variant="primary" onClick={(e) => sne(e)} type="Submit">
                   Register
                 </Button>
               </div>

@@ -485,7 +485,28 @@ nav {
   disabled: true;
 }
 /*--------------------------------------- Dialog ---------------------------------------*/
+.diag-parax{
+  border-radius: 10px;
+  /* box-shadow: 1px 1px 10px gold; */
 
+}
+.diag-header{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+.diag-title{
+  font-size: xx-large;
+}
+.diag-close{
+  /* content: 'X'; */
+  height: min-content;
+  padding: 0px 5px;
+  box-shadow: 1px 1px 10px #000;
+  border: 1px solid #000;
+  border-radius: 30%;
+  color: crimson;
+}
 .diag{
   min-width: 500px;
   /* height: 500px; */

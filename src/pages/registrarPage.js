@@ -9,8 +9,14 @@ import ViewUser from "../Comp/registrar/viewUser";
 import CreateSection from "../Comp/registrar/createsection";
 import CreateDepartment from "../Comp/registrar/createDepartment";
 import ViewDepartment from "../Comp/registrar/viewDepartment";
+import { Navigate } from "react-router-dom";
 
 function RegistrarPage() {
+  const loginas="student"
+  if(loginas !=="student"){
+    // alert('You can\'t access this page')
+  return <Navigate to="/" />;
+  }
   return (
     <div className="main">
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -47,7 +53,7 @@ function RegistrarPage() {
               Add User
             </Nav.Link>
           </Nav.Item>
-
+          {/* 
           <Nav.Item className="side-buttons">
             <Nav.Link
               eventKey="createDepartment"
@@ -63,7 +69,7 @@ function RegistrarPage() {
             >
               Departments
             </Nav.Link>
-          </Nav.Item>
+          </Nav.Item> */}
           <Nav.Item className="side-buttons">
             <Nav.Link
               eventKey="CreateSection"

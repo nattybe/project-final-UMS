@@ -6,7 +6,7 @@ function LibrarianAddResource() {
     ID: 1,
     Name: "SomeOne",
   });
-  
+
   const [Title, setTitle] = useState();
   const [Category, setCategory] = useState();
   const [Author, setAuthor] = useState();
@@ -16,11 +16,28 @@ function LibrarianAddResource() {
   const [url, seturl] = useState();
   const [res, setRes] = useState();
 
+  const addResource = async (fd) => {
+    try {
+      let resed = await fetch("http://localhost/proje/addResource.php", {
+        method: "POST",
+        headers: {
+          // Accept: "application/json",
+        },
+        body: fd,
+      })
+        setRes(resed.json());
+        console.log(res);
+    } catch (error) {
+      console.log(error.message);
+      console.log(error.stack);
+    }
+  };
   const submithandler = async (e) => {
     e.preventDefault();
+    if (Title && Category) {
+    }
     let fd = new FormData();
     // console.log("File from file" + file);
-
     fd.append("image", file);
     fd.append("R_NAME", Title);
     fd.append("R_CATEGORY", Category);
@@ -31,30 +48,8 @@ function LibrarianAddResource() {
     fd.append("R_AUTHOR", Author);
     fd.append("submit", "true");
 
+    addResource(fd);
     // console.log("FormData " + JSON.stringify(fd));
-
-    seturl("http://localhost/proje/addResource.php");
-    if (url) {
-      // alert(url);
-    }
-    try {
-      fetch(url, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
-        body: fd,
-      })
-        .then((response) => {
-          setRes(response.json());
-        })
-        .finally(() => {
-          console.log("Response: ", res);
-        });
-    } catch (error) {
-      console.log(error.message);
-      console.log(error.stack);
-    }
   };
   return (
     <Container flex className="comp-body-container border">

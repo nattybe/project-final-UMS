@@ -39,7 +39,7 @@ export default function LibrarianViewResource() {
         <>
           <h4>Are you sure you want to delete this resource?</h4>
           {/* <p>{deleteItem.R_ID}</p> */}
-          <h6 className="ms-5">Name: {deleteItem.R_NAME}</h6>
+          <h6 className="ms-5">Name: {deleteItem.R_Name}</h6>
           <h6 className="ms-5">Category: {deleteItem.R_CATEGORY}</h6>
           <h6 className="ms-5">Author: {deleteItem.R_AUTHOR}</h6>
           <h6 className="ms-5">Description: {deleteItem.R_DESCRIPTION}</h6>
@@ -64,7 +64,10 @@ export default function LibrarianViewResource() {
     handleShow();
   };
   const verifyDeleteHandler = async () => {
+    // alert(`Are you sure`)
+
     if (typeof deleteItem !== "undefined") {
+      alert(`Are you sure you`);
       const url = "http://localhost/proje/deleteResource.php";
       const delFD = new FormData();
       delFD.append("R_ID", deleteItem.R_ID);
@@ -80,7 +83,11 @@ export default function LibrarianViewResource() {
       if (resData.status === "success") {
         handleClose();
         alert("Item deleted successfully");
+      } else {
+        alert("Item not Deleted" + resData.reason);
       }
+    } else {
+      alert(deleteItem);
     }
   };
 
@@ -93,7 +100,7 @@ export default function LibrarianViewResource() {
               <div className="col d-flex">
                 <i className="fas fa-book fa-lg  col" />
                 <div className="col">
-                  <div>Tittle:{book.R_NAME}</div>
+                  <div>Tittle:{book.R_Name}</div>
                   <div>Category:{book.R_CATEGORY}</div>
                 </div>
                 <div className="col">
