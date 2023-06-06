@@ -8,6 +8,266 @@ export default function ProgramViewCourse() {
     { title: "CS by me", category: "security", link: "CSS" },
     { title: "BY by me", category: "Uhh", link: "UH" },
   ];
+<<<<<<< Updated upstream
+=======
+
+  const [cCode, setCCode] = useState();
+  const [cTitle, setCTitle] = useState();
+  const [cCont, setCCont] = useState();
+  const [cCred, setCCred] = useState();
+  const [cPre, setCPre] = useState("null");
+  const [cDep, setCDep] = useState(1);
+  const [cDes, setCDes] = useState();
+
+  const [search, setSearch] = useState();
+  const [SearchBy, setSearchBy] = useState("C_Name");
+  const [course, setCourse] = useState();
+  const [toBeDeleted, setToBeDeleted] = useState();
+  const [toBeEdited, setToBeEdited] = useState();
+
+  const getCourse = async () => {
+    // alert(search);
+    const searchFD = new FormData();
+    searchFD.append("dep", "1");
+    searchFD.append("viewCourse", true);
+    if (search && SearchBy) {
+      // console.log(search, " ", SearchBy);
+      searchFD.append("search", search);
+      searchFD.append("By", SearchBy);
+    }
+    const url = baseUrl + "CreateCourse.php";
+    // console.log("url set: ", url);
+    const fetchData = await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: searchFD,
+    });
+    const resdata = await fetchData.json();
+    setCourse(resdata);
+    // console.log(course);
+  };
+  useEffect(() => {
+    getCourse();
+  }, []);
+  const editHandler = (e) => {
+    e.preventDefault();
+    alert();
+  };
+  const toBeEdittedFiller = () => {
+    if (typeof toBeEdited !== "undefined") {
+      // let cCode = toBeEdited.C_Code;
+      // let cTitle = toBeEdited.C_Title;
+      // let cCont = toBeEdited.C_Contact_hour;
+      // let cCred = toBeEdited.C_Credit_hour;
+      // let cPre = toBeEdited.C_Prerequisites;
+      // let cDep = toBeEdited.department_id;
+      // let cDes = toBeEdited.C_Description;
+      // setCCode(toBeEdited.C_Code);
+      // document.getElementById("course-code-edit").value = toBeEdited.C_Code;
+      return (
+        <form action="" className="" onSubmit={(e) => editHandler(e)}>
+          <div className="col d-flex mt-4">
+            <div className="PCC-itmes">
+              <section id="course-label">Course Code:</section>
+              <input
+                type="text"
+                id="course-code-edit"
+                onChange={(e) => setCCode(e.target.value)}
+                value={cCode}
+                required
+                className="form-control"
+              />
+            </div>
+            <div className="PCC-itmes ms-3">
+              <section>Course Prerequisite:</section>
+              <select
+                name=""
+                id=""
+                //  onChange={(e) => setCPre(e.target.value)}
+                required
+                className="form-control"
+              >
+                <option value="Null">none</option>
+                {courseFiller()}
+                {/* <option value="">MGMT 123</option> */}
+              </select>
+            </div>
+            <div className="PCC-itmes ms-3">
+              <section>Department:</section>
+              <select name="" id="" disabled className="form-control">
+                {/* <option value="">Marketing Managment</option> */}
+              </select>
+            </div>
+          </div>
+          <div className="col d-flex  mt-4">
+            <div className="PCC-itmes">
+              <section>Course Title:</section>
+              <input
+                type="text"
+                //  onChange={(e) => setCTitle(e.target.value)}
+                required
+                className="form-control"
+              />
+            </div>
+            <div className="PCC-itmes  ms-3">
+              <section>Credit Hour:</section>
+              <input
+                type="number"
+                //  onChange={(e) => setCCred(e.target.value)}
+                required
+                className="form-control"
+              />
+            </div>
+            <div className="PCC-itmes   ms-3">
+              <section>Contact Hour:</section>
+              <input
+                type="number"
+                //  onChange={(e) => setCCont(e.target.value)}
+                required
+                className="form-control"
+              />
+            </div>
+          </div>
+          <div className="description react-com mt-4">
+            <section>Description:</section>
+            <textarea
+              required
+              className="form-control"
+              //  onChange={(e) => setCDes(e.target.value)}
+              rows={5}
+              id="course-description"
+              cols={77}
+              maxLength={164}
+              type="text"
+              placeholder="About the course"
+            />
+          </div>
+          <div className="col buttons">
+            <Button variant="danger" type="reset">
+              Cancel
+            </Button>
+            <Button type="submit">Create</Button>
+          </div>
+        </form>
+      );
+    }
+  };
+  const rows = () => {
+    if (typeof course !== "undefined") {
+      if (course.status !== "undefined") {
+        return course.rows;
+      }
+    }
+  };
+  const courseFiller = () => {
+    let courseta = [];
+    if (typeof course !== "undefined") {
+      if (course.status === "success") {
+        course.data.map((course) => {
+          courseta.push(
+            <div className="item border row bg-light m-1" key={course.C_Code}>
+              <div className="col d-flex">
+                <i className="fas fa-book fa-lg  col" />
+                <div className="">
+                  <div>
+                    <section>Course Code: {course.C_Code}</section>
+                    <section>Course Name: {course.C_Name}</section>
+                  </div>
+                </div>
+                <div className="col">
+                  <div>
+                    <section>Contact Hour: {course.C_Contact_hour}</section>
+                    <section>Credit Hour: {course.C_Credit_hour}</section>
+                  </div>
+                </div>
+                <div className="col">
+                  <section>Prerequisite: {course.C_Prerequisites}</section>
+                  {/* <section>Description: {course.C_Description}</section> */}
+                </div>
+              </div>
+              <div className="col download">
+                <Button onClick={() => EditCourse(course)}>Edit</Button>
+                <Button variant="danger" onClick={() => diagDelete(course)}>
+                  Delete
+                </Button>
+              </div>
+            </div>
+          );
+        });
+      } else {
+        return <h1 className="text-muted">Such Emptiness!</h1>;
+      }
+    }
+    return courseta;
+  };
+  const EditCourse = (datas) => {
+    setToBeEdited(datas);
+    const diag = document.getElementById("diagEdit");
+    diag.setAttribute("data", datas);
+    diag.showModal();
+    // diag.setAttribute('show',true);
+  };
+
+  const deleteFiller = () => {
+    if (typeof toBeDeleted !== "undefined") {
+      return (
+        <>
+          <p>Course Code: {toBeDeleted.C_Code}</p>
+          <p>Course Name: {toBeDeleted.C_Name}</p>
+          <p>
+            Co.hr/Cr.hr:{" "}
+            {toBeDeleted.C_Contact_hour + "/" + toBeDeleted.C_Credit_hour}
+          </p>
+          <p>Description: {toBeDeleted.C_Description}</p>
+          <div className="d-flex justify-content-around">
+            <Button onClick={() => closeHandler("diagDelete")}>Cancel</Button>
+            <Button
+              variant="danger"
+              onClick={() => verifyDeletion(toBeDeleted.C_Code)}
+            >
+              Delete
+            </Button>
+          </div>
+        </>
+      );
+    }
+  };
+  const closeHandler = (id) => {
+    const diag = document.getElementById(id);
+    diag.close();
+  };
+  const verifyDeletion = async (code) => {
+    // alert(`Are you sure you`);
+    const url = "http://localhost/proje/CreateCourse.php";
+    const delFD = new FormData();
+    // delFD.append('')
+    delFD.append("deleteCourse", code);
+    const fetchData = await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: delFD,
+    });
+    const resData = await fetchData.json();
+    console.log(resData);
+    if (resData.status === "success") {
+      closeHandler("diagDelete");
+      getCourse();
+      alert("Item deleted successfully");
+    } else {
+      alert("Item not Deleted" + resData.reason);
+    }
+  };
+  const diagDelete = (code) => {
+    const diag = document.getElementById("diagDelete");
+    const diagBody = document.getElementById("diagDeleteBody");
+    setToBeDeleted(code);
+    diag.showModal();
+  };
+>>>>>>> Stashed changes
   return (
     <Container className="comp-body-container border">
       <h3>View Course</h3>

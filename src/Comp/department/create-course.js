@@ -15,10 +15,17 @@ function ProgramCreateCourse() {
             <section>Course Prerequisite:</section>
             <input type="text" />
           </div>
-          <div className="PCC-itmes ms-3">
+          {/* <div className="PCC-itmes ms-3">
             <section>Department:</section>
+<<<<<<< Updated upstream
             <input type="text" />
           </div>
+=======
+            <select name="" id="" className="form-control">
+              <option value="">Marketing Managment</option>
+            </select>
+          </div> */}
+>>>>>>> Stashed changes
         </div>
         <div className="col d-flex  mt-4">
           <div className="PCC-itmes">
