@@ -23,6 +23,7 @@ import ChatMessage from "./Comp/message";
 import Profile from "./Comp/profile";
 import DepartmentDashboard from "./Comp/department/depDashboard";
 import DepartmentPage from "./pages/departmentPage";
+import Payer from "./payer";
 const PrivateRoutes = () => {
   const auth = true;
   return auth ? <Outlet /> : <Navigate to="messages" />;
@@ -89,7 +90,8 @@ const App = () => {
     )
   );
   // window.sessionStorage.setItem("login", JSON.stringify(state));
-  return <RouterProvider router={routes} />;
+  // return <RouterProvider router={routes} />;
+  return <Payer></Payer>
 };
 
 export default App;
