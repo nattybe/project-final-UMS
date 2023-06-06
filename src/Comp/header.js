@@ -88,6 +88,7 @@ function Header() {
   };
   const logger = () => {
     if (loggerInfo) {
+     
       return (
         <>
           <Nav.Link href="/">
@@ -95,12 +96,9 @@ function Header() {
               <i class="fas fa-comments fa-lg" />
             </Link>
           </Nav.Link>
-          <Nav.Link role="button" onClick={handleShow}>
-            <i class="fas fa-bell fa-lg" />
-          </Nav.Link>
           <Dropdown>
             <Dropdown.Toggle variant="primary" id="dropdown-basic">
-              {loggerInfo.S_FIRSTNAME + " " + loggerInfo.S_LASTNAME}
+              {loggerInfo.fname + " " + loggerInfo.lname}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>

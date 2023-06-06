@@ -288,9 +288,10 @@ nav {
 }
 .avatar-photo img{
   width: 200px;
+  height:200px;
   border-radius: 50%;
   margin: 20px;
-  src: local('/LogoUU.png');
+  /* src: local('/LogoUU.png'); */
   
 }
 .avatar-info {
@@ -481,12 +482,13 @@ nav {
 .profile img{
     width: 300px;
 }
-.profile input{
+/* .profile input{
   disabled: true;
-}
+} */
 /*--------------------------------------- Dialog ---------------------------------------*/
 .diag-parax{
   border-radius: 10px;
+
   /* box-shadow: 1px 1px 10px gold; */
 
 }

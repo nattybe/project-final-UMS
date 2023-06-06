@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { AlertBy } from "./defFuncs";
+import { Navigate } from "react-router-dom";
 function Body() {
   const [Res, setRes] = useState({ nothing: "to see here" });
   const [loginas, setloginas] = useState("student");
@@ -22,11 +23,12 @@ function Body() {
       });
       const data = await response.json();
       setRes(data);
+      console.log("res " + (await response.json()));
     } catch (error) {
       console.log(error.message);
       console.log(error.stack);
     } finally {
-      // alert("The Finally")
+      alert("The Finally!");
       // handleClose();
     }
   };
@@ -38,9 +40,33 @@ function Body() {
       const logginas = { loginas: Res.loginas };
       dataf = Object.assign(dataf, logginas);
       window.sessionStorage.setItem("logger", JSON.stringify(dataf));
-      window.open("/", "_self");
+      // window.open("/", "_self");
+      switch (logginas.loginas) {
+        case "department":
+          window.open("/department", "_self");
+          break;
+        case "instructors":
+          window.open("/instructor", "_self");
+          break;
+        case "students":
+          window.open("/student", "_self");
+          break;
+        case "registrars":
+          window.open("/registrar", "_self");
+          break;
+        case "librarian":
+          window.open("/librarian", "_self");
+          break;
+        case "program_officers":
+          window.open("/programoffice", "_self");
+          break;
+        default:
+          break;
+      }
+    } else {
+      // alert("hello world!");
     }
-  }, [Res.status]);
+  }, [Res]);
   const loginsubmit = (e) => {
     e.preventDefault();
     let loginFd = new FormData();
@@ -56,7 +82,7 @@ function Body() {
         // alert(Res.data[0].S_SUBCITY);
       }
     } else {
-      AlertBy();
+      // AlertBy();
       alert("login failed" + loginFd.get("ID"));
     }
     // seturl();
@@ -189,11 +215,11 @@ function Body() {
               id="loginas"
             >
               <option value="students">Student</option>
-              <option value="instructor">instructor</option>
+              <option value="instructors">instructor</option>
               <option value="librarian">librarian</option>
-              <option value="registrar">Registrar</option>
-              <option value="programOfficer">Program officer</option>
-              <option value="department_members">Department head</option>
+              <option value="registrars">Registrar</option>
+              <option value="program_officers">Program officer</option>
+              <option value="department">Department head</option>
             </select>
 
             <small id="emailHelp" className="form-text text-muted">

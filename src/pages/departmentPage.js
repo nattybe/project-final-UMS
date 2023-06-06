@@ -8,7 +8,7 @@ import InstructorNotify from "../Comp/instructor/i-Notify";
 import AssignInstructor from "../Comp/department/assignInstructor";
 import ViewGrades from "../Comp/department/depViewGrades";
 import EditOfferingCourse from "../Comp/department/editOfferingCourse";
-import CreateDegree from "../Comp/std/createDegree";
+// import CreateDegree from "../Comp/std/createDegree";
 
 function DepartmentPage() {
   return (
@@ -111,9 +111,9 @@ function DepartmentPage() {
             <Tab.Pane eventKey="OfferingCourses">
               <OfferingCourse />
             </Tab.Pane>
-            <Tab.Pane eventKey="create-degree">
+            {/* <Tab.Pane eventKey="create-degree">
               <CreateDegree />
-            </Tab.Pane>
+            </Tab.Pane> */}
             <Tab.Pane eventKey="ViewCourse">
               <ProgramViewCourse />
             </Tab.Pane>
