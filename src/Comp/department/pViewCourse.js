@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
-
+import { baseUrl } from "../../globalConst";
 export default function ProgramViewCourse() {
   const books = [
     { title: "IP by me", category: "programming", link: "programming" },
@@ -8,9 +8,7 @@ export default function ProgramViewCourse() {
     { title: "CS by me", category: "security", link: "CSS" },
     { title: "BY by me", category: "Uhh", link: "UH" },
   ];
-<<<<<<< Updated upstream
-=======
-
+  
   const [cCode, setCCode] = useState();
   const [cTitle, setCTitle] = useState();
   const [cCont, setCCont] = useState();
@@ -24,7 +22,6 @@ export default function ProgramViewCourse() {
   const [course, setCourse] = useState();
   const [toBeDeleted, setToBeDeleted] = useState();
   const [toBeEdited, setToBeEdited] = useState();
-
   const getCourse = async () => {
     // alert(search);
     const searchFD = new FormData();
@@ -74,8 +71,8 @@ export default function ProgramViewCourse() {
               <input
                 type="text"
                 id="course-code-edit"
-                onChange={(e) => setCCode(e.target.value)}
-                value={cCode}
+                 onChange={(e) => setCCode(e.target.value)}
+                 value={cCode}
                 required
                 className="form-control"
               />
@@ -267,48 +264,86 @@ export default function ProgramViewCourse() {
     setToBeDeleted(code);
     diag.showModal();
   };
->>>>>>> Stashed changes
   return (
     <Container className="comp-body-container border">
       <h3>View Course</h3>
+      <dialog id="diagEdit">
+        <div className="diag-header">
+          <div className="diag-title">Edit Course</div>
+          <span
+            role="button"
+            onClick={() => closeHandler("diagEdit")}
+            className="diag-close"
+          >
+            X
+          </span>
+        </div>
+        <div className="diag-body">{toBeEdittedFiller()}</div>
+      </dialog>
+      <dialog id="diagDelete">
+        <div className="diag-header ">
+          <div className="diag-title">Delete Course</div>
+          <span
+            role="button"
+            onClick={() => closeHandler("diagDelete")}
+            className="diag-close"
+          >
+            X
+          </span>
+        </div>
+        <div className="diag-body" id="diagDeleteBody">
+          <h4>Are you sure you want to delete this Course</h4>
+          {deleteFiller()}
+        </div>
+      </dialog>
       <div className="flex search-box">
         <h4>Search By</h4>
-        <select name="SearchBy" id="SearchBy">
-          <option value="ID">Course Code</option>
-          <option value="Name">Course Name</option>
-          <option value="Authority">Department</option>
+        <select
+          name="SearchBy"
+          id="SearchBy"
+          onChange={(e) => setSearchBy(e.target.value)}
+        >
+          <option value="C_Code">Course Code</option>
+          <option value="C_Name" selected>
+            Course Name
+          </option>
+          {/* <option value="C_">Department</option> */}
         </select>
         <input
+          onChange={(e) => setSearch(e.target.value)}
           type="search"
           name="search-contact"
           id="search"
           placeholder="Search"
         />
-        <button>
+        <button onClick={(e) => getCourse(e)}>
           <i className="fas fa-search" />
         </button>
+        <h4>
+          <span className="badge bg-warning rounded-circle ms-1">{rows()}</span>
+        </h4>
       </div>
-      <div className="flex ">
-        {books.map((book) => {
+      <div className="flex text-center">
+        {/* {books.map((book) => {
           return (
             <div className="item border row bg-light m-1">
               <div className="col d-flex">
                 <i className="fas fa-book fa-lg  col" />
-                <div className="col">
+                <div className="">
                   <div>
-                    Course Tittle:
-                    <section>{book.title}</section>
+                    <section>Course Code: {book.category}</section>
+                    <section>Course Tittle: {book.title}</section>
                   </div>
                 </div>
                 <div className="col">
                   <div>
-                    Credit Hour:
-                    <section>{book.category}</section>
+                    <section>Contact Hour: {book.link}</section>
+                    <section>Credit Hour: {book.category}</section>
                   </div>
                 </div>
                 <div className="col">
-                  Contact Hour:
-                  <section>{book.link}</section>
+                  <section>Prerequisite: {book.category}</section>
+                  <section>Description: {book.category}</section>
                 </div>
               </div>
               <div className="col download">
@@ -317,7 +352,8 @@ export default function ProgramViewCourse() {
               </div>
             </div>
           );
-        })}
+        })} */}
+        {courseFiller()}
       </div>
     </Container>
   );
