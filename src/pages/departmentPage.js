@@ -40,14 +40,14 @@ function DepartmentPage() {
                 <h6>Create Offering Course</h6>
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item className="side-buttons">
+            {/* <Nav.Item className="side-buttons">
               <Nav.Link
                 eventKey="view-oc"
                 className="side-buttons border border-2 border-dark"
               >
                 Edit Offering Course
               </Nav.Link>
-            </Nav.Item>
+            </Nav.Item> */}
             {/* <Nav.Item className="side-buttons">
               <Nav.Link
                 eventKey="create-degree"
