@@ -8,7 +8,7 @@ export default function ProgramViewCourse() {
     { title: "CS by me", category: "security", link: "CSS" },
     { title: "BY by me", category: "Uhh", link: "UH" },
   ];
-  
+
   const [cCode, setCCode] = useState();
   const [cTitle, setCTitle] = useState();
   const [cCont, setCCont] = useState();
@@ -71,8 +71,8 @@ export default function ProgramViewCourse() {
               <input
                 type="text"
                 id="course-code-edit"
-                 onChange={(e) => setCCode(e.target.value)}
-                 value={cCode}
+                onChange={(e) => setCCode(e.target.value)}
+                value={cCode}
                 required
                 className="form-control"
               />
@@ -145,7 +145,94 @@ export default function ProgramViewCourse() {
             <Button variant="danger" type="reset">
               Cancel
             </Button>
-            <Button type="submit">Create</Button>
+            <Button type="submit">Save</Button>
+          </div>
+        </form>
+      );
+    } else {
+      return (
+        <form action="" className="" onSubmit={(e) => editHandler(e)}>
+          <div className="col d-flex mt-4">
+            <div className="PCC-itmes">
+              <section id="course-label">Course Code:</section>
+              <input
+                type="text"
+                id="course-code-edit"
+                //  onChange={(e) => setCCode(e.target.value)}
+                value={cCode}
+                required
+                className="form-control"
+              />
+            </div>
+            <div className="PCC-itmes ms-3">
+              <section>Course Prerequisite:</section>
+              <select
+                name=""
+                id=""
+                //  onChange={(e) => setCPre(e.target.value)}
+                required
+                className="form-control"
+              >
+                <option value="Null">none</option>
+                {courseFiller()}
+                {/* <option value="">MGMT 123</option> */}
+              </select>
+            </div>
+            <div className="PCC-itmes ms-3">
+              <section>Department:</section>
+              <select name="" id="" disabled className="form-control">
+                {/* <option value="">Marketing Managment</option> */}
+              </select>
+            </div>
+          </div>
+          <div className="col d-flex  mt-4">
+            <div className="PCC-itmes">
+              <section>Course Title:</section>
+              <input
+                type="text"
+                //  onChange={(e) => setCTitle(e.target.value)}
+                required
+                className="form-control"
+              />
+            </div>
+            <div className="PCC-itmes  ms-3">
+              <section>Credit Hour:</section>
+              <input
+                type="number"
+                //  onChange={(e) => setCCred(e.target.value)}
+                required
+                className="form-control"
+              />
+            </div>
+            <div className="PCC-itmes   ms-3">
+              <section>Contact Hour:</section>
+              <input
+                type="number"
+                //  onChange={(e) => setCCont(e.target.value)}
+                required
+                className="form-control"
+              />
+            </div>
+          </div>
+          <div className="description react-com mt-4">
+            <section>Description:</section>
+            <textarea
+              required
+              className="form-control"
+              //  onChange={(e) => setCDes(e.target.value)}
+              rows={5}
+              id="course-description"
+              cols={77}
+              maxLength={164}
+              type="text"
+              placeholder="About the course"
+            />
+          </div>
+          <div className="col buttons">
+            <Button variant="danger" type="reset">
+              Cancel
+            </Button>
+            <Button type="submit">Save</Button>
           </div>
         </form>
       );
@@ -193,11 +280,151 @@ export default function ProgramViewCourse() {
             </div>
           );
         });
+        return courseta;
       } else {
         return <h1 className="text-muted">Such Emptiness!</h1>;
       }
+    } else {
+      return (
+        <>
+          <div className="item border row bg-light m-1">
+            <div className="col d-flex">
+              <i className="fas fa-book fa-lg  col" />
+              <div className="">
+                <div>
+                  <section>Course Code: </section>
+                  <section>Course Name: </section>
+                </div>
+              </div>
+              <div className="col">
+                <div>
+                  <section>Contact Hour:</section>
+                  <section>Credit Hour: </section>
+                </div>
+              </div>
+              <div className="col">
+                <section>Prerequisite: </section>
+                {/* <section>Description: {course.C_Description}</section> */}
+              </div>
+            </div>
+            <div className="col download">
+              <Button onClick={() => EditCourse()}>Edit</Button>
+              <Button variant="danger" onClick={() => diagDelete()}>
+                Delete
+              </Button>
+            </div>
+          </div>
+          <div className="item border row bg-light m-1">
+            <div className="col d-flex">
+              <i className="fas fa-book fa-lg  col" />
+              <div className="">
+                <div>
+                  <section>Course Code: </section>
+                  <section>Course Name: </section>
+                </div>
+              </div>
+              <div className="col">
+                <div>
+                  <section>Contact Hour:</section>
+                  <section>Credit Hour: </section>
+                </div>
+              </div>
+              <div className="col">
+                <section>Prerequisite: </section>
+                {/* <section>Description: {course.C_Description}</section> */}
+              </div>
+            </div>
+            <div className="col download">
+              <Button onClick={() => EditCourse()}>Edit</Button>
+              <Button variant="danger" onClick={() => diagDelete()}>
+                Delete
+              </Button>
+            </div>
+          </div>
+          <div className="item border row bg-light m-1">
+            <div className="col d-flex">
+              <i className="fas fa-book fa-lg  col" />
+              <div className="">
+                <div>
+                  <section>Course Code: </section>
+                  <section>Course Name: </section>
+                </div>
+              </div>
+              <div className="col">
+                <div>
+                  <section>Contact Hour:</section>
+                  <section>Credit Hour: </section>
+                </div>
+              </div>
+              <div className="col">
+                <section>Prerequisite: </section>
+                {/* <section>Description: {course.C_Description}</section> */}
+              </div>
+            </div>
+            <div className="col download">
+              <Button onClick={() => EditCourse()}>Edit</Button>
+              <Button variant="danger" onClick={() => diagDelete()}>
+                Delete
+              </Button>
+            </div>
+          </div>
+          <div className="item border row bg-light m-1">
+            <div className="col d-flex">
+              <i className="fas fa-book fa-lg  col" />
+              <div className="">
+                <div>
+                  <section>Course Code: </section>
+                  <section>Course Name: </section>
+                </div>
+              </div>
+              <div className="col">
+                <div>
+                  <section>Contact Hour:</section>
+                  <section>Credit Hour: </section>
+                </div>
+              </div>
+              <div className="col">
+                <section>Prerequisite: </section>
+                {/* <section>Description: {course.C_Description}</section> */}
+              </div>
+            </div>
+            <div className="col download">
+              <Button onClick={() => EditCourse()}>Edit</Button>
+              <Button variant="danger" onClick={() => diagDelete()}>
+                Delete
+              </Button>
+            </div>
+          </div>
+          <div className="item border row bg-light m-1">
+            <div className="col d-flex">
+              <i className="fas fa-book fa-lg  col" />
+              <div className="">
+                <div>
+                  <section>Course Code: </section>
+                  <section>Course Name: </section>
+                </div>
+              </div>
+              <div className="col">
+                <div>
+                  <section>Contact Hour:</section>
+                  <section>Credit Hour: </section>
+                </div>
+              </div>
+              <div className="col">
+                <section>Prerequisite: </section>
+                {/* <section>Description: {course.C_Description}</section> */}
+              </div>
+            </div>
+            <div className="col download">
+              <Button onClick={() => EditCourse()}>Edit</Button>
+              <Button variant="danger" onClick={() => diagDelete()}>
+                Delete
+              </Button>
+            </div>
+          </div>
+        </>
+      );
     }
-    return courseta;
   };
   const EditCourse = (datas) => {
     setToBeEdited(datas);
@@ -224,6 +451,21 @@ export default function ProgramViewCourse() {
               variant="danger"
               onClick={() => verifyDeletion(toBeDeleted.C_Code)}
             >
+              Delete
+            </Button>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <p>Course Code:</p>
+          <p>Course Name:</p>
+          <p>Co.hr/Cr.hr:</p>
+          <p>Description: </p>
+          <div className="d-flex justify-content-around">
+            <Button onClick={() => closeHandler("diagDelete")}>Cancel</Button>
+            <Button variant="danger" onClick={() => verifyDeletion()}>
               Delete
             </Button>
           </div>
