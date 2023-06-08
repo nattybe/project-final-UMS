@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 
 function EditUser(props) {
   const user = props.user;
-  const [stdFName, setStdFName] = useState("natty");
+  const [stdFName, setStdFName] = useState();
   const [stdLName, setStdLName] = useState();
   const [stdMName, setStdMName] = useState();
   const [stdPhoto, setPhoto] = useState();
@@ -66,8 +66,8 @@ function EditUser(props) {
   //     }
   //   });
   return (
-    <div className="m-4 shadow border">
-      <h3>Edit User</h3>
+    <div className="border">
+      {/* <h3>Edit User</h3> */}
       {/* <button onClick={() => {}}>clo</button> */}
       <div className="">
         <form action="">
@@ -81,7 +81,7 @@ function EditUser(props) {
                     id="firstNames"
                     type="text"
                     name="first"
-                    value={stdFName}
+                    // value={stdFName}
                     // id="first"
                     placeholder="First Name"
                     onChange={(e) => {

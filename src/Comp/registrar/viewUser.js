@@ -51,62 +51,75 @@ function ViewUser() {
   const SingleUser = (props) => {
     const user = props.user;
     return (
-      <div className="item student-item border shadow bg-light m-1 mt-4">
-        <div className="text-center">
-        <dialog id="EditDiag" className="diag-parax">
-        <div className="diag-header">
-          <div className="diag-title">hello</div>
-          <span
-            role="button"
-            onClick={() => closeHandler("EditDiag")}
-            className="diag-close"
-          >
-            X
-          </span>
-        </div>
-        <div className="diag-body">
-          <EditUser user={user} />
-        </div>
-      </dialog>
-          <img src={"http://localhost/proje/user-photo/"+user.photo}  alt="" />
-          <section>ID: {user.id}</section>
-        </div>
-        <div className="mt-3">
-          <p>Name: {user.fname}</p>
-          <p>
-            Age: {user.age}&nbsp;&nbsp;&nbsp; Sex: {user.sex}
-          </p>
-          <p>Address: {user.address}</p>
-          <p>Authority: {user.Department}</p>
-        </div>
-        <div></div>
-        <div></div>
-        <div className="p-2">
-          <div className="m-1">
-            <Button
-              className="m-2"
-              onClick={() => editHandler(props.user)}
-              variant="warning"
+      <>
+        <dialog id="EditUserDiag" className="diag-parax">
+          <div className="diag-header">
+            <div className="diag-title">Edit User</div>
+            <span
+              role="button"
+              onClick={() => closeHandler("EditUserDiag")}
+              className="diag-close"
             >
-              Edit
-            </Button>
-            {/* <Button className="m-2">View gpa</Button> */}
+              X
+            </span>
           </div>
-          <div className="m-1">
-            <Button className="m-2" variant="danger">
-              Delete
-            </Button>
-            <Button
-              className="m-2 bg-success"
-              onClick={() => {
-                setStudents(std);
-              }}
-            >
-              Contact
-            </Button>
+          <div className="diag-body">
+            <EditUser user={user} />
+          </div>
+        </dialog>
+        <div className="item student-item border shadow bg-light m-1 mt-4">
+          <div className="text-center">
+            <img
+              src={"http://localhost/proje/user-photo/" + user.photo}
+              alt=""
+            />
+            <section>ID: {user.id}</section>
+          </div>
+          <div className="mt-3">
+            <p>Name: {user.fname}</p>
+            <p>
+              Age: {user.age}&nbsp;&nbsp;&nbsp; Sex: {user.sex}
+            </p>
+            <p>Address: {user.address}</p>
+            <p>Authority: {user.Department}</p>
+          </div>
+          <div></div>
+          <div></div>
+          <div className="p-2">
+            <div className="m-1">
+              <Button
+                className="m-2"
+                onClick={() => {
+                  editHandler(props.user);
+                }}
+                variant="warning"
+              >
+                Edit
+              </Button>
+              {/* <Button className="m-2">View gpa</Button> */}
+            </div>
+            <div className="m-1">
+              <Button
+                className="m-2"
+                variant="danger"
+                onClick={() => {
+                  console.log(user);
+                }}
+              >
+                Delete
+              </Button>
+              <Button
+                className="m-2 bg-success"
+                onClick={() => {
+                  setStudents(std);
+                }}
+              >
+                Contact
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   };
   // const [search, setSearch]=useState('');
@@ -138,8 +151,8 @@ function ViewUser() {
     getUsers();
   }, [view]);
   const editHandler = () => {
-    const diag = document.getElementById("EditDiag");
-    diag.innerHTML='<EditUser user={user}/>';
+    const diag = document.getElementById("EditUserDiag");
+    // diag.innerHTML = "<EditUser user={user}/>";
     // diag.appendChild(editor)
     diag.close();
     diag.showModal();
@@ -163,6 +176,259 @@ function ViewUser() {
         // console.log("use 2:"+use.length);
         return use;
       }
+    } else {
+      return (
+        <>
+          <div className="item student-item border shadow bg-light m-1 mt-4">
+            <div className="text-center">
+              <dialog id="EditUserDiag" className="diag-parax">
+                <div className="diag-header">
+                  <div className="diag-title">Edit User</div>
+                  <span
+                    role="button"
+                    onClick={() => closeHandler("EditUserDiag")}
+                    className="diag-close"
+                  >
+                    X
+                  </span>
+                </div>
+                <div className="diag-body">
+                  <EditUser />
+                </div>
+              </dialog>
+              <img src={"avatar.jpg"} alt="" />
+              <section>ID: </section>
+            </div>
+            <div className="mt-3">
+              <p>Name: </p>
+              <p>Age: &nbsp;&nbsp;&nbsp; Sex:</p>
+              <p>Address: </p>
+              <p>Authority: </p>
+            </div>
+            <div></div>
+            <div></div>
+            <div className="p-2">
+              <div className="m-1">
+                <Button
+                  className="m-2"
+                  onClick={() => {
+                    editHandler();
+                  }}
+                  variant="warning"
+                >
+                  Edit
+                </Button>
+                {/* <Button className="m-2">View gpa</Button> */}
+              </div>
+              <div className="m-1">
+                <Button
+                  className="m-2"
+                  variant="danger"
+                  onClick={() => {
+                    // console.log(user);
+                  }}
+                >
+                  Delete
+                </Button>
+                <Button
+                  className="m-2 bg-success"
+                  onClick={() => {
+                    // setStudents(std);
+                  }}
+                >
+                  Contact
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="item student-item border shadow bg-light m-1 mt-4">
+            <div className="text-center">
+              <dialog id="EditUserDiag" className="diag-parax">
+                <div className="diag-header">
+                  <div className="diag-title">Edit User</div>
+                  <span
+                    role="button"
+                    onClick={() => closeHandler("EditUserDiag")}
+                    className="diag-close"
+                  >
+                    X
+                  </span>
+                </div>
+                <div className="diag-body">
+                  <EditUser />
+                </div>
+              </dialog>
+              <img src={"avatar.jpg"} alt="" />
+              <section>ID: </section>
+            </div>
+            <div className="mt-3">
+              <p>Name: </p>
+              <p>Age: &nbsp;&nbsp;&nbsp; Sex:</p>
+              <p>Address: </p>
+              <p>Authority: </p>
+            </div>
+            <div></div>
+            <div></div>
+            <div className="p-2">
+              <div className="m-1">
+                <Button
+                  className="m-2"
+                  onClick={() => {
+                    editHandler();
+                  }}
+                  variant="warning"
+                >
+                  Edit
+                </Button>
+                {/* <Button className="m-2">View gpa</Button> */}
+              </div>
+              <div className="m-1">
+                <Button
+                  className="m-2"
+                  variant="danger"
+                  onClick={() => {
+                    // console.log(user);
+                  }}
+                >
+                  Delete
+                </Button>
+                <Button
+                  className="m-2 bg-success"
+                  onClick={() => {
+                    // setStudents(std);
+                  }}
+                >
+                  Contact
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="item student-item border shadow bg-light m-1 mt-4">
+            <div className="text-center">
+              <dialog id="EditUserDiag" className="diag-parax">
+                <div className="diag-header">
+                  <div className="diag-title">Edit User</div>
+                  <span
+                    role="button"
+                    onClick={() => closeHandler("EditUserDiag")}
+                    className="diag-close"
+                  >
+                    X
+                  </span>
+                </div>
+                <div className="diag-body">
+                  <EditUser />
+                </div>
+              </dialog>
+              <img src={"avatar.jpg"} alt="" />
+              <section>ID: </section>
+            </div>
+            <div className="mt-3">
+              <p>Name: </p>
+              <p>Age: &nbsp;&nbsp;&nbsp; Sex:</p>
+              <p>Address: </p>
+              <p>Authority: </p>
+            </div>
+            <div></div>
+            <div></div>
+            <div className="p-2">
+              <div className="m-1">
+                <Button
+                  className="m-2"
+                  onClick={() => {
+                    editHandler();
+                  }}
+                  variant="warning"
+                >
+                  Edit
+                </Button>
+                {/* <Button className="m-2">View gpa</Button> */}
+              </div>
+              <div className="m-1">
+                <Button
+                  className="m-2"
+                  variant="danger"
+                  onClick={() => {
+                    // console.log(user);
+                  }}
+                >
+                  Delete
+                </Button>
+                <Button
+                  className="m-2 bg-success"
+                  onClick={() => {
+                    // setStudents(std);
+                  }}
+                >
+                  Contact
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="item student-item border shadow bg-light m-1 mt-4">
+            <div className="text-center">
+              <dialog id="EditUserDiag" className="diag-parax">
+                <div className="diag-header">
+                  <div className="diag-title">Edit User</div>
+                  <span
+                    role="button"
+                    onClick={() => closeHandler("EditUserDiag")}
+                    className="diag-close"
+                  >
+                    X
+                  </span>
+                </div>
+                <div className="diag-body">
+                  <EditUser />
+                </div>
+              </dialog>
+              <img src={"avatar.jpg"} alt="" />
+              <section>ID: </section>
+            </div>
+            <div className="mt-3">
+              <p>Name: </p>
+              <p>Age: &nbsp;&nbsp;&nbsp; Sex:</p>
+              <p>Address: </p>
+              <p>Authority: </p>
+            </div>
+            <div></div>
+            <div></div>
+            <div className="p-2">
+              <div className="m-1">
+                <Button
+                  className="m-2"
+                  onClick={() => {
+                    editHandler();
+                  }}
+                  variant="warning"
+                >
+                  Edit
+                </Button>
+                {/* <Button className="m-2">View gpa</Button> */}
+              </div>
+              <div className="m-1">
+                <Button
+                  className="m-2"
+                  variant="danger"
+                  onClick={() => {
+                    // console.log(user);
+                  }}
+                >
+                  Delete
+                </Button>
+                <Button
+                  className="m-2 bg-success"
+                  onClick={() => {
+                    // setStudents(std);
+                  }}
+                >
+                  Contact
+                </Button>
+              </div>
+            </div>
+          </div>
+        </>
+      );
     }
   };
   return (

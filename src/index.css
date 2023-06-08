@@ -94,7 +94,10 @@ nav {
 .oc-input {
   width: 150px;
 }
-
+.department-create-offer-course{
+  max-width:450px;
+  margin-right: 10px;
+}
 /*--------------------------------------- Login ---------------------------------------*/
 .main {
   display: flex;

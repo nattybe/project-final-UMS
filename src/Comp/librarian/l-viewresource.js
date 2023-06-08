@@ -90,7 +90,81 @@ export default function LibrarianViewResource() {
       alert(deleteItem);
     }
   };
+  const EditResource = (props) => {
+    const tobe = props.tobeEdit;
+    if (typeof tobe === "undefined") {
+      return (
+        <form>
+          <div className="resource-com">
+            <div>
+              <div className="">
+                file Name:
+                <input
+                  className="form-control"
+                  type="text"
+                  disabled
+                  // onChange={(e) => setTitle(e.target.value)}
+                />
+              </div>
 
+              <div className="d-flex">
+                <div className="col">
+                  Name:
+                  <input
+                    className="form-control"
+                    type="text"
+                    // onChange={(e) => setTitle(e.target.value)}
+                  />
+                </div>
+                <div className="col ms-2">
+                  Category:{" "}
+                  <input
+                    className="form-control"
+                    type="text"
+                    // onChange={(e) => setCategory(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="d-flex ">
+                <div className="col">
+                  Author:{" "}
+                  <input
+                    className="form-control"
+                    type="text"
+                    // onChange={(e) => setAuthor(e.target.value)}
+                  />
+                </div>
+                <div className="col ms-2">
+                  Published Year:
+                  <input
+                    className="form-control"
+                    type="number"
+                    // onChange={(e) => setpublishedYear(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="description col">
+                Description:
+                <textarea
+                  name="description"
+                  id=""
+                  cols="50"
+                  rows="7"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div className="col buttons">
+            <Button variant="danger" type="reset">
+              Cancel
+            </Button>
+            <Button type="submit">Add</Button>
+          </div>
+        </form>
+      );
+    }
+  };
   const fil = () => {
     if (typeof resource !== "undefined") {
       if (resource.status === "success") {
@@ -128,12 +202,140 @@ export default function LibrarianViewResource() {
       }
     } else {
       getResource();
+      return (
+        <>
+          <div className="item border row bg-light m-1">
+            <div className="col d-flex">
+              <i className="fas fa-book fa-lg  col" />
+              <div className="col">
+                <div>Tittle: TCP/IP Bible</div>
+                <div>Category: Networking</div>
+              </div>
+              <div className="col">
+                <div>Author: Rob Scrimger</div>
+                <div>Description:it says right in the name</div>
+              </div>
+            </div>
+            <div className="col download">
+              <Button
+                onClick={() => {
+                  editHandler();
+                }}
+              >
+                Edit
+              </Button>
+              <Button variant="danger" onClick={() => setDeleteShow(true)}>
+                Delete
+              </Button>
+            </div>
+          </div>
+          <div className="item border row bg-light m-1">
+            <div className="col d-flex">
+              <i className="fas fa-book fa-lg  col" />
+              <div className="col">
+                <div>Tittle: TCP/IP Bible</div>
+                <div>Category: Networking</div>
+              </div>
+              <div className="col">
+                <div>Author: Rob Scrimger</div>
+                <div>Description:it says right in the name</div>
+              </div>
+            </div>
+            <div className="col download">
+              <Button
+                onClick={() => {
+                  editHandler();
+                }}
+              >
+                Edit
+              </Button>
+              <Button variant="danger" onClick={() => setDeleteShow(true)}>
+                Delete
+              </Button>
+            </div>
+          </div>
+          <div className="item border row bg-light m-1">
+            <div className="col d-flex">
+              <i className="fas fa-book fa-lg  col" />
+              <div className="col">
+                <div>Tittle: TCP/IP Bible</div>
+                <div>Category: Networking</div>
+              </div>
+              <div className="col">
+                <div>Author: Rob Scrimger</div>
+                <div>Description:it says right in the name</div>
+              </div>
+            </div>
+            <div className="col download">
+              <Button
+                onClick={() => {
+                  editHandler();
+                }}
+              >
+                Edit
+              </Button>
+              <Button variant="danger" onClick={() => setDeleteShow(true)}>
+                Delete
+              </Button>
+            </div>
+          </div>
+          <div className="item border row bg-light m-1">
+            <div className="col d-flex">
+              <i className="fas fa-book fa-lg  col" />
+              <div className="col">
+                <div>Tittle: TCP/IP Bible</div>
+                <div>Category: Networking</div>
+              </div>
+              <div className="col">
+                <div>Author: Rob Scrimger</div>
+                <div>Description:it says right in the name</div>
+              </div>
+            </div>
+            <div className="col download">
+              <Button
+                onClick={() => {
+                  editHandler();
+                }}
+              >
+                Edit
+              </Button>
+              <Button variant="danger" onClick={() => setDeleteShow(true)}>
+                Delete
+              </Button>
+            </div>
+          </div>
+        </>
+      );
     }
   };
-
+  const editHandler = () => {
+    const diag = document.getElementById("EditDiag");
+    diag.close();
+    diag.showModal();
+  };
+  const closeHandler = (id) => {
+    const diag = document.getElementById(id);
+    diag.close();
+  };
   return (
     <Container className="comp-body-container border">
       <h3>View Resource</h3>
+
+      <dialog id="EditDiag" className="diag-parax">
+        <div className="diag-header">
+          <div className="diag-title">Edit User</div>
+          <span
+            role="button"
+            onClick={() => closeHandler("EditDiag")}
+            className="diag-close"
+          >
+            X
+          </span>
+        </div>
+        <div className="diag-body">
+          <EditResource />
+        </div>
+      </dialog>
       <Modal show={deleteShow} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Delete</Modal.Title>
@@ -171,28 +373,7 @@ export default function LibrarianViewResource() {
           <i className="fas fa-search" />
         </button>
       </div>
-      <div className="flex book-render">
-        <div className="item border row bg-light m-1">
-          <div className="col d-flex">
-            <i className="fas fa-book fa-lg  col" />
-            <div className="col">
-              <div>Tittle: TCP/IP Bible</div>
-              <div>Category: Networking</div>
-            </div>
-            <div className="col">
-              <div>Author: Rob Scrimger</div>
-              <div>Description:it says right in the name</div>
-            </div>
-          </div>
-          <div className="col download">
-            <Button>Edit</Button>
-            <Button variant="danger" onClick={() => setDeleteShow(true)}>
-              Delete
-            </Button>
-          </div>
-        </div>
-        {fil()}
-      </div>
+      <div className="flex book-render">{fil()}</div>
     </Container>
   );
 }

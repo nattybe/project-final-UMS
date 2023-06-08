@@ -10,6 +10,7 @@ import CreateSection from "../Comp/registrar/createsection";
 import CreateDepartment from "../Comp/registrar/createDepartment";
 import ViewDepartment from "../Comp/registrar/viewDepartment";
 import { Navigate } from "react-router-dom";
+import Payment from "../Comp/registrar/payment";
 
 function RegistrarPage() {
   const loginas="student"
@@ -86,6 +87,15 @@ function RegistrarPage() {
               View User
             </Nav.Link>
           </Nav.Item>
+          
+          <Nav.Item className="side-buttons">
+            <Nav.Link
+              eventKey="Payment"
+              className="side-buttons border border-2 border-dark"
+            >
+              Payment
+            </Nav.Link>
+          </Nav.Item>
           <Nav.Item className="side-buttons">
             <Nav.Link
               eventKey="fourth"
@@ -124,6 +134,9 @@ function RegistrarPage() {
           </Tab.Pane>
           <Tab.Pane eventKey="addUsers">
             <AddUser />
+          </Tab.Pane>
+          <Tab.Pane eventKey="Payment">
+            <Payment />
           </Tab.Pane>
         </Tab.Content>
       </Tab.Container>

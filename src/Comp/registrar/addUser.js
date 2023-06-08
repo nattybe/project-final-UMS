@@ -37,6 +37,7 @@ function AddUser() {
   const [usrEmergencyHouseNo, setusrEMergencyHouseNo] = useState();
   const [usrDepartment, setusrDepartment] = useState();
   const [res, setRes] = useState();
+
   const [autho, setAutho] = useState("registrar");
 
   const cf = () => {
@@ -55,7 +56,7 @@ function AddUser() {
     formData.append("i_phone_no1", usrPhone);
     formData.append("i_phone_no2", usrPhone2);
     // formData.append("i_password", );
-    
+
     formData.append("userAuth", autho);
     formData.append("i_email", usrEmail);
     formData.append("i_qualification", usrQualification); //
@@ -76,7 +77,6 @@ function AddUser() {
     // console.log("SNE: "+formData.get("i_ec_phonenumber1"));
     return formData;
   };
-
   const requested = async () => {
     const formData = cf();
     let recie = await fetch(baseUrl + "RegisterUser.php", {
@@ -93,7 +93,6 @@ function AddUser() {
       console.log("Res: " + JSON.stringify(res));
     }
   };
-
   const submithandler = async (e) => {
     e.preventDefault();
     await requested();
@@ -140,9 +139,7 @@ function AddUser() {
     }
   };
   const [deps, setDeps] = useState();
-  const[depOptions, setDepOptions] = useState([
-    <option></option>,
-  ]);
+  const [depOptions, setDepOptions] = useState([<option></option>]);
   const getDep = async () => {
     console.log("getDep started");
     if (autho === "department") {
@@ -168,15 +165,13 @@ function AddUser() {
   };
   const depFiller = () => {
     if (typeof deps !== "undefined") {
-      
       // console.log("from deps.status " + deps.status);
       // console.log("from deps " + deps);
       deps.data.map((depers) => {
         // alert(depers.D_Name)
-        depOptions.push(<option value={depers.D_id}>{depers.D_Name}</option>)
+        depOptions.push(<option value={depers.D_id}>{depers.D_Name}</option>);
         return <option value={depers.D_id}>{depers.D_Name}</option>;
       });
-
     }
   };
   useEffect(() => {
@@ -195,7 +190,7 @@ function AddUser() {
               className="form-group"
               onChange={(e) => setusrDepartment(e.target.value)}
             >
-            {depOptions}
+              {depOptions}
               {/* <option value={1}>Computer Science</option>
               <option value={2}>Electrical Engineering</option> */}
             </select>
@@ -238,13 +233,13 @@ function AddUser() {
   return (
     <div className="comp-body-container my-register-form border">
       <h3>Add User</h3>
-      <button
+      {/* <button
         onClick={() => {
           diagalert();
         }}
       >
         show diag
-      </button>
+      </button> */}
       <dialog id="regsuccess">{diagsuccessfiller()}</dialog>
       <div className="add-user-body p-3">
         <div className="reg-stud">
