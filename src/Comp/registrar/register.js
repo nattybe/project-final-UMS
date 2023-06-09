@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { baseUrl } from "../../globalConst";
 
 function RegisterStudent() {
   const checker = (e) => {
@@ -48,6 +49,10 @@ function RegisterStudent() {
   const [stdEmergencyCity, setStdEMergencyCity] = useState();
   const [stdEmergencyWoreda, setStdEMergencyWoreda] = useState();
   const [stdEmergencyHouseNo, setStdEMergencyHouseNo] = useState();
+
+  const [stdDepartment, setStdDepartment] = useState();
+  const [sections, setSections] = useState();
+  const [deps, setDeps] = useState();
 
   const submithandler = (e) => {
     e.preventDefault();
@@ -99,8 +104,153 @@ function RegisterStudent() {
     e.preventDefault();
     validate();
     // Example starter JavaScript for disabling form submissions if there are invalid fields
-
     alert("submited");
+  };
+  const regHandler = () => {
+    var myHeaders = new Headers();
+
+    var formdata = new FormData();
+    formdata.append("fname", "");
+    formdata.append("lname", "");
+    formdata.append("age", "");
+    formdata.append("sex", "");
+    formdata.append("Nationality", "");
+    formdata.append("city", "");
+    formdata.append("subcity", "");
+    formdata.append("woreda", "");
+    formdata.append("HNO", "");
+    formdata.append("phone_no1", "");
+    formdata.append("phone_no2", "");
+    formdata.append("bloodtype", "");
+    formdata.append("martialStatus", "");
+    formdata.append("disabilities", "");
+    formdata.append("highschool_name", "");
+    formdata.append("grade_10_score", "");
+    formdata.append("grade_10_year", "");
+    formdata.append("preparatoryschool_name", "");
+    formdata.append("grade_12_score", "");
+    formdata.append("grade_12_year", "");
+    formdata.append("tvet_nameofcollege", "");
+    formdata.append("tvet_program", "");
+    formdata.append("tvet_year", "");
+    formdata.append("tvet_level", "");
+    formdata.append("degree_nameof_institute", "");
+    formdata.append("degree_degree_awarded", "");
+    formdata.append("degree_year", "");
+    formdata.append("password", "");
+    formdata.append("email", "");
+    formdata.append("section", "");
+    formdata.append("CGPA", "");
+    formdata.append("Department", "");
+    formdata.append("photo", "");
+    formdata.append("emergency_contact_firstname", "");
+    formdata.append("emergency_contact_fmiddlename", "");
+    formdata.append("emergency_contact_lastname", "");
+    formdata.append("emergency_contact_city", "");
+    formdata.append("emergency_contact_subcity", "");
+    formdata.append("emergency_contact_woreda", "");
+    formdata.append("emergency_contact_HNO", "");
+    formdata.append("emergency_contact_phone_no1", "");
+    formdata.append("emergency_contact_phone_no2", "");
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch("localhost/proje/register student.php", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  };
+  const getSections = async (val) => {
+    // let resa;
+    const fd = new FormData();
+    fd.append("getSection", val);
+    console.warn("getSections started " + val);
+    let dep = await fetch(baseUrl + "RegisterStudent.php", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: fd,
+    });
+    // console.warn(dep.json());
+    dep = await dep.json();
+    setSections(dep);
+    if (typeof resa !== "undefined") {
+      console.log("from resa.status " + sections.status);
+      console.log("from resa " + sections);
+    } else {
+      // console.warn('undefiend: '+deps);
+      console.log(sections);
+    }
+  };
+  const getDep = async () => {
+    console.log("getDep started");
+    let dep = await fetch(baseUrl + "RegisterUser.php?depReq=true", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    dep = await dep.json();
+    setDeps(dep);
+    if (typeof deps !== "undefined") {
+      console.log("from deps.status " + deps.status);
+      console.log("from deps " + deps);
+    } else {
+      // console.warn('undefiend: '+deps);
+      console.log("undefiend: " + deps);
+    }
+  };
+  const sectionsFiller = () => {
+    let depOptions = [];
+    if (typeof sections !== "undefined") {
+      if (sections.length > 0) {
+        sections.data.map((depers) => {
+          // alert(depers.D_Name)
+          depOptions.push(
+            <option value={depers.Se_Id}>{depers.Se_Name}</option>
+          );
+          return <option value={depers.D_id}>{depers.D_Name}</option>;
+        });
+      }
+      // console.log("from deps.status " + deps.status);
+      // console.log("from deps " + deps);
+    } else {
+      return (
+        <>
+          <option value="">Degree</option>
+          <option value="">Diploma</option>
+          <option value="">Masters</option>
+        </>
+      );
+    }
+    return depOptions;
+  };
+  const depFiller = () => {
+    let depOptions = [];
+    if (typeof deps !== "undefined") {
+      // console.log("from deps.status " + deps.status);
+      // console.log("from deps " + deps);
+      deps.data.map((depers) => {
+        // alert(depers.D_Name)
+        depOptions.push(<option value={depers.D_id}>{depers.D_Name}</option>);
+        return <option value={depers.D_id}>{depers.D_Name}</option>;
+      });
+    } else {
+      return (
+        <>
+          <option value="">Computer Science</option>
+          <option value="">Marketing Management</option>
+          <option value="">Accounting</option>
+        </>
+      );
+    }
+    return depOptions;
   };
   const createFormData = () => {
     const formData = new FormData();
@@ -153,6 +303,9 @@ function RegisterStudent() {
     formData.append("S_emergency_contact_phone_no1", "555-2468");
     formData.append("S_emergency_contact_phone_no2", "");
   };
+  useEffect(() => {
+    getDep();
+  }, []);
   return (
     <div className="border my-register-form comp-body-container p-3">
       <h3>Register Student</h3>
@@ -607,27 +760,22 @@ function RegisterStudent() {
             <div className="border m-2">
               <div className="d-flex">
                 <div className="">
+                  <section>Department</section>
+                  <select
+                    name=""
+                    id=""
+                    onChange={(e) => {
+                      setStdDepartment(e.target.value);
+                      getSections(e.target.value);
+                    }}
+                  >
+                    {depFiller()}
+                  </select>
+                </div>
+                <div className="">
                   <section>Program</section>
                   <select name="" id="">
-                    <option value="">Degree</option>
-                    <option value="">Diploma</option>
-                    <option value="">Masters</option>
-                  </select>
-                </div>
-                <div className="">
-                  <section>Administration</section>
-                  <select name="" id="">
-                    <option value="">Extension</option>
-                    <option value="">Regular</option>
-                    <option value="">Distance</option>
-                  </select>
-                </div>
-                <div className="">
-                  <section>Department</section>
-                  <select name="" id="">
-                    <option value="">Computer Science</option>
-                    <option value="">Marketing Management</option>
-                    <option value="">Accounting</option>
+                    {sectionsFiller()}
                   </select>
                 </div>
                 <div className="">

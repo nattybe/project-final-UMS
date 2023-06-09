@@ -323,7 +323,7 @@ export default function LibrarianViewResource() {
 
       <dialog id="EditDiag" className="diag-parax">
         <div className="diag-header">
-          <div className="diag-title">Edit User</div>
+          <div className="diag-title">Edit Resource</div>
           <span
             role="button"
             onClick={() => closeHandler("EditDiag")}

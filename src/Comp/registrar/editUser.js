@@ -267,24 +267,20 @@ function EditUser(props) {
                   }}
                 />
               </div>
-            </div>
-            <div className="change-password d-flex flex-column border p-2">
-              <div className="old ms-1 mt-3">
-                <section>Old Password</section>
-                <input type="text" name="pass" id="" className="passers" />
-              </div>
-              <div className="old ms-1 mt-3">
-                <section>New Password</section>
-                <input type="text" name="pass" id="" className="passers" />
-              </div>
-              <div className="old ms-1 mt-3">
-                <section>Repeat New Password</section>
-                <input type="text" name="pass" id="" className="passers" />
-              </div>
-              <div className="buttons">
-                <Button>Change</Button>
+              <div className="email">
+                <section>Password</section>
+                <input
+                  type="email"
+                  name="email"
+                  id="first"
+                  placeholder="**********"
+                  onChange={(e) => {
+                    setStdEmail2(e.target.value);
+                  }}
+                />
               </div>
             </div>
+            
           </div>
           <div className="emergency border">
             <section className="h5">Emergency Contact</section>
