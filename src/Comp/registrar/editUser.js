@@ -38,6 +38,7 @@ function EditUser(props) {
     if (typeof user !== "undefined") {
       setStdFName(user.fname);
       setStdLName(user.lname);
+      // alert(stdFName)
     }
   },[user]);
   const submithandler = (e) => {
@@ -81,6 +82,7 @@ function EditUser(props) {
                     id="firstNames"
                     type="text"
                     name="first"
+                    defaultValue={stdFName}
                     // value={stdFName}
                     // id="first"
                     placeholder="First Name"

@@ -39,6 +39,23 @@ function RegisterStudent() {
   const [stdWoreda, setStdWoreda] = useState();
   const [stdHouseNo, setStdHouseNo] = useState();
 
+  const [stdMartial, setStdMartial] = useState("single");
+  const [stdBloodType, setStdBloodType] = useState("A");
+  const [stdDiabilities, setStdDiabilities] = useState();
+  const [stdhighschool_name, setStdhighschool_name] = useState();
+  const [stdGrade_10_Score, setStdGrade_10_Score] = useState();
+  const [stdGrade_10_Year, setStdGrade_10_Year] = useState();
+  const [stdPreparatorySchoolName, setStdPreparatorySchoolName] = useState();
+  const [stdGrade_12_Score, setStdGrade_12_Score] = useState();
+  const [stdGrade_12_Year, setStdGrade_12_Year] = useState();
+  const [stdTvetNameOfCollege, setStdTvetNameOfCollege] = useState();
+  const [stdTvetProgram, setStdTvetProgram] = useState();
+  const [stdtvet_year, setStdTvet_year] = useState();
+  const [stdTvetLevel, setStdTvetLevel] = useState();
+  const [stdDegreeNameOfInstitute, setStdDegreeNameOfInstitute] = useState();
+  const [stdDegreeDegreeAwarded, setStdDegreeDegreeAwarded] = useState();
+  const [stdDegreeYear, setStdDegreeYear] = useState();
+
   const [stdEmergencyFName, setStdEMergencyFName] = useState();
   const [stdEmergencyLName, setStdEMergencyLName] = useState();
   const [stdEmergencyMName, setStdEMergencyMName] = useState();
@@ -51,125 +68,22 @@ function RegisterStudent() {
   const [stdEmergencyHouseNo, setStdEMergencyHouseNo] = useState();
 
   const [stdDepartment, setStdDepartment] = useState();
+  const [stdSection, setStdSection] = useState();
+  const [stdProgram, setStdProgram] = useState();
+
   const [sections, setSections] = useState();
+  const [program, setProgram] = useState();
   const [deps, setDeps] = useState();
+  const [res, setRes] = useState();
 
-  const submithandler = (e) => {
-    e.preventDefault();
-    // alert("Submitted " + stdPhoto + " " + stdSex);
-
-    const info = [
-      stdPhoto,
-      stdFName,
-      stdMName,
-      stdLName,
-      stdAge,
-      stdSex,
-      stdNationality,
-      stdCountry,
-      stdCity,
-      stdSubCity,
-      stdWoreda,
-      stdHouseNo,
-      stdEmail,
-      stdEmail2,
-      stdPhone,
-      stdPhone2,
-    ];
-    alert(info);
-  };
-  const validate = () => {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll("needs-validation");
-    var formRS = document.getElementById("register-student");
-    formRS.classList.add("was-validated");
-
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms).forEach((form) => {
-      form.addEventListener(
-        "submit",
-        function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add("was-validated");
-        },
-        false
-      );
-    });
-  };
-  const sne = (e) => {
-    e.preventDefault();
-    validate();
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    alert("submited");
-  };
-  const regHandler = () => {
-    var myHeaders = new Headers();
-
-    var formdata = new FormData();
-    formdata.append("fname", "");
-    formdata.append("lname", "");
-    formdata.append("age", "");
-    formdata.append("sex", "");
-    formdata.append("Nationality", "");
-    formdata.append("city", "");
-    formdata.append("subcity", "");
-    formdata.append("woreda", "");
-    formdata.append("HNO", "");
-    formdata.append("phone_no1", "");
-    formdata.append("phone_no2", "");
-    formdata.append("bloodtype", "");
-    formdata.append("martialStatus", "");
-    formdata.append("disabilities", "");
-    formdata.append("highschool_name", "");
-    formdata.append("grade_10_score", "");
-    formdata.append("grade_10_year", "");
-    formdata.append("preparatoryschool_name", "");
-    formdata.append("grade_12_score", "");
-    formdata.append("grade_12_year", "");
-    formdata.append("tvet_nameofcollege", "");
-    formdata.append("tvet_program", "");
-    formdata.append("tvet_year", "");
-    formdata.append("tvet_level", "");
-    formdata.append("degree_nameof_institute", "");
-    formdata.append("degree_degree_awarded", "");
-    formdata.append("degree_year", "");
-    formdata.append("password", "");
-    formdata.append("email", "");
-    formdata.append("section", "");
-    formdata.append("CGPA", "");
-    formdata.append("Department", "");
-    formdata.append("photo", "");
-    formdata.append("emergency_contact_firstname", "");
-    formdata.append("emergency_contact_fmiddlename", "");
-    formdata.append("emergency_contact_lastname", "");
-    formdata.append("emergency_contact_city", "");
-    formdata.append("emergency_contact_subcity", "");
-    formdata.append("emergency_contact_woreda", "");
-    formdata.append("emergency_contact_HNO", "");
-    formdata.append("emergency_contact_phone_no1", "");
-    formdata.append("emergency_contact_phone_no2", "");
-
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: formdata,
-      redirect: "follow",
-    };
-
-    fetch("localhost/proje/register student.php", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
-  };
-  const getSections = async (val) => {
+  useEffect(() => {
+    getSections();
+  }, [stdProgram]);
+  const getSections = async () => {
     // let resa;
     const fd = new FormData();
-    fd.append("getSection", val);
-    console.warn("getSections started " + val);
+    fd.append("getSection", stdProgram);
+    // console.warn("getSections started " + stdProgram);
     let dep = await fetch(baseUrl + "RegisterStudent.php", {
       method: "POST",
       headers: {
@@ -178,6 +92,7 @@ function RegisterStudent() {
       body: fd,
     });
     // console.warn(dep.json());
+    // console.log(dep.formData());
     dep = await dep.json();
     setSections(dep);
     if (typeof resa !== "undefined") {
@@ -185,11 +100,11 @@ function RegisterStudent() {
       console.log("from resa " + sections);
     } else {
       // console.warn('undefiend: '+deps);
-      console.log(sections);
+      // console.log(sections);
     }
   };
   const getDep = async () => {
-    console.log("getDep started");
+    // console.log("getDep started");
     let dep = await fetch(baseUrl + "RegisterUser.php?depReq=true", {
       method: "GET",
       headers: {
@@ -199,37 +114,40 @@ function RegisterStudent() {
     dep = await dep.json();
     setDeps(dep);
     if (typeof deps !== "undefined") {
-      console.log("from deps.status " + deps.status);
-      console.log("from deps " + deps);
+      // console.log("from deps.status " + deps.status);
+      // console.log("from deps " + deps);
     } else {
       // console.warn('undefiend: '+deps);
-      console.log("undefiend: " + deps);
+      // console.log("undefiend: " + deps);
     }
   };
   const sectionsFiller = () => {
     let depOptions = [];
     if (typeof sections !== "undefined") {
-      if (sections.length > 0) {
+      // console.log(sections.data[0]);
+      if (sections.status == "success") {
+        // console.warn('sections');
         sections.data.map((depers) => {
-          // alert(depers.D_Name)
+          // alert(depers.D_Name);
           depOptions.push(
-            <option value={depers.Se_Id}>{depers.Se_Name}</option>
+            <option value={depers.Se_Id}>
+              {depers.Se_Name + "(" + depers.num_students + ")"}
+            </option>
           );
-          return <option value={depers.D_id}>{depers.D_Name}</option>;
+          // return <option value={depers.D_id}>{depers.D_Name}</option>;
         });
       }
-      // console.log("from deps.status " + deps.status);
       // console.log("from deps " + deps);
+      return depOptions;
     } else {
       return (
         <>
-          <option value="">Degree</option>
-          <option value="">Diploma</option>
-          <option value="">Masters</option>
+          <option value="">N1</option>
+          <option value="">N2</option>
+          <option value="">N3</option>
         </>
       );
     }
-    return depOptions;
   };
   const depFiller = () => {
     let depOptions = [];
@@ -252,73 +170,195 @@ function RegisterStudent() {
     }
     return depOptions;
   };
-  const createFormData = () => {
-    const formData = new FormData();
-
-    formData.append("S_id", "12345");
-    formData.append("S_fname", "John");
-    formData.append("S_lname", "Smith");
-    formData.append("S_age", 25);
-    formData.append("S_sex", "Male");
-    formData.append("S_Nationality", "American");
-    formData.append("S_city", "New York");
-    formData.append("S_subcity", "");
-    formData.append("S_woreda", "");
-    formData.append("S_HNO", "123 Main St");
-    formData.append("S_phone_no1", "555-1234");
-    formData.append("S_phone_no2", "555-5678");
-    formData.append("S_bloodtype", "");
-    formData.append("S_martialStatus", "");
-    formData.append("S_disabilities", "");
-    formData.append("S_highschool_name", "");
-    formData.append("S_grade_10_score", "");
-    formData.append("S_grade_10_year", "");
-    formData.append("S_preparatoryschool_name", "");
-    formData.append("S_grade_12_score", "");
-    formData.append("S_grade_12_year", "");
-    formData.append("S_tvet_nameofcollege", "");
-    formData.append("S_tvet_program", "");
-    formData.append("S_tvet_year", "");
-    formData.append("S_tvet_level", "");
-    formData.append("S_degree_nameof_institute", "");
-    formData.append("S_degree_degree_awarded", "");
-    formData.append("S_degree_year", "");
-    formData.append("S_password", "securepassword");
-    formData.append("S_email", "john.smith@example.com");
-    formData.append("S_section", "A1");
-    formData.append("S_CGPA", 3.5);
-    formData.append("S_Department", "Computer Science");
-    // Add the photo file to the form data
-    const photoFile = document.getElementById("photo").files[0];
-    if (photoFile) {
-      formData.append("S_photo", photoFile);
+  const programFiller = () => {
+    let depOptions = [];
+    if (typeof program !== "undefined") {
+      // console.log("from deps.status " + deps.status);
+      // console.log("from deps " + deps);
+      program.data.map((depers) => {
+        // alert(depers.D_Name)
+        depOptions.push(
+          <option value={depers.DG_Id}>
+            {depers.DG_field_of_study +
+              " " +
+              depers.DG_program +
+              " (" +
+              depers.DG_administration +
+              ")"}
+          </option>
+        );
+        return <option value={depers.D_id}>{depers.D_Name}</option>;
+      });
+    } else {
+      return (
+        <>
+          <option value="">Computer Science Degree(Extension)</option>
+          <option value="">Marketing Management(Regular)</option>
+          <option value="">Accounting(Extension)</option>
+        </>
+      );
     }
-    formData.append("S_emergency_contact_firstname", "Jane");
-    formData.append("S_emergency_contact_fmiddlename", "");
-    formData.append("S_emergency_contact_lastname", "Doe");
-    formData.append("S_emergency_contact_city", "Los Angeles");
-    formData.append("S_emergency_contact_subcity", "");
-    formData.append("S_emergency_contact_woreda", "");
-    formData.append("S_emergency_contact_HNO", "456 Elm St");
-    formData.append("S_emergency_contact_phone_no1", "555-2468");
-    formData.append("S_emergency_contact_phone_no2", "");
+    return depOptions;
+  };
+  useEffect(() => {
+    getProgram();
+  }, [stdDepartment]);
+  const getProgram = async () => {
+    if (typeof stdDepartment !== "undefined") {
+      // console.log("getProgram started");
+      const fd = new FormData();
+      fd.append("getProgram", stdDepartment);
+      let dep = await fetch(baseUrl + "RegisterStudent.php", {
+        method: "POST",
+        headers: {
+          // Accept: "application/json",
+        },
+        body: fd,
+      });
+      // console.log(dep.json());
+      dep = await dep.json();
+      setProgram(dep);
+      if (typeof program !== "undefined") {
+        // console.log("from prog.status " + program.status);
+        // console.log(program);
+      } else {
+        // console.warn('undefiend: '+deps); // console.log("undefiend: " + program);
+      }
+    }
+  };
+  const createFormData = () => {
+    const photoFile = document.getElementById("stdphoto").files[0];
+    var formdata = new FormData();
+    formdata.append("regStud", "true");
+    formdata.append("fname", stdFName);
+    formdata.append("mname", stdMName);
+    formdata.append("lname", stdLName);
+    formdata.append("age", stdAge);
+    formdata.append("sex", stdSex);
+    formdata.append("Nationality", stdNationality);
+    formdata.append("city", stdCity);
+    formdata.append("subcity", stdSubCity);
+    formdata.append("woreda", stdWoreda);
+    formdata.append("HNO", stdHouseNo);
+    formdata.append("phone_no1", stdPhone);
+    formdata.append("phone_no2", stdPhone2);
+    formdata.append("bloodtype", stdBloodType);
+    formdata.append("martialStatus", stdMartial);
+    formdata.append("disabilities", stdDiabilities);
+    formdata.append("highschool_name", stdhighschool_name);
+    formdata.append("grade_10_score", stdGrade_10_Score);
+    formdata.append("grade_10_year", stdGrade_10_Year);
+    formdata.append("preparatoryschool_name", stdPreparatorySchoolName);
+    formdata.append("grade_12_score", stdGrade_12_Score);
+    formdata.append("grade_12_year", stdGrade_12_Year);
+    formdata.append("tvet_nameofcollege", stdTvetNameOfCollege);
+    formdata.append("tvet_program", stdTvetProgram);
+    formdata.append("tvet_year", stdtvet_year);
+    formdata.append("tvet_level", stdTvetLevel);
+    formdata.append("degree_nameof_institute", stdDegreeNameOfInstitute);
+    formdata.append("degree_degree_awarded", stdDegreeDegreeAwarded);
+    formdata.append("degree_year", stdDegreeYear);
+    // formdata.append("password", );
+    formdata.append("email", stdEmail);
+    formdata.append("section", stdSection);
+    // formdata.append("CGPA", );
+    formdata.append("Department", stdDepartment);
+    formdata.append("photo", photoFile);
+    formdata.append("emergency_contact_firstname", stdEmergencyFName);
+    formdata.append("emergency_contact_fmiddlename", stdEmergencyMName);
+    formdata.append("emergency_contact_lastname", stdEmergencyLName);
+    formdata.append("emergency_contact_city", stdEmergencyCity);
+    formdata.append("emergency_contact_subcity", stdEmergencySubCity);
+    formdata.append("emergency_contact_woreda", stdEmergencyWoreda);
+    formdata.append("emergency_contact_HNO", stdEmergencyHouseNo);
+    formdata.append("emergency_contact_phone_no1", stdEmergencyPhone);
+    formdata.append("emergency_contact_phone_no2", stdEmergencyPhone2);
+    return formdata;
+  };
+  const regHandler = async (e) => {
+    e.preventDefault();
+    // var myHeaders = new Headers();
+    const formdata = createFormData();
+    let resa = await fetch(baseUrl + "RegisterStudent.php", {
+      method: "POST",
+      headers: {
+        // Accept: "application/json",
+      },
+      body: formdata,
+    });
+    // console.log(res.json());
+    // let resa =res.json();
+    setRes(await resa.json());
+    if (typeof res !== "undefined") {
+      console.warn(res);
+      if (res.status === "success") {
+        const diag = document.getElementById("regsuccess");
+        diag.close();
+        diag.showModal();
+        // alert("Success");
+      }
+    }
   };
   useEffect(() => {
     getDep();
   }, []);
+  const diagsuccessfiller = () => {
+    if (typeof res !== "undefined") {
+      if (res.status === "success") {
+        return (
+          <div>
+            {/* <h3>Success</h3> */}
+            {/* <h5>{res}</h5> */}
+            <h5>ID: {res.data.ID}</h5>
+            <h5>Name: {res.data.firstname + " " + res.data.lastname}</h5>
+            {/* <h5>Position {res.data.position}</h5> */}
+            {/* <h5>Section {}</h5> */}
+            <h5>Password: {res.data.password}</h5>
+          </div>
+        );
+      } else if (res.status === "failed") {
+        return (
+          <div>
+            <h3>Operation failed</h3>
+          </div>
+        );
+      }
+    }
+  };
+  const closeHandler = (id) => {
+    const diag = document.getElementById(id);
+    diag.close();
+  };
   return (
     <div className="border my-register-form comp-body-container p-3">
       <h3>Register Student</h3>
       <div className="reg-stud">
+        <dialog id="regsuccess">
+          <div className="diag-header">
+            <div className="diag-title">Registeration Success</div>
+            <span
+              role="button"
+              onClick={() => closeHandler("regsuccess")}
+              className="diag-close"
+            >
+              X
+            </span>
+          </div>
+          <div className="diag-body">{diagsuccessfiller()}</div>
+        </dialog>
+        {/* <dialog id="regsuccess">{diagsuccessfiller()}</dialog> */}
         <form
-          className="form needs-validation"
+          onSubmit={(e) => regHandler(e)}
+          className="form"
           validate
           id="register-student"
-          action=""
+          // action=""
         >
           <div className="student-photo">
             <section>Select Photo</section>
             <input
+              className="form-control"
+              required
               // required
               type="file"
               name="stdphoto"
@@ -351,6 +391,7 @@ function RegisterStudent() {
                 type="text"
                 name="middle"
                 className="form-control"
+                required
                 id="middle"
                 placeholder="Middle Name"
                 onChange={(e) => {
@@ -363,6 +404,7 @@ function RegisterStudent() {
               <input
                 type="text"
                 name="last"
+                required
                 id="last"
                 className="form-control"
                 placeholder="Last Name"
@@ -378,6 +420,7 @@ function RegisterStudent() {
               <select
                 className="form-control"
                 name="sex"
+                // required
                 id="sex"
                 onChange={(e) => {
                   setStdSex(e.target.value);
@@ -393,6 +436,7 @@ function RegisterStudent() {
                 className="form-control"
                 type="number"
                 placeholder="69"
+                required
                 name="age"
                 id="age"
                 onChange={(e) => {
@@ -404,9 +448,10 @@ function RegisterStudent() {
               <section>Blood Type</section>
               <select
                 name="sex"
+                // required
                 id="sex"
                 onChange={(e) => {
-                  setStdSex(e.target.value);
+                  setStdBloodType(e.target.value);
                 }}
               >
                 <option value="">A</option>
@@ -424,6 +469,7 @@ function RegisterStudent() {
               <input
                 type="text"
                 placeholder="Nice"
+                required
                 name="nationality"
                 id="nationality"
                 onChange={(e) => {
@@ -433,7 +479,12 @@ function RegisterStudent() {
             </div>
             <div className="martial-status">
               <section>Martial Status</section>
-              <select name="" id="">
+              <select
+                // required
+                name=""
+                id=""
+                onChange={(e) => setStdMartial(e.target.value)}
+              >
                 <option value="">Single</option>
                 <option value="">Married</option>
                 <option value="">Divorce</option>
@@ -455,7 +506,11 @@ function RegisterStudent() {
               </div>
               <div id="ofcourse" style={{ display: "none" }}>
                 if you have any
-                <input type="text" name="" />
+                <input
+                  type="text"
+                  name=""
+                  onClick={(e) => setStdDiabilities(e.target.value)}
+                />
               </div>
             </div>
           </div>
@@ -467,6 +522,7 @@ function RegisterStudent() {
                 <input
                   type="text"
                   name="Country"
+                  required
                   id="Country"
                   placeholder="Country"
                   onChange={(e) => {
@@ -481,6 +537,7 @@ function RegisterStudent() {
                   name="first"
                   id="first"
                   placeholder="city"
+                  required
                   onChange={(e) => {
                     setStdCity(e.target.value);
                   }}
@@ -489,6 +546,7 @@ function RegisterStudent() {
               <div className="first-name">
                 <section>SubCity</section>
                 <input
+                  required
                   type="text"
                   name="first"
                   id="first"
@@ -503,6 +561,7 @@ function RegisterStudent() {
               <div className="first-name">
                 <section>Woreda</section>
                 <input
+                  required
                   type="number"
                   name="first"
                   id="first"
@@ -517,6 +576,7 @@ function RegisterStudent() {
                 <input
                   type="text"
                   name="first"
+                  required
                   id="first"
                   placeholder="H.no"
                   onChange={(e) => {
@@ -532,6 +592,7 @@ function RegisterStudent() {
               <input
                 type="tel"
                 name="phone"
+                required
                 id="first"
                 placeholder="0987654321"
                 onChange={(e) => {
@@ -556,6 +617,7 @@ function RegisterStudent() {
               <input
                 type="email"
                 name="email"
+                required
                 id="first"
                 placeholder="example@unity.com"
                 onChange={(e) => {
@@ -579,15 +641,16 @@ function RegisterStudent() {
           <div className="educational border mt-2">
             <h5>Educational Background</h5>
             <div className="d-flex border m-1">
-              <div className="phone-no">
+              <div className="highscholname">
                 <section>Name of high school</section>
                 <input
                   type="text"
                   name=""
+                  required
                   id="first"
                   placeholder=""
                   onChange={(e) => {
-                    setStdPhone(e.target.value);
+                    setStdhighschool_name(e.target.value);
                   }}
                 />
               </div>
@@ -595,29 +658,31 @@ function RegisterStudent() {
                 <section>Grade 10 result</section>
                 <input
                   type="text"
+                  required
                   name=""
                   id="first"
                   placeholder=""
                   onChange={(e) => {
-                    setStdPhone(e.target.value);
+                    setStdGrade_10_Score(e.target.value);
                   }}
                 />
               </div>
               <div className="phone-no">
-                <section>Year</section>
+                <section>Grade 10 finished Year</section>
                 <input
                   type="number"
                   name=""
+                  required
                   id="first"
                   placeholder=""
                   onChange={(e) => {
-                    setStdPhone(e.target.value);
+                    setStdGrade_10_Year(e.target.value);
                   }}
                 />
               </div>
             </div>
             <div className="d-flex border m-1">
-              <div className="phone-no">
+              <div className="Preparatory">
                 <section>Name of Preparatory</section>
                 <input
                   type="text"
@@ -625,7 +690,7 @@ function RegisterStudent() {
                   id="first"
                   placeholder=""
                   onChange={(e) => {
-                    setStdPhone(e.target.value);
+                    setStdPreparatorySchoolName(e.target.value);
                   }}
                 />
               </div>
@@ -637,7 +702,7 @@ function RegisterStudent() {
                   id="first"
                   placeholder=""
                   onChange={(e) => {
-                    setStdPhone(e.target.value);
+                    setStdGrade_12_Score(e.target.value);
                   }}
                 />
               </div>
@@ -649,7 +714,7 @@ function RegisterStudent() {
                   id="first"
                   placeholder=""
                   onChange={(e) => {
-                    setStdPhone(e.target.value);
+                    setStdGrade_12_Year(e.target.value);
                   }}
                 />
               </div>
@@ -669,7 +734,7 @@ function RegisterStudent() {
                     id="first"
                     placeholder=""
                     onChange={(e) => {
-                      setStdPhone(e.target.value);
+                      setStdTvetNameOfCollege(e.target.value);
                     }}
                   />
                 </div>
@@ -681,7 +746,7 @@ function RegisterStudent() {
                     id="first"
                     placeholder=""
                     onChange={(e) => {
-                      setStdPhone(e.target.value);
+                      setStdTvetProgram(e.target.value);
                     }}
                   />
                 </div>
@@ -693,7 +758,7 @@ function RegisterStudent() {
                     id="first"
                     placeholder=""
                     onChange={(e) => {
-                      setStdPhone(e.target.value);
+                      setStdTvet_year(e.target.value);
                     }}
                   />
                 </div>
@@ -706,7 +771,7 @@ function RegisterStudent() {
                     id="first"
                     placeholder=""
                     onChange={(e) => {
-                      setStdPhone(e.target.value);
+                      setStdTvetLevel(e.target.value);
                     }}
                   />
                 </div>
@@ -727,7 +792,7 @@ function RegisterStudent() {
                     id="first"
                     placeholder=""
                     onChange={(e) => {
-                      setStdPhone(e.target.value);
+                      setStdDegreeNameOfInstitute(e.target.value);
                     }}
                   />
                 </div>
@@ -739,7 +804,7 @@ function RegisterStudent() {
                     id="first"
                     placeholder=""
                     onChange={(e) => {
-                      setStdPhone(e.target.value);
+                      setStdDegreeDegreeAwarded(e.target.value);
                     }}
                   />
                 </div>
@@ -751,39 +816,53 @@ function RegisterStudent() {
                     id="first"
                     placeholder=""
                     onChange={(e) => {
-                      setStdPhone(e.target.value);
+                      setStdDegreeYear(e.target.value);
                     }}
                   />
                 </div>
               </div>
             </div>
             <div className="border m-2">
-              <div className="d-flex">
+              <div className="">
                 <div className="">
                   <section>Department</section>
                   <select
                     name=""
+                    required
                     id=""
                     onChange={(e) => {
                       setStdDepartment(e.target.value);
-                      getSections(e.target.value);
+                      // getProgram()
                     }}
                   >
+                    <option></option>
                     {depFiller()}
                   </select>
                 </div>
                 <div className="">
                   <section>Program</section>
-                  <select name="" id="">
-                    {sectionsFiller()}
+                  <select
+                    required
+                    name=""
+                    id=""
+                    onChange={(e) => setStdProgram(e.target.value)}
+                  >
+                    <option></option>
+                    {programFiller()}
                   </select>
                 </div>
                 <div className="">
                   <section>Section</section>
-                  <select name="" id="">
-                    <option value="">N1</option>
-                    <option value="">N2</option>
-                    <option value="">N3</option>
+                  <select
+                    required
+                    name=""
+                    id=""
+                    onChange={(e) => {
+                      setStdSection(e.target.value);
+                    }}
+                  >
+                    <option></option>
+                    {sectionsFiller()}
                   </select>
                 </div>
               </div>
@@ -798,6 +877,7 @@ function RegisterStudent() {
                   <input
                     type="text"
                     name="first"
+                    required
                     id="first"
                     placeholder="First Name"
                     onChange={(e) => {
@@ -809,6 +889,7 @@ function RegisterStudent() {
                   <section>Middle Name</section>
                   <input
                     type="text"
+                    required
                     name="middle"
                     id="middle"
                     placeholder="Middle Name"
@@ -823,6 +904,7 @@ function RegisterStudent() {
                     type="text"
                     name="last"
                     id="last"
+                    required
                     placeholder="Last Name"
                     onChange={(e) => {
                       setStdEMergencyLName(e.target.value);
@@ -837,6 +919,7 @@ function RegisterStudent() {
                   <input
                     type="text"
                     name="first"
+                    required
                     id="first"
                     placeholder="Country"
                     onChange={(e) => {
@@ -849,6 +932,7 @@ function RegisterStudent() {
                   <input
                     type="text"
                     name="first"
+                    required
                     id="first"
                     placeholder="City"
                     onChange={(e) => {
@@ -860,6 +944,7 @@ function RegisterStudent() {
                   <section>SubCity</section>
                   <input
                     type="text"
+                    required
                     name="first"
                     id="first"
                     placeholder="Subcity"
@@ -872,6 +957,7 @@ function RegisterStudent() {
                   <div className="first-name">
                     <section>Woreda</section>
                     <input
+                      required
                       type="number"
                       name="first"
                       id="first"
@@ -886,6 +972,7 @@ function RegisterStudent() {
                     <input
                       type="text"
                       name="first"
+                      required
                       id="first"
                       placeholder="H.no"
                       onChange={(e) => {
@@ -901,6 +988,7 @@ function RegisterStudent() {
                   <input
                     type="text"
                     name="phone"
+                    required
                     id="first"
                     placeholder="0987654323"
                     onChange={(e) => {
@@ -925,7 +1013,7 @@ function RegisterStudent() {
                 <Button variant="danger" type="reset">
                   Cancel
                 </Button>
-                <Button variant="primary" onClick={(e) => sne(e)} type="Submit">
+                <Button variant="primary" type="Submit">
                   Register
                 </Button>
               </div>

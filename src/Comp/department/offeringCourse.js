@@ -9,11 +9,119 @@ export default function OfferingCourse() {
     { title: "CS by me", category: "1", link: "CSS" },
     { title: "BY by me", category: "3", link: "UH" },
   ];
-  const [deps, setDeps] = useState('empty');
+  const [logger, setLogger] = useState({ dep: 1 });
+
+  const [deps, setDeps] = useState("empty");
+
   const [courses, setCourses] = useState();
+  const [batchYear, setBatchYear] = useState({ status: "not Yet" });
+  const [programs, setPrograms] = useState();
+
   const [addedCourse, setAddedCourse] = useState([]);
-  const [state,setState]=useState();
-  const [resp,setResp] = useState();
+  const [selectedProgram, setSelectedProgram] = useState();
+  // const [selectedBatchYear, setSelectedBatchYear] = useState();
+  const [total, setTotal] = useState({ cr: 0, ct: 0 });
+  // const [state, setState] = useState();
+  const [resp, setResp] = useState({ status: "not yet" });
+  useEffect(() => {
+    getProgram();
+  }, [logger]);
+  useEffect(() => {});
+  const programFiller = () => {
+    let depOptions = [<option value="">Select Program</option>];
+    if (typeof programs !== "undefined") {
+      // console.log("from deps.status " + deps.status);
+      // console.log("from deps " + deps);
+      programs.data.map((depers, index) => {
+        // alert(depers.D_Name)
+        depOptions.push(
+          <option value={depers.DG_Id} key={index}>
+            {depers.DG_field_of_study +
+              " " +
+              depers.DG_program +
+              " (" +
+              depers.DG_administration +
+              ")"}
+          </option>
+        );
+        return <option value={depers.D_id}>{depers.D_Name}</option>;
+      });
+    } else {
+      return (
+        <>
+          <option value="">Computer Science Degree(Extension)</option>
+          <option value="">Marketing Management(Regular)</option>
+          <option value="">Accounting(Extension)</option>
+        </>
+      );
+    }
+    return depOptions;
+  };
+  const getProgram = async () => {
+    if (typeof logger.dep !== "undefined") {
+      console.log("getProgram started");
+      const fd = new FormData();
+      fd.append("getProgram", logger.dep);
+      let dep = await fetch(baseUrl + "RegisterStudent.php", {
+        method: "POST",
+        headers: {
+          // Accept: "application/json",
+        },
+        body: fd,
+      });
+      // console.log(dep.json());
+      dep = await dep.json();
+      setPrograms(dep);
+      if (typeof program !== "undefined") {
+        // console.log("from prog.status " + program.status);
+        // console.log(program);
+        // alert('program Getted')
+      } else {
+        // console.warn('undefiend: '+deps); // console.log("undefiend: " + program);
+      }
+    }
+  };
+  const getBatchYear = async () => {
+    if (typeof logger.dep !== "undefined") {
+      console.log("getProgram started");
+      const fd = new FormData();
+      fd.append("getBatchYear", selectedProgram);
+      let dep = await fetch(baseUrl + "OfferingCourse.php", {
+        method: "POST",
+        headers: {
+          // Accept: "application/json",
+        },
+        body: fd,
+      });
+      // console.log(dep.json());
+      dep = await dep.json();
+      setBatchYear(dep);
+      if (typeof batchYear !== "undefined") {
+        // console.log("from prog.status " + program.status);
+        // console.log(program);
+        // alert('program Getted')
+      } else {
+        // console.warn('undefiend: '+deps); // console.log("undefiend: " + program);
+      }
+    }
+  };
+  useEffect(() => {
+    getBatchYear();
+  }, [selectedProgram]);
+  const batchYearFiller = () => {
+    let tempbatc = [<option>Select Batch Year</option>];
+    if (batchYear.status === "success") {
+      batchYear.data.map((batchYear, index) => {
+        tempbatc.push(
+          <option value={batchYear.Se_Year} key={index}>
+            {batchYear.Se_Year}
+          </option>
+        );
+      });
+    }
+    return tempbatc;
+  };
+  // For the Inners
   const closeHandler = (id) => {
     const diag = document.getElementById(id);
     diag.close();
@@ -23,32 +131,46 @@ export default function OfferingCourse() {
     // diag.close();
     diag.showModal();
   };
-  const createHandler = async(e) =>{
+  const createHandler = async (e) => {
     e.preventDefault();
-    let obj={
-      length:addedCourse.length,
-      Courses:addedCourse
+
+    if (addedCourse.length > 0) {
+      // console.info(obj);
+      const formData = new FormData();
+      formData.append("dg_id", selectedProgram);
+      formData.append(
+        "BYear",
+        document.getElementById("selectBatchYear").value
+      );
+      formData.append("lsemester", document.getElementById("lsemester").value);
+      formData.append("lyear", document.getElementById("lyear").value);
+      formData.append("course", JSON.stringify(addedCourse));
+      // formData.append('course',);
+      let res = await fetch(baseUrl + "OfferingCourse.php", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+      let ress = await res.json();
+      // console.warn("here comes the response");
+      setResp(ress);
+
+      // console.log(resp);
+      // console.log(res.status);
+      //this bad boy sends the courses as an array
+      //next send the courses and the OC information
+    } else {
+      alert("No courses added");
     }
-    console.info(obj);
-    
-    const formData = new FormData();
-    formData.append('course',JSON.stringify(addedCourse));
-    // formData.append('course',);
-    let res = await fetch(baseUrl + "OfferingCourse.php", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-      },
-      body: formData,
-    });
-    let ress = await res.json();
-    console.warn('here comes the response');
-    setResp(ress);
-    console.log(resp);
-    console.log(res.status);
-    //this bad boy sends the courses as an array
-    //next send the courses and the OC information
-  }
+  };
+  useEffect(() => {
+    if (resp.status === "success") {
+      alert("Success!");
+      setResp({ status: "not yet" });
+    }
+  }, [resp.status]);
   const depFiller = () => {
     let deptobe = [];
     if (typeof deps !== "undefined") {
@@ -66,51 +188,60 @@ export default function OfferingCourse() {
       }
     }
   };
-  const addCourse=(course)=>{
-    if(addCourse.length > 0){
+  const addCourse = (course) => {
+    if (addCourse.length > 0) {
       setAddedCourse([...addedCourse, course]);
-    }else{
+      setTotal({
+        cr: total.cr + course.C_Credit_hour,
+        ct: total.ct + course.C_Contact_hour,
+      });
+    } else {
       addedCourse.push(course);
     }
-  }
-  const removeById = (code) => {
-    setAddedCourse(addedCourse.filter(item => item.C_Code !== code));
   };
-  
-  const addedCourseFiller=()=>{
-    let toBeRendCourses=[];
-    if(addedCourse.length > 0){
-      addedCourse.map(course=>{
-        toBeRendCourses.push(<tr>
-          <th scope="row">{course.C_Code}</th>
-          <td>{course.C_Name}</td>
-          <td>{course.C_Credit_hour+'/'+course.C_Contact_hour}</td>
-          <td>{course.C_Prerequisites}</td>
-          <td>
-            <Button variant="danger" onClick={()=>removeById(course.C_Code)}>remove</Button>
-          </td>
-        </tr>
-
-        )
-      })
-      return <Table class="table" bordered striped>
-      <thead>
-        <tr>
-          <th scope="col">Code</th>
-          <th scope="col">Name</th>
-          <th scope="col">Cr.hr/Co.hr</th>
-          <th scope="col">Prerequisite</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-      {toBeRendCourses}
-      </tbody>
-    </Table>
-    }else{
-      return(<h3>Choose some Course</h3>)
+  const removeById = (course) => {
+    setAddedCourse(addedCourse.filter((item) => item.C_Code !== course.C_Code));
+    setTotal({
+      cr: total.cr - course.C_Credit_hour,
+      ct: total.ct - course.C_Contact_hour,
+    });
+  };
+  const addedCourseFiller = () => {
+    let toBeRendCourses = [];
+    if (addedCourse.length > 0) {
+      addedCourse.map((course) => {
+        toBeRendCourses.push(
+          <tr>
+            <th scope="row">{course.C_Code}</th>
+            <td>{course.C_Name}</td>
+            <td>{course.C_Credit_hour + "/" + course.C_Contact_hour}</td>
+            <td>{course.C_Prerequisites}</td>
+            <td>
+              <Button variant="danger" onClick={() => removeById(course)}>
+                remove
+              </Button>
+            </td>
+          </tr>
+        );
+      });
+      return (
+        <Table class="table" bordered striped>
+          <thead>
+            <tr>
+              <th scope="col">Code</th>
+              <th scope="col">Name</th>
+              <th scope="col">Cr.hr/Co.hr</th>
+              <th scope="col">Prerequisite</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>{toBeRendCourses}</tbody>
+        </Table>
+      );
+    } else {
+      return <h3>Choose some Course</h3>;
     }
-  }
+  };
   const courseTableFiller = () => {
     if (typeof courses !== "undefined") {
       let cour = [];
@@ -119,15 +250,17 @@ export default function OfferingCourse() {
           <tr>
             <th scope="row">{course.C_Code}</th>
             <td>{course.C_Name}</td>
-            <td>{course.C_Credit_hour+'/'+course.C_Contact_hour}</td>
+            <td>{course.C_Credit_hour + "/" + course.C_Contact_hour}</td>
             <td>{course.C_Prerequisites}</td>
             <td>
-              <Button variant="success" onClick={()=>addCourse(course)}>Add</Button>
+              <Button variant="success" onClick={() => addCourse(course)}>
+                Add
+              </Button>
             </td>
           </tr>
         );
       });
-      return cour
+      return cour;
     }
   };
   const getDep = async () => {
@@ -157,10 +290,11 @@ export default function OfferingCourse() {
     //   console.log("no autho: " + autho);
     // }
   };
-
   useEffect(() => {
     getDep();
+    document.getElementById("total-cr-co").setAttribute("disabled", "true");
   }, []);
+
   const getCourses = async (e) => {
     let deper = e;
     // alert(deper);
@@ -206,9 +340,7 @@ export default function OfferingCourse() {
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
-            {courseTableFiller()}
-            </tbody>
+            <tbody>{courseTableFiller()}</tbody>
           </Table>
         </div>
       </div>
@@ -225,86 +357,92 @@ export default function OfferingCourse() {
             onClick={() => closeHandler("diagAdd")}
             className="diag-close"
           >
-            X 
+            X
           </span>
         </div>
         <div className="diag-body">{addFiller()}</div>
       </dialog>
       <div className="oc-body">
-        <form action="">
-          <div className="d-flex mt-3 ps-3 pe-3">
-            <div className=" d-flex flex-column ">
-              <label htmlFor="Department">Program</label>
-              <select
-                className="department-create-offer-course"
-                id="Department"
-              >
-                <option value="Computer Science">Computer Science</option>
-              </select>
+        <form action="" onSubmit={(e) => createHandler(e)}>
+          <div>
+            <div className="d-flex mt-3 ps-3 pe-3 form-control w-50">
+              {/* <div className="d-flex flex-column ">
+                <label htmlFor="Department">Department</label>
+                <select
+                  className="department-create-offer-course"
+                  id="Department"
+                >
+                  <option value="Computer Science">Select Department</option>
+                </select>
+              </div> */}
+              <div className="d-flex flex-column ">
+                <label htmlFor="Department">Program</label>
+                <select
+                  className="department-create-offer-course"
+                  id="Department"
+                  onChange={(e) => setSelectedProgram(e.target.value)}
+                >
+                  {/* <option value="Computer Science">Select Program</option> */}
+                  {programFiller()}
+                </select>
+              </div>
+              <div className="d-flex flex-column">
+                <label htmlFor="year">Batch Year</label>
+                {/* <input className="oc-input  w-50" id="year" type="number" /> */}
+                <select name="" id="selectBatchYear" required>
+                  {batchYearFiller()}
+                </select>
+              </div>
             </div>
-            <div className=" d-flex flex-column">
-              <label htmlFor="year">Year</label>
-              <input className="oc-input  w-50" id="year"  type="number" />
-            </div>
-            <div className=" d-flex flex-column">
-              <label htmlFor="semester">semester</label>
-              <input
-                className="oc-input  w-25"
-                id="semester"
-                max={3}
-                type="number"
-                required
-              />
-            </div>
-            <div className="col d-flex flex-column align-items-end">
-              <label className="me-4" htmlFor="CoHr">
-                Total Cr/Co hr
-              </label>
-              <input className="oc-input" id="CoHr" type="number" disabled />
+            <div className="d-flex mt-3 ps-3 pe-3 form-control">
+              <div className=" d-flex flex-column">
+                <label htmlFor="year"> Learning Year</label>
+                <input
+                  className="oc-input w-50"
+                  id="lyear"
+                  type="number"
+                  required
+                />
+              </div>
+              <div className=" d-flex flex-column">
+                <label htmlFor="semester">semester</label>
+                <input
+                  className="oc-input  w-25"
+                  id="lsemester"
+                  max={3}
+                  type="number"
+                  required
+                />
+              </div>
+              <div className="col d-flex flex-column align-items-end">
+                <label className="me-4" htmlFor="CoHr">
+                  Total Cr/Co hr
+                </label>
+                <input
+                  className="oc-input"
+                  id="total-cr-co"
+                  value={total.cr + "/" + total.ct}
+                  type="text"
+                  // disabled
+                />
+              </div>
             </div>
           </div>
           <div className="m-5 mt-1 pt-3 align-items-center d-flex flex-column">
             <div className="p-4 align-items-center d-flex flex-column border">
               {addedCourseFiller()}
-              {/* {
-                books.map((book) => {
-                return (
-                  <div className="item border row bg-light m-1">
-                    <div className="col d-flex">
-                      <i className="fas fa-book fa-lg  col" />
-                      <div className="col">
-                        <div>
-                          Course Tittle:
-                          <section>{book.title}</section>
-                        </div>
-                      </div>
-                      <div className="col">
-                        <div>
-                          Credit Hour:
-                          <section>{book.category}</section>
-                        </div>
-                      </div>
-                      <div className="col">
-                        Contact Hour:
-                        <section>{book.link}</section>
-                      </div>
-                    </div>
-                    <div className="col download">
-                      <Button variant="danger">Remove</Button>
-                    </div>
-                  </div>
-                );
-              })} */}
               <div className="row m-2">
                 <Button onClick={(e) => addShowHandler(e)}>Add Course</Button>
               </div>
             </div>
 
-            <div className="d-flex flex-row justify-content-around mt-5">
+            <div className="d-flex flex-row justify-content-around mt-5 buttons">
               <Button variant="danger">Cancel</Button>
               <div />
               <div />
-              <Button variant="success" onClick={(e)=>createHandler(e)}>Create</Button>
+              <Button variant="success" type="submit">
+                Create
+              </Button>
             </div>
           </div>
         </form>

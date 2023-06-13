@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 
 function Enroll() {
   return (
@@ -21,6 +21,9 @@ function Enroll() {
             <section>
               payment Code: <span>16754</span>
             </section>
+          </div>
+          <div>
+            <Button>Pay</Button>
           </div>
         </div>
         <Table striped hover bordered>
