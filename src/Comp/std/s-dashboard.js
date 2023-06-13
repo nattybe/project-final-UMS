@@ -25,7 +25,7 @@ export default function StudentDashboard(props) {
       const name = loggerInfo.fname + " " + loggerInfo.lname;
       const address = loggerInfo.city + ", " + loggerInfo.subcity;
       const phone = loggerInfo.phone_no1;
-      const photo = baseUrl + "user-photo/" + loggerInfo.photo;
+      const photo = baseUrl + "student-photo/" + loggerInfo.photo;
 
       return (
         <div className="border comp-body-container registrar-dashboard d-flex">
@@ -55,23 +55,23 @@ export default function StudentDashboard(props) {
               </div>
             </div>
             <div className="info-boxes">
-              <section>Department</section>
-              <h4>{state.department}</h4>
+              <section>Email</section>
+              <h4>{loggerInfo.email}</h4>
             </div>
           </div>
           <div className="info-boxes-box d-flex">
             <div className="info-boxes">
-              <section>Degrees</section>
-              <h2>{state.TR}</h2>
+              <section>CGPA</section>
+              <h2>{loggerInfo.CGPA}</h2>
             </div>
             <div className="info-boxes">
-              <section>Total Instructors</section>
-              <h2>{state.TI}</h2>
+              <section>Nationality</section>
+              <h2>{loggerInfo.Nationality}</h2>
             </div>
-            <div className="info-boxes">
-              <section>Total Courses</section>
+            {/* <div className="info-boxes">
+              <section></section>
               <h2>{state.TS}</h2>
-            </div>
+            </div> */}
           </div>
         </div>
       );

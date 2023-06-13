@@ -485,10 +485,10 @@ function RegisterStudent() {
                 id=""
                 onChange={(e) => setStdMartial(e.target.value)}
               >
-                <option value="">Single</option>
-                <option value="">Married</option>
-                <option value="">Divorce</option>
-                <option value="">Widowed</option>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="divorce">Divorce</option>
+                <option value="widowed">Widowed</option>
               </select>
             </div>
             <div className="disabilities ms-5 border">

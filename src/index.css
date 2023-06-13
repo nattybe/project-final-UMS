@@ -92,7 +92,7 @@ nav {
 }
 /*--------------------------------------- Offering Course ---------------------------------------*/
 .oc-input {
-  width: 150px;
+  min-width: 150px;
 }
 .department-create-offer-course{
   max-width:450px;

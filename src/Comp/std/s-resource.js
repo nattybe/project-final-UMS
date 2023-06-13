@@ -1,5 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { baseUrl } from "../../globalConst";
 
 function StudentResource() {
   const [search, setSearch] = useState();
@@ -30,20 +31,24 @@ function StudentResource() {
     // console.log(resource);
   };
   const resourceFiller = () => {
-    if (resource) {
+    if (typeof resource !== "undefined") {
       if (resource.status === "success") {
         resource.data.map((resource) => {
           booksComp.push(
             <div className="item border row bg-light m-1" key={resource.R_ID}>
               <div className="col d-flex">
                 <i className="fas fa-book fa-lg  col" />
-                <div className="col">
-                  <div>Tittle:{resource.R_NAME}</div>
+                <div className="col form-control me-2">
+                  <div>Tittle:{resource.R_Name}</div>
                   <div>Category:{resource.R_CATEGORY}</div>
+                </div>
+                <div className="col form-control ms-3">
+                  <div>Tittle:{resource.R_Author}</div>
+                  <div>Category:{resource.R_DESCRIPTION}</div>
                 </div>
               </div>
               <div className="col download">
-                <a href={"" + resource.R_FILE}>
+                <a href={baseUrl+"" + resource.R_FILENAME}>
                   <i className="fas fa-download" />
                 </a>
               </div>
@@ -93,7 +98,7 @@ function StudentResource() {
         </button>
       </div>
       <div className="flex ">
-        <div className="item border row bg-light m-1">
+        {/* <div className="item border row bg-light m-1">
           <div className="col d-flex">
             <i className="fas fa-book fa-lg  col" />
             <div className="col">
@@ -182,7 +187,7 @@ function StudentResource() {
               <i className="fas fa-download" />
             </a>
           </div>
-        </div>
+        </div> */}
         {resourceFiller()}
       </div>
     </Container>
