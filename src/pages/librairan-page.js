@@ -4,6 +4,7 @@ import { Nav, Tab } from "react-bootstrap";
 import LibrarianDashboard from "../Comp/librarian/l-dashboard";
 import LibrarianViewResource from "../Comp/librarian/l-viewresource";
 import LibrarianAddResource from "../Comp/librarian/l-addresource";
+import StudentContact from "../Comp/std/s-contact";
 
 class LibrairanPage extends Component {
   render() {
@@ -36,6 +37,14 @@ class LibrairanPage extends Component {
                   View Resource
                 </Nav.Link>
               </Nav.Item>
+              <Nav.Item className="side-buttons">
+                <Nav.Link
+                  eventKey="fifth"
+                  className="side-buttons border border-2 border-dark"
+                >
+                  Contact
+                </Nav.Link>
+              </Nav.Item>
               
             </Nav>
             <Tab.Content>
@@ -47,6 +56,9 @@ class LibrairanPage extends Component {
               </Tab.Pane>
               <Tab.Pane eventKey="third">
                 <LibrarianViewResource />
+              </Tab.Pane>
+              <Tab.Pane eventKey="fifth">
+                <StudentContact />
               </Tab.Pane>
             </Tab.Content>
           </Tab.Container>

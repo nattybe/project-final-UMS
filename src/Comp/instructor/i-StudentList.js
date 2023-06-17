@@ -33,7 +33,7 @@ useEffect(()=>{
             }}
             id="choose-section"
           >
-            <option value="CCS1R1N6/12">CCS1R1N6/12</option>
+            <option value="CCS1R1N6/12">N6(2017)</option>
             <option value="CCS1R1N6/13">CCS1R1N6/13</option>
             <option value="CCS1R1N6/14">CCS1R1N6/14</option>
             <option value="CCS1R1N6/15">CCS1R1N6/15</option>
@@ -57,7 +57,7 @@ useEffect(()=>{
         <tbody>
           <tr>
             <td>1</td>
-            <td colSpan="1">UU79706</td>
+            <td colSpan="1">392</td>
             <td>Natnael Belihu</td>
             <td>
               <input type="number" Name="grade-input" id="helloitem" />
@@ -65,16 +65,32 @@ useEffect(()=>{
           </tr>
           <tr>
             <td>1</td>
-            <td colSpan="1">UU79706</td>
-            <td>Natnael Belihu</td>
+            <td colSpan="1">314</td>
+            <td>Leul Teferi</td>
             <td>
               <input type="number" Name="grade-input" id="helloitem" />
             </td>
           </tr>
           <tr>
             <td>1</td>
-            <td colSpan="1">UU79706</td>
-            <td>Natnael Belihu</td>
+            <td colSpan="1">123</td>
+            <td>Gelila Dngachew</td>
+            <td>
+              <input type="number" Name="grade-input" id="helloitem" />
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td colSpan="1">213</td>
+            <td>Hawi Tegene</td>
+            <td>
+              <input type="number" Name="grade-input" id="helloitem" />
+            </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td colSpan="1">214</td>
+            <td>Kaleab Getu</td>
             <td>
               <input type="number" Name="grade-input" id="helloitem" />
             </td>

@@ -3,6 +3,7 @@ import React, { Component, useEffect, useState } from "react";
 import { Container, Dropdown } from "react-bootstrap";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import { baseUrl } from "../../globalConst";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 function StudentContact() {
   const [by, setby] = useState("fname");
@@ -21,7 +22,7 @@ function StudentContact() {
     getCont();
   }, [by, search]);
   useEffect(() => {}, []);
-
+  
   const getCont = async () => {
     // console.log("getDep started");
     const formdata = new FormData();
@@ -45,6 +46,11 @@ function StudentContact() {
       // console.log("undefiend: " + deps);
     }
   };
+  const nav=useNavigate();
+  const contacter=(cont)=>{
+    nav('/messages',{state:cont});
+    // return (<Link to={'messages'}/>);
+  }
   const contFiller = () => {
     if (typeof conts !== "undefined") {
       const contArray = [];
@@ -64,7 +70,7 @@ function StudentContact() {
                 </div>
               </div>
               <div className="col download">
-                <a href="#">
+                <a role="button" onClick={()=>contacter(con)}>
                   <i className="fas fa-comment-alt" />
                 </a>
               </div>

@@ -372,8 +372,7 @@ nav {
   overflow-y: scroll;
   max-height: 350px;
   padding: 5px;
-  
-  
+  min-height:300px;
 }
 .sent-message{
   /* justify-self: end; */

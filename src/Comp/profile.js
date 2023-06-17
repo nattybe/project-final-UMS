@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
-function Profile() {
+function Profile(props) {
+  
   const [stdFName, setStdFName] = useState();
   const [stdLName, setStdLName] = useState();
   const [stdMName, setStdMName] = useState();
@@ -84,7 +85,7 @@ function Profile() {
       <div className="profile">
         <form action="">
           <div className=" d-flex">
-            <img src="./avatar.jpg" alt="" />
+            <img src="http://localhost/proje\student-photo\photo_2023-06-13_19-59-12.jpg" alt="" />
             <div className="names">
               <div className="student-name ms-3 border p-2">
                 <div className="first-name">

@@ -8,6 +8,7 @@ import OfferingCourse from "../Comp/department/offeringCourse";
 import ProgramCreateCourse from "../Comp/department/create-course";
 import ProgramDashboard from "../Comp/program/p-dashboeard";
 import UploadSchedule from "../Comp/program/uploadSchedule";
+import StudentContact from "../Comp/std/s-contact";
 
 class ProgramOfficePage extends Component {
   render() {
@@ -49,6 +50,8 @@ class ProgramOfficePage extends Component {
                   Assign Instructor
                 </Nav.Link>
               </Nav.Item> */}
+              
+              
               <Nav.Item className="side-buttons">
                 <Nav.Link
                   eventKey="uploadSchedule"
@@ -65,6 +68,14 @@ class ProgramOfficePage extends Component {
                   View Course
                 </Nav.Link>
               </Nav.Item> */}
+              <Nav.Item className="side-buttons">
+                <Nav.Link
+                  eventKey="fifth"
+                  className="side-buttons border border-2 border-dark"
+                >
+                  Contact
+                </Nav.Link>
+              </Nav.Item>
               <Nav.Item className="side-buttons">
                 <Nav.Link
                   eventKey="Notify"
@@ -89,6 +100,9 @@ class ProgramOfficePage extends Component {
               </Tab.Pane>
               <Tab.Pane eventKey="ViewCourse">
                 <ProgramViewCourse />
+              </Tab.Pane>
+              <Tab.Pane eventKey="fifth">
+                <StudentContact />
               </Tab.Pane>
               <Tab.Pane eventKey="Notify">
                 <InstructorNotify />

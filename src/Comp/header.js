@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  Accordion,
   Button,
   Container,
   Dropdown,
@@ -8,60 +9,36 @@ import {
   Navbar,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link, NavLink, Navigate, Outlet } from "react-router-dom";
+import { Link, NavLink, Navigate, Outlet, useNavigate } from "react-router-dom";
 import Profile from "./profile";
-
+import { baseUrl } from "../globalConst";
+// import dasdea from "./body";
 function Header() {
-  const [notification, setNotification] = useState([
-    {
-      SentBy: "user",
-      Title: "The note",
-      Description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      SentBy: "user",
-      Title: "The note",
-      Description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      SentBy: "user",
-      Title: "The note",
-      Description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      SentBy: "user",
-      Title: "The note",
-      Description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      SentBy: "user",
-      Title: "The note",
-      Description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-    {
-      SentBy: "user",
-      Title: "The note",
-      Description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    },
-  ]);
+  // const [notification, setNotification] = useState([
+  //   {
+  //     SentBy: "Department",
+  //     Title: "Dear Students",
+  //     Description:
+  //       "Welcome to the Department of Students. You will receive a list of students and their parents to receive",
+  //   },
+  //   {
+  //     SentBy: "Student Union",
+  //     Title: "For Graduation Candidates",
+  //     Description: "please pay your year book fees  in the given time",
+  //   },
+  // ]);
   const [show, setShow] = useState(false);
-
+  const [loggerInfo, setLoggerInfo] = useState();
+  const [notifications, setNotifications] = useState({ status: "not yet" });
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [loggerInfo, setLoggerInfo] = useState();
 
   const getLogger = () => {
     let logger = JSON.parse(window.sessionStorage.getItem("logger"));
     console.log("logger => GetLogger " + logger);
     setLoggerInfo(logger);
   };
-
+  // getLogger()
   useEffect(() => {
     if (loggerInfo) {
       // alert(loggerInfo.S_ID);
@@ -70,12 +47,13 @@ function Header() {
       getLogger();
     }
   }, [loggerInfo]);
-
+  const navigator=useNavigate();
   const logout = () => {
     window.sessionStorage.removeItem("logger");
     // <a href="/home" id="LinkLogin"></a>
     // documnet.getElementById("LinkLogin").click();
-    window.open("/", "_self");
+    // window.open("/", "_self");
+    navigator("/")
   };
   const loginer = () => {
     // che.append(<Profile/>)
@@ -88,7 +66,6 @@ function Header() {
   };
   const logger = () => {
     if (loggerInfo) {
-     
       return (
         <>
           <Nav.Link href="/">
@@ -100,10 +77,9 @@ function Header() {
             <Dropdown.Toggle variant="primary" id="dropdown-basic">
               {loggerInfo.fname + " " + loggerInfo.lname}
             </Dropdown.Toggle>
-
             <Dropdown.Menu>
-              <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-              <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+              <Dropdown.Item className="ms-0 ps-0"><Link to="/profile" className="ms-0 ps-0"/> Profile</Dropdown.Item>
+              <Dropdown.Item className="ms-2 ps-3" onClick={logout}>Logout</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </>
@@ -119,6 +95,61 @@ function Header() {
       );
     }
   };
+  const getNotification = async () => {
+    // let resa;
+    const fd = new FormData();
+    fd.append("getNotifications", true);
+    // console.warn("getSections started " + stdProgram);
+    let dep = await fetch(baseUrl + "Notify.php", {
+      method: "POST",
+      headers: {
+        // Accept: "application/json",
+      },
+      body: fd,
+    });
+    // console.warn(await dep.json());
+    // console.log(dep.formData());
+    dep = await dep.json();
+    setNotifications(dep);
+    // console.warn(notifications);
+    // setOriginalSection(dep.data);
+    //   if (typeof resa !== "undefined") {
+    //     console.log("from resa.status " + sections.status);
+    //     console.log("from resa " + sections);
+    //   } else {
+    //     // console.warn('undefiend: '+deps);
+    //     // console.log(sections);
+    //   }
+  };
+  const notificationFiller = () => {
+    let depOptions = [];
+    if (notifications.status === "success") {
+      notifications.data.map((notification) => {
+        depOptions.push(
+          <div className="view-notify-item border border-dark p-1 mt-2">
+            <Accordion.Item eventKey={notification.N_ID}>
+              <Accordion.Header>
+                <p>{notification.N_Title}</p>
+                {/* <p className="text-end">hello</p> */}
+              </Accordion.Header>
+              <Accordion.Body>{notification.N_Content}</Accordion.Body>
+              
+            </Accordion.Item>
+          </div>
+        );
+      });
+      return depOptions;
+    } else {
+      return (
+        <>
+          <h1>No New Notifications</h1>
+        </>
+      );
+    }
+  };
+  useEffect(() => {
+    getNotification();
+  }, []);
   return (
     <>
       <Navbar bg="primary" sticky="top" variant="light" expand="lg">
@@ -146,7 +177,7 @@ function Header() {
             <Profile />
           </dialog>
           {/* <Button onClick={loginer}>Showdiag</Button> */}
-          <Dropdown> 
+          {/* <Dropdown> 
             <Dropdown.Toggle variant="danger" id="dropdown-basic">
               Navigate
             </Dropdown.Toggle>
@@ -179,7 +210,7 @@ function Header() {
                 <Link to="/department">department</Link>
               </Dropdown.Item>
             </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown> */}
         </div>
         <div className="nav-links">
           <Modal show={show} onHide={handleClose}>
@@ -188,14 +219,9 @@ function Header() {
             </Modal.Header>
             <Modal.Body>
               <Container className="view-notify-body-cont">
-                {notification.map((notification) => {
-                  return (
-                    <div className="view-notify-item border border-dark p-1 mt-2">
-                      <h5>Title: {notification.Title}</h5>
-                      <section>Description: {notification.Description}</section>
-                    </div>
-                  );
-                })}
+                <Accordion defaultActiveKey="0">
+                  {notificationFiller()}
+                </Accordion>
               </Container>
             </Modal.Body>
           </Modal>
@@ -203,7 +229,6 @@ function Header() {
             <i class="fas fa-bell fa-lg" />
           </Nav.Link>
           {logger()}
-          
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
       </Navbar>

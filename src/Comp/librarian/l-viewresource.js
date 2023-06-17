@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { Button, Container, Modal } from "react-bootstrap";
 
 export default function LibrarianViewResource() {
@@ -183,7 +183,7 @@ export default function LibrarianViewResource() {
                 </div>
               </div>
               <div className="col download">
-                <Button>Edit</Button>
+                <Button onClick={()=>editHandler()}>Edit</Button>
                 <Button variant="danger" onClick={() => deleteHandler(book)}>
                   Delete
                 </Button>

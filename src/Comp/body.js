@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { AlertBy } from "./defFuncs";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { baseUrl } from "../globalConst";
 function Body() {
   const [Res, setRes] = useState({ nothing: "to see here" });
-  const [loginas, setloginas] = useState("student");
+  const [loginas, setloginas] = useState("students");
   const [ID, setID] = useState();
   const [password, setPassword] = useState();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const navigate = useNavigate();
 
   const loginFetch = async (url, loginFd) => {
     try {
@@ -43,22 +45,23 @@ function Body() {
       // window.open("/", "_self");
       switch (logginas.loginas) {
         case "department":
-          window.open("/department", "_self");
+          // window.open("/department", "_self");
+          navigate("/department");
           break;
         case "instructors":
-          window.open("/instructor", "_self");
+          navigate("/instructor");
           break;
         case "students":
-          window.open("/student", "_self");
+          navigate("/student");
           break;
         case "registrars":
-          window.open("/registrar", "_self");
+          navigate("/registrar");
           break;
         case "librarian":
-          window.open("/librarian", "_self");
+          navigate("/librarian");
           break;
         case "program_officers":
-          window.open("/programoffice", "_self");
+          navigate("/programoffice");
           break;
         default:
           break;
@@ -90,6 +93,190 @@ function Body() {
     //   handleShow();
     // }
   };
+  const ThePasswordEraser = () => {
+    const [pass, setPass] = useState();
+    const [pass2, setPass2] = useState();
+    const [email, setEmail] = useState();
+    const [uId, setUId] = useState();
+    const [acType, setAcType] = useState("students");
+
+    const [res, setRes] = useState({ status: "not yet" });
+
+    const resetSubmit = async (e) => {
+      e.preventDefault();
+      // console.log(loggerInfo);
+      if (typeof pass !== "undefined") {
+        // console.log("getOfCourse started");
+        if (pass === pass2) {
+          const formdata = new FormData();
+          
+          formdata.append("ResetPassword", pass);
+          formdata.append("AcType", acType);
+          formdata.append("ID", uId);
+          formdata.append("ResetEmail", email);
+          console.warn({form:formdata});
+          let dep = await fetch(baseUrl + "login.php", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+            },
+            body: formdata,
+          });
+          let depa = await dep.json();
+          setRes(depa);
+          // console.warn(res);
+          // console.warn({data:res});
+          // setOffCourses(dep);
+          //   if (typeof depa !== "undefined") {
+          //     if (depa.status === "success") {
+          //       setOffeing(depa.data.offering);
+          //       setOffCourses(depa.data.courses);
+          //       // console.warn({
+          //       //   from: "ASS",
+          //       //   courses: offCourses,
+          //       //   offering: offeing,
+          //       // });
+          //     }
+          //   }
+          //   // console.error(
+          //   //   "getMessages :",
+          //   //   loggerInfo.id,
+          //   //   " SeTab :",
+          //   //   loggerInfo.loginas,
+          //   //   " ReTab: ",
+          //   //   cont.auth,
+          //   //   " ReId:   ",
+          //   //   cont.id
+          //   // );
+          //   // if (messages.status === "success") {
+          //   //   // console.warn(messages);
+          //   //   // console.log("from deps " + deps);
+          //   // } else {
+          //   //   // console.warn('undefiend: '+deps);
+          //   //   // console.log("undefiend: " + deps);
+          //   // }
+          // } else {
+          // }
+        } else {
+          alert("Passwords do not match")
+        }
+      }
+    };
+    
+  useEffect(()=>{
+    console.info({fromEffect: res});
+    if(res.status ==="success"){
+      alert("Password Rested Success!");
+    }else if(res.status === "failed" && res.error==="no match"){
+      alert("Email or Id is not correct!");
+    }else if(res.status === "failed" && "from"){
+      alert("the system is not responding try again latter");
+    }
+  },[res])
+    return (
+      <form method="get reset-password-form" onSubmit={(e) => resetSubmit(e)}>
+        <div className="form-group">
+          <label htmlFor="loginas" value="dummy">
+            Account Type
+          </label>
+          <select
+            className="loginasselect"
+            onChange={(e) => {
+              setAcType(e.target.value);
+              // console.log(loginas);
+            }}
+            name="loginas"
+            id="loginas"
+          >
+            {/* <option value="...">...</option> */}
+            <option value="students">student</option>
+            <option value="instructors">instructor</option>
+            <option value="librarian">librarian</option>
+            <option value="registrars">Registrar</option>
+            <option value="program_officers">Program officer</option>
+            <option value="department">Department head</option>
+          </select>
+
+          <small id="emailHelp" className="form-text text-muted">
+            {/* Email that you have used while registration. */}
+          </small>
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">ID</label>
+          <input
+            type="text"
+            name="ID"
+            required
+            className="form-control"
+            id="ID"
+            aria-describedby="ID"
+            placeholder="Enter Your ID"
+            onChange={(e) => {
+              setUId(e.target.value);
+              // console.log(ID);
+            }}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Enter your Email</label>
+          <input
+            required
+            type="email"
+            name=""
+            className="form-control"
+            id="password"
+            placeholder="example@mail.com"
+            onChange={(e) => {
+              setEmail(e.target.value);
+              // console.log(password);
+            }}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Enter Your new Password</label>
+          <input
+            required
+            type="password"
+            name="password"
+            className="form-control"
+            id="password"
+            placeholder="Password"
+            onChange={(e) => {
+              setPass(e.target.value);
+              // console.log(password);
+            }}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Confirm Your new Password</label>
+          <input
+            type="password"
+            name="password"
+            className="form-control"
+            required
+            id="password"
+            placeholder="Password"
+            onChange={(e) => {
+              setPass2(e.target.value);
+              // console.log(password);
+            }}
+          />
+        </div>
+        <div className="buttons">
+          <Button variant="danger">Cancel</Button>
+          <button
+            type="submit"
+            onSubmit={(e) => {
+              resetSubmit(e);
+            }}
+            className="btn btn-primary float-right"
+          >
+            Reset
+          </button>
+        </div>
+      </form>
+    );
+  };
   return (
     <div className="main">
       <div className="col-md-4 m-auto shadow">
@@ -102,102 +289,7 @@ function Body() {
             <Modal.Title>Reset Password</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form method="get reset-password-form">
-              <div className="form-group">
-                <label htmlFor="loginas" value="dummy">
-                  Login As
-                </label>
-                <select
-                  className="loginasselect"
-                  onChange={(e) => {
-                    setloginas(e.target.value);
-                    // console.log(loginas);
-                  }}
-                  name="loginas"
-                  id="loginas"
-                >
-                  {/* <option value="...">...</option> */}
-                  <option value="student">Student</option>
-                  <option value="instructor">instructor</option>
-                  <option value="librarian">librarian</option>
-                  <option value="registrar">Registrar</option>
-                  <option value="programOfficer">Program officer</option>
-                </select>
-
-                <small id="emailHelp" className="form-text text-muted">
-                  {/* Email that you have used while registration. */}
-                </small>
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">ID</label>
-                <input
-                  type="text"
-                  name="ID"
-                  className="form-control"
-                  id="ID"
-                  aria-describedby="ID"
-                  placeholder="Enter Your ID"
-                  onChange={(e) => {
-                    setID(e.target.value);
-                    // console.log(ID);
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Enter your old password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  id="password"
-                  placeholder="Password"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    // console.log(password);
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Enter Your new Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  id="password"
-                  placeholder="Password"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    // console.log(password);
-                  }}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Confirm Your new Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  id="password"
-                  placeholder="Password"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    // console.log(password);
-                  }}
-                />
-              </div>
-              <div className="buttons">
-                <Button variant="danger">Cancel</Button>
-                <button
-                  type="submit"
-                  onClick={(e) => {
-                    loginsubmit(e);
-                  }}
-                  className="btn btn-primary float-right"
-                >
-                  Reset
-                </button>
-              </div>
-            </form>
+            <ThePasswordEraser />
           </Modal.Body>
         </Modal>
         <form method="get">
@@ -214,7 +306,7 @@ function Body() {
               name="loginas"
               id="loginas"
             >
-              <option value="students">Student</option>
+              <option value="students">student</option>
               <option value="instructors">instructor</option>
               <option value="librarian">librarian</option>
               <option value="registrars">Registrar</option>

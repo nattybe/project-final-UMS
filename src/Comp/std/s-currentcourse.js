@@ -3,12 +3,12 @@ import { Button, Container } from "react-bootstrap";
 export default class StudentCurrentCourse extends Component {
   render() {
     const courses = [
-      { Code: "123", Title: "IP", Department: "CSS", Status: "____" },
-      { Code: "CS4312", Title: "DB", Department: "MGMT", Status: "____" },
-      { Code: "123", Title: "IP", Department: "CSS", Status: "____" },
-      { Code: "CS4312", Title: "DB", Department: "MGMT", Status: "____" },
-      { Code: "123", Title: "IP", Department: "CSS", Status: "____" },
-      { Code: "CS4312", Title: "DB", Department: "MGMT", Status: "____" },
+      { Code: "CSCI101", Title: "Introduction to Computer Science", Department: "Computer Science", Status: "Learning" },
+      // { Code: "CSCI501", Title: "ENGL101", Department: "MGMT", Status: "____" },
+      { Code: "ENGL101", Title: "English Communication Skills I", Department: "Common Course", Status: "Learning" },
+      { Code: "CSCI201", Title: "Data Structures and Algorithms", Department: "Computer Science", Status: "Learning" },
+      { Code: "CSCI504", Title: "Web Technologies ", Department: "Computer Science", Status: "Learning" },
+      // { Code: "CS4312", Title: "DB", Department: "MGMT", Status: "____" },
     ];
     return (
       <Container className="border comp-body-container">

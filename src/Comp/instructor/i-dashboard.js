@@ -34,7 +34,7 @@ export default function InstructorDashboard() {
       const name = loggerInfo.fname + " " + loggerInfo.lname;
       const address = loggerInfo.city + ", " + loggerInfo.subcity;
       const phone = loggerInfo.phone_no1;
-      const photo = baseUrl + "student-photo/" + loggerInfo.photo;
+      const photo = baseUrl + "user-photo/" + loggerInfo.photo;
       const oldReturn = [
         <div className="border comp-body-container registrar-dashboard d-flex">
           <div className="stud-avatar-boxes avatar-boxes d-flex">

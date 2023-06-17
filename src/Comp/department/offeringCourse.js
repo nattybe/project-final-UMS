@@ -138,9 +138,7 @@ export default function OfferingCourse() {
       // console.info(obj);
       const formData = new FormData();
       formData.append("dg_id", selectedProgram);
-      formData.append(
-        "BYear",
-        document.getElementById("selectBatchYear").value
+      formData.append("BYear", document.getElementById("selectBatchYear").value
       );
       formData.append("lsemester", document.getElementById("lsemester").value);
       formData.append("lyear", document.getElementById("lyear").value);

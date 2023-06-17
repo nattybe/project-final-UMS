@@ -33,7 +33,7 @@ export default function LibrarianDashboard() {
       const name = loggerInfo.fname + " " + loggerInfo.lname;
       const address = loggerInfo.city + ", " + loggerInfo.subcity;
       const phone = loggerInfo.phone_no1;
-      const photo = baseUrl + "student-photo/" + loggerInfo.photo;
+      const photo = baseUrl + "user-photo/" + loggerInfo.photo;
 
       return (
         <div className="border comp-body-container registrar-dashboard d-flex">

@@ -68,7 +68,6 @@ function AssignInstructor() {
       );
     }
   };
-
   const programFiller = () => {
     let depOptions = [<option value="">Select Program</option>];
     if (typeof programs !== "undefined") {
@@ -201,6 +200,19 @@ function AssignInstructor() {
       }
     }
   };
+  const batchYearFiller = () => {
+    let tempbatc = [<option>Select Batch Year</option>];
+    if (batchYear.status === "success") {
+      batchYear.data.map((batchYear, index) => {
+        tempbatc.push(
+          <option value={batchYear.Se_Year} key={index}>
+            {batchYear.Se_Year}
+          </option>
+        );
+      });
+    }
+    return tempbatc;
+  };
   const getCourses = async () => {
     if (
       typeof selectedProgram !== "undefined" &&
@@ -253,6 +265,7 @@ function AssignInstructor() {
       );
     }
   };
+
   useEffect(() => {
     getCourses();
   }, [selectedBatchYear, selectedProgram]);
@@ -264,19 +277,7 @@ function AssignInstructor() {
     getProgram();
     getInst();
   }, [logger]);
-  const batchYearFiller = () => {
-    let tempbatc = [<option>Select Batch Year</option>];
-    if (batchYear.status === "success") {
-      batchYear.data.map((batchYear, index) => {
-        tempbatc.push(
-          <option value={batchYear.Se_Year} key={index}>
-            {batchYear.Se_Year}
-          </option>
-        );
-      });
-    }
-    return tempbatc;
-  };
+
   const assignHandler = async (e) => {
     e.preventDefault();
     if (

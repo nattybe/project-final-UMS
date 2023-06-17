@@ -33,92 +33,47 @@ function Payment() {
         <tbody>
           <tr>
             <td>123</td>
-            <td>Some One</td>
-            <td>M</td>
+            <td>Gelila Dangacehw</td>
+            <td>F</td>
             <td>Computer Science</td>
             <td>N6</td>
             <td>2341423</td>
             {/* <td>Department</td> */}
           </tr>
           <tr>
-            <td>123</td>
-            <td>Some One</td>
+            <td>421</td>
+            <td>Fanuel Aysheshim</td>
             <td>M</td>
             <td>Computer Science</td>
             <td>N6</td>
-            <td>2341423</td>
+            <td>1344126</td>
             {/* <td>Department</td> */}
           </tr>
           <tr>
-            <td>123</td>
-            <td>Some One</td>
-            <td>M</td>
-            <td>Computer Science</td>
-            <td>N6</td>
-            <td>2341423</td>
+            <td>311</td>
+            <td>Fikir Addis</td>
+            <td>F</td>
+            <td>Marketing Managment</td>
+            <td>N1</td>
+            <td>893808</td>
             {/* <td>Department</td> */}
           </tr>
           <tr>
-            <td>123</td>
-            <td>Some One</td>
-            <td>M</td>
-            <td>Computer Science</td>
-            <td>N6</td>
-            <td>2341423</td>
+            <td>642</td>
+            <td>Elsa Birhanu</td>
+            <td>F</td>
+            <td>Architecture</td>
+            <td>N3</td>
+            <td>24531</td>
             {/* <td>Department</td> */}
           </tr>
           <tr>
-            <td>123</td>
-            <td>Some One</td>
-            <td>M</td>
-            <td>Computer Science</td>
-            <td>N6</td>
-            <td>2341423</td>
-            {/* <td>Department</td> */}
-          </tr>
-          <tr>
-            <td>123</td>
-            <td>Some One</td>
-            <td>M</td>
-            <td>Computer Science</td>
-            <td>N6</td>
-            <td>2341423</td>
-            {/* <td>Department</td> */}
-          </tr>
-          <tr>
-            <td>123</td>
-            <td>Some One</td>
-            <td>M</td>
-            <td>Computer Science</td>
-            <td>N6</td>
-            <td>2341423</td>
-            {/* <td>Department</td> */}
-          </tr>
-          <tr>
-            <td>123</td>
-            <td>Some One</td>
-            <td>M</td>
-            <td>Computer Science</td>
-            <td>N6</td>
-            <td>2341423</td>
-            {/* <td>Department</td> */}
-          </tr>
-          <tr>
-            <td>123</td>
-            <td>Some One</td>
-            <td>M</td>
-            <td>Computer Science</td>
-            <td>N6</td>
-            <td>2341423</td>
-            {/* <td>Department</td> */}
-          </tr>
-          <tr>
-            <td>123</td>
-            <td>Some One</td>
-            <td>M</td>
-            <td>Computer Science</td>
-            <td>N6</td>
-            <td>2341423</td>
+            <td>6743</td>
+            <td>Beza Dangachew</td>
+            <td>F</td>
+            <td>Civil Enginering</td>
+            <td>N1</td>
+            <td>24253</td>
             {/* <td>Department</td> */}
           </tr>
         </tbody>
