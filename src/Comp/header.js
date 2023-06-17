@@ -177,7 +177,7 @@ function Header() {
             <Profile />
           </dialog>
           {/* <Button onClick={loginer}>Showdiag</Button> */}
-          {/* <Dropdown> 
+          <Dropdown> 
             <Dropdown.Toggle variant="danger" id="dropdown-basic">
               Navigate
             </Dropdown.Toggle>
@@ -210,7 +210,7 @@ function Header() {
                 <Link to="/department">department</Link>
               </Dropdown.Item>
             </Dropdown.Menu>
-          </Dropdown> */}
+          </Dropdown>
         </div>
         <div className="nav-links">
           <Modal show={show} onHide={handleClose}>
