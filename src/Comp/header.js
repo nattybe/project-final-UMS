@@ -47,13 +47,13 @@ function Header() {
       getLogger();
     }
   }, [loggerInfo]);
-  const navigator=useNavigate();
+  const navigator = useNavigate();
   const logout = () => {
     window.sessionStorage.removeItem("logger");
     // <a href="/home" id="LinkLogin"></a>
     // documnet.getElementById("LinkLogin").click();
     // window.open("/", "_self");
-    navigator("/")
+    navigator("/");
   };
   const loginer = () => {
     // che.append(<Profile/>)
@@ -78,8 +78,12 @@ function Header() {
               {loggerInfo.fname + " " + loggerInfo.lname}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item className="ms-0 ps-0"><Link to="/profile" className="ms-0 ps-0"/> Profile</Dropdown.Item>
-              <Dropdown.Item className="ms-2 ps-3" onClick={logout}>Logout</Dropdown.Item>
+              <Dropdown.Item className="ms-0 ps-0">
+                <Link to="/profile" className="ms-0 ps-0" /> Profile
+              </Dropdown.Item>
+              <Dropdown.Item className="ms-2 ps-3" onClick={logout}>
+                Logout
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </>
@@ -133,7 +137,6 @@ function Header() {
                 {/* <p className="text-end">hello</p> */}
               </Accordion.Header>
               <Accordion.Body>{notification.N_Content}</Accordion.Body>
-              
             </Accordion.Item>
           </div>
         );
@@ -154,6 +157,12 @@ function Header() {
     <>
       <Navbar bg="primary" sticky="top" variant="light" expand="lg">
         <div className="nav-links">
+          <dialog id="loadingDiag" className="loadingDiag">
+            <div class="loader">
+              <div class="loader-wheel"></div>
+              <div class="loader-text"></div>
+            </div>
+          </dialog>
           <Navbar.Brand>
             <Link to="/">
               <img
@@ -177,7 +186,7 @@ function Header() {
             <Profile />
           </dialog>
           {/* <Button onClick={loginer}>Showdiag</Button> */}
-          <Dropdown> 
+          <Dropdown>
             <Dropdown.Toggle variant="danger" id="dropdown-basic">
               Navigate
             </Dropdown.Toggle>

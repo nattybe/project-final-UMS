@@ -11,7 +11,6 @@ export default function StudentDashboard(props) {
     console.log("logger => GetLogger " + logger);
     setLoggerInfo(logger);
   };
-
   useEffect(() => {
     if (loggerInfo) {
       console.log(loggerInfo);

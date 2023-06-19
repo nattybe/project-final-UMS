@@ -1,3 +1,3 @@
-const baseUrl = "https://thyseller.000webhostapp.com/";
+const baseUrl = "http://localhost/proje/";
 
 export { baseUrl };

@@ -47,7 +47,7 @@ export default function ProgramViewCourse() {
   };
   useEffect(() => {
     getCourse();
-  }, []);
+  }, [search]);
   const editHandler = (e) => {
     e.preventDefault();
     alert();

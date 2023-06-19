@@ -6,6 +6,7 @@ function Enroll() {
   const [loggerInfo, setLoggerInfo] = useState();
   const [offeing, setOffeing] = useState();
   const [offCourses, setOffCourses] = useState([]);
+
   const [offeringCoursesForAdd, setOfferingCoursesForAdd] = useState({
     status: "not yet",
   });
@@ -14,7 +15,15 @@ function Enroll() {
   const [labFee, setLabFee] = useState(0);
   const [tutionFee, setTutionFee] = useState(0);
   const [maxCredit, setMaxCredit] = useState(0);
+  const [moduleFee, setModuleFee] = useState(0);
+  const [fieldFee, setFieldFee] = useState(0);
+  const [researchFee, setResearchFee] = useState(0);
+  const [grandTotal, setGrandTotal] = useState(0);
+  const [registralFee, setRegistralFee] = useState(300);
   const [totalCreditHour, setTotalCreditHour] = useState(0);
+  const [totalContactHour, setTotalContactHour] = useState(0);
+  const [payLink, setPayLink] = useState("has");
+
   const closeHandler = (id) => {
     const diag = document.getElementById(id);
     diag.close();
@@ -88,15 +97,17 @@ function Enroll() {
             <td>{mes.C_Code}</td>
             <td>{mes.C_Name}</td>
             <td>{mes.C_Credit_hour + "/" + mes.C_Contact_hour}</td>
-            <td>{true ? mes.C_Code : false}</td>
-            <td>120</td>
-            <td>Non</td>
+            <td>{mes.module ? <>&#10003;</> : ""}</td>
+            <td>{mes.lab ? <>&#10003;</> : ""}</td>
+            <td>{mes.research ? <>&#10003;</> : ""}</td>
+            <td>{mes.field_practice ? <>&#10003;</> : ""}</td>
             <td
               className="bg-danger border border-3 border-dark"
               onClick={() => deleteHandler(mes)}
             >
               Drop
             </td>
+            {/* <td>{()=>{if(mes){return('hello')}else{return('hi')}}}</td> */}
           </tr>
         );
         // } else {
@@ -229,23 +240,69 @@ function Enroll() {
     getOfferingCoursesForAdd();
   }, []);
   useEffect(() => {
+    
     if (res.status === "success") {
-      alert("Successs");
-      console.info({ res: res });
+      // alert("Successs");
+      if (res.what === "Payment response") {
+        // alert("Payment response");
+        let link =res.data;
+        window.open(link.data.checkout_url,'_self');
+        // console.info({ resPOS: link });
+        setPayLink(link.data.checkout_url);
+        document.getElementById("payerDiag").close();
+        // document.getElementById("payerDiag").showModal();
+      }
     }
   }, [res]);
   useEffect(() => {
-    if (typeof offeing !== "undefined" && offCourses.length > 0) {
-      setMaxCredit(0);
-      // alert('hello')
-      let num = 0;
-
+    if (typeof offeing !== "undefined") {
+      let cred = 0;
+      let cont = 0;
+      let tutionfe = 0;
+      let labfe = 0;
+      let modulefe = 0;
+      let fieldfe = 0;
+      let reasearchfe = 0;
       offCourses.map((cour) => {
-        num = num + cour.C_Credit_hour;
+        cred = cred + cour.C_Credit_hour;
+        cont = cont + cour.C_Contact_hour;
+        if (cour.tution === 1) {
+          tutionfe = tutionfe + offeing.tution_fee * cour.C_Credit_hour;
+          // alert("tution fe")
+        }
+        if (cour.lab === 1) {
+          labfe = labfe + offeing.lab_fee;
+        }
+        if (cour.module === 1) {
+          modulefe = modulefe + offeing.module_fee;
+        }
+        if (cour.field_practice === 1) {
+          fieldfe = fieldfe + offeing.field_practice_fee;
+        }
+        if (cour.research === 1) {
+          reasearchfe = reasearchfe + offeing.research_fee;
+        }
         return cour.C_Credit_hour;
       });
+      setResearchFee(reasearchfe);
+      setFieldFee(fieldfe);
+      setModuleFee(modulefe);
+      setLabFee(labfe);
+      setTutionFee(tutionfe);
+      setTotalCreditHour(cred);
+      setTotalContactHour(cont);
+      setGrandTotal(
+        reasearchfe + fieldfe + modulefe + tutionfe + labfe + registralFee
+      );
+    }
+  }, [offeing, offCourses]);
+  useEffect(() => {
+    if (typeof offeing !== "undefined" && offCourses.length > 0) {
+      let num = 0;
+      offCourses.map((cour) => {
+        num = num + cour.C_Credit_hour;
+      });
       setMaxCredit(num);
-      setTotalCreditHour(num);
     }
   }, [offeing]);
   const deleteHandler = (cour) => {
@@ -259,12 +316,19 @@ function Enroll() {
       console.info({ message: "create" });
       const formData = new FormData();
       formData.append("createCurrentCourse", loggerInfo.id);
-      formData.append("pAmount", "100");
+      formData.append("pAmount", grandTotal);
       formData.append("pType", "Enrollment");
+      formData.append("fname", loggerInfo.fname);
+      formData.append("lname", loggerInfo.lname);
+      formData.append("phone_number", loggerInfo.phone_no1);
+      formData.append("email", loggerInfo.email);
+      // formData.append("phone_number",loggerInfo.phone_no1);
+      //TODO: after sending the info and accepting the response if(success) make the payment in a diffrent page and refresh this page after finishing
       // formData.append("pDescr", "");
       // formData.append("pReason", "");
       // formData.append("pReason2", "");
       formData.append("course", JSON.stringify(offCourses));
+      document.getElementById("loadingDiag").showModal();
       let res = await fetch(baseUrl + "enroll.php", {
         method: "POST",
         headers: {
@@ -272,9 +336,11 @@ function Enroll() {
         },
         body: formData,
       });
+
       let ress = await res.json();
+      // console.warn(ress);
       // console.warn("here comes the response");
-      // console.warn({createLast:ress});
+      // console.warn({createLast:JSON.parse(ress.data)});
       setRes(ress);
 
       // console.log(resp);
@@ -315,6 +381,9 @@ function Enroll() {
             <tbody>{offeringCoursesForAddFiller()}</tbody>
           </Table>
         </div>
+      </dialog>
+      <dialog id="payerDiag" >
+        <iframe src={payLink} width="400" height="900" title="pay"></iframe>
       </dialog>
       <h3>Enroll for the coming semester</h3>
       <div className="enroll">
@@ -405,28 +474,40 @@ function Enroll() {
           <Table striped hover bordered>
             <tbody>
               <tr>
+                <th>ID: </th>
+                <td>{loggerInfo ? loggerInfo.id : " "}</td>
+              </tr>
+              <tr>
                 <th>Name: </th>
-                <td>John Smilga</td>
+                <td>
+                  {loggerInfo ? loggerInfo.fname + " " + loggerInfo.lname : ""}
+                </td>
               </tr>
               <tr>
                 <th>Section: </th>
-                <td>CCS1R1N6</td>
+                <td>{offeing ? offeing.Se_Name : " "}</td>
               </tr>
               <tr>
                 <th>Department: </th>
-                <td>Computer Science</td>
+                <td>{offeing ? offeing.D_Name : " "}</td>
               </tr>
-              <tr>
+              {/* <tr>
                 <th>Field of Study: </th>
                 <td>Computer Science</td>
-              </tr>
+              </tr> */}
             </tbody>
           </Table>
           <Table striped hover bordered>
             <tbody>
               <tr>
                 <th>Total Cr/Co Hr.</th>
-                <td>{totalCreditHour}/20</td>
+                <td>
+                  {totalCreditHour}/{totalContactHour}
+                </td>
+              </tr>
+              <tr>
+                <th>Registral Fee</th>
+                <td>{registralFee}</td>
               </tr>
               <tr>
                 <th>Tuition Fee</th>
@@ -434,37 +515,33 @@ function Enroll() {
               </tr>
               <tr>
                 <th>Module Fee</th>
-                <td>300</td>
+                <td>{moduleFee}</td>
               </tr>
               <tr>
                 <th>Lab Fee</th>
-                <td>300</td>
+                <td>{labFee}</td>
               </tr>
               <tr>
                 <th>Service Fee</th>
-                <td>300</td>
+                <td>0</td>
               </tr>
               <tr>
                 <th>Research Fee</th>
-                <td>300</td>
+                <td>{researchFee}</td>
               </tr>
               <tr>
                 <th>Field-practice Fee</th>
-                <td>300</td>
+                <td>{fieldFee}</td>
               </tr>
               <tr>
                 <th>Penalty Fee</th>
-                <td>300</td>
-              </tr>
-              <tr>
-                <th>Penalty Fee</th>
-                <td>300</td>
+                <td>0</td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
                 <th>Grand Total</th>
-                <td>300</td>
+                <td>{grandTotal}</td>
               </tr>
             </tfoot>
           </Table>

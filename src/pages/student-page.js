@@ -7,10 +7,20 @@ import StudentResource from "../Comp/std/s-resource";
 import StudentContact from "../Comp/std/s-contact";
 import StudentCurrentCourse from "../Comp/std/s-currentcourse";
 import Enroll from "../Comp/std/enroll";
+import { useNavigate } from "react-router-dom";
 function StudentPage() {
-  
-  const [loggerInfo, setLoggerInfo] = useState();
 
+  const [loggerInfo, setLoggerInfo] = useState();
+  const nav=useNavigate();
+  useEffect(()=>{
+    const searchParams = new URLSearchParams(window.location.search);
+    const param2 = searchParams.get('PaymentSuccess');
+    // console.warn({"this is the ":param2});
+    if(param2){
+      // nav("/student?PaymentSuccess=" + param2)
+      
+    }  
+  },[])
   const getLogger = () => {
     let logger = JSON.parse(window.sessionStorage.getItem("logger"));
     console.log("logger => GetLogger " + logger);
@@ -28,6 +38,9 @@ function StudentPage() {
   return (
     <React.StrictMode>
       <div className="main">
+      <dialog id="paymentsuc">
+        <h3 className="muted success">Payment Successfull</h3>
+      </dialog>
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Nav variant="pills" className="flex-column">
             <Nav.Item className="side-buttons">

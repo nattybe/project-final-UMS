@@ -1,50 +1,61 @@
 body {
   font-family: "Times New Roman", Times, serif !important;
 }
+
 /*--------------------------------------- Header ---------------------------------------*/
 
 .ali {
   justify-content: flex-end;
 }
+
 .mr-auto button {
   margin: auto;
   height: 25px;
   font-size: 10px;
 }
+
 .navbar {
   justify-content: space-between !important;
 }
+
 .nav-links {
   display: flex;
   /* width: 30%; */
   flex-basis: auto;
   align-items: center;
 }
+
 nav {
   justify-content: flex-end;
 }
+
 .nav-links a,
 .nav-links button {
   margin: 0 20px;
 }
+
 .tab-pane {
   /* width: 1000px; */
   /* overflow: scroll; */
 }
-.home-page-bod .carousel-item img{
+
+.home-page-bod .carousel-item img {
   height: 90dvh;
   /* width: 500px; */
 }
-.second-carou .carousel-item img{
-  height:70dvh;
-  
-  }
-.second-carou .carousel{
+
+.second-carou .carousel-item img {
+  height: 70dvh;
+
+}
+
+.second-carou .carousel {
   /* margin: 100px!important; */
   margin: 20px 0;
   margin-right: 20px;
 }
-.about-background section h3{
+
+.about-background section h3 {
   text-align: justify;
   text-justify: distribute-all-lines;
 }
@@ -54,106 +65,131 @@ nav {
   border-end-start-radius: 20px;
   border-start-end-radius: 20px;
 }
+
 .view-notify-item h5 {
   font-weight: 700;
   text-decoration: underline;
 }
-.view-notify-item section {
-}
+
+.view-notify-item section {}
+
 .view-notify-body-cont {
   height: 500px;
   overflow-y: scroll;
 }
+
 /*--------------------------------------- SideBar ---------------------------------------*/
 .side-bar {
   min-width: 300px;
 }
+
 .head {
   text-align: center;
 }
+
 .side-bar .body {
   margin-top: 20px;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
 }
+
 .side-bar .body .btn {
   margin: 10px;
   width: 200px;
 }
+
 .side-buttons {
   margin: 5px;
   width: 200px;
   text-align: center;
 }
+
 .side-buttons .nav-link {
   background: #000;
   font-size: large;
 }
+
 /*--------------------------------------- Offering Course ---------------------------------------*/
 .oc-input {
   min-width: 150px;
 }
-.department-create-offer-course{
-  max-width:450px;
+
+.department-create-offer-course {
+  max-width: 450px;
   margin-right: 10px;
 }
+
 /*--------------------------------------- Login ---------------------------------------*/
 .main {
   display: flex;
 }
+
 .main .shadow {
-  margin-top: 50px !important ;
+  margin-top: 50px !important;
 }
+
 .main .shadow .image {
   display: flex;
   justify-content: center;
   padding: 20px;
 }
+
 .main .shadow h3 {
   text-align: center;
 }
+
 .main .shadow form {
   display: flex;
   flex-direction: column;
   padding: 20px;
 }
+
 /* .main .shadow form input */
 .main .shadow form button {
   width: fit-content;
   align-self: center;
 }
+
 .tab-content {
   width: 100%;
 }
+
 .main .nav {
   margin-top: 20px;
 }
+
 /*--------------------------------------- Comp ---------------------------------------*/
 .comp-body-container {
   overflow: hidden;
   background: #edf1f391;
 }
+
 .comp-body-container h3 {
   text-align: center;
 }
+
 .comp-body-container div {
   min-width: 200px;
   text-align: start;
 }
+
 .comp-body-container div div {
   text-align: start;
 }
+
 .comp-body-container div div i {
   line-height: 1.1;
   font-size: 60px;
 }
+
 /*--------------------------------------- Search ---------------------------------------*/
 .search-box {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
+
 .search-box input {
   border-top: transparent;
   border-left: transparent;
@@ -163,12 +199,14 @@ nav {
   text-indent: 10px;
   height: 40px;
 }
+
 .search-box select {
   margin: 0 10px;
   border-radius: 20px;
   width: 110px;
   text-indent: 10px;
 }
+
 .search-box button {
   border-radius: 30px;
   width: 40px;
@@ -181,46 +219,58 @@ nav {
   display: flex;
   flex-direction: column;
 }
+
 .dashboard-ta {
   display: flex;
 }
+
 .dashboard-avatar img {
   width: 250px;
   height: 250px;
 }
+
 .dashboard-avatar {
   display: inline-flex;
 }
+
 .download {
   display: flex;
   justify-content: flex-end;
 }
+
 .item div i {
   margin-right: 10px;
 }
+
 .student-item {
   display: flex;
   flex-direction: row;
 }
+
 .item div img {
   width: 150px;
 }
+
 .tab-pane {
   margin: 30px;
   overflow: hidden;
 }
+
 .section-choose {
   display: flex;
   justify-content: space-between;
 }
+
 .section-choose section {
   display: flex;
 }
+
 .notify-title input {
   margin-left: 50px;
   margin-bottom: 20px;
   width: 300px;
 }
+
 .notify-description input {
   margin-left: 0px;
   width: 300px;
@@ -228,15 +278,18 @@ nav {
   margin-bottom: 20px;
   text-align: justify;
 }
+
 .buttons select {
   /* margin: 0 30px; */
   width: 110px;
 }
+
 .resource-com div i {
   font-size: 300px !important;
   margin-top: 20px;
   margin-left: 120px;
 }
+
 #addfile {
   width: 300px;
   height: 350px;
@@ -249,24 +302,30 @@ nav {
   margin: 10px 0;
   justify-content: space-around;
 }
+
 .resource-com {
   display: flex;
   flex-direction: row;
 }
+
 .resource-com div {
   width: 50%;
 }
+
 .description input {
   height: 150px;
 }
+
 .download button {
   margin: 20px;
 }
-.PCC {
-}
+
+.PCC {}
+
 .registrar-dashboard {
   flex-direction: column;
 }
+
 .info-boxes {
   display: flex;
   flex-direction: column;
@@ -278,62 +337,77 @@ nav {
   box-shadow: 0 0 20px rgb(0, 255, 170);
   border-radius: 10px;
 }
+
 .avatar-boxes .boxers {
   margin-top: 30px;
   margin-left: 70px;
   border-top-left-radius: 40px;
   border-bottom-right-radius: 40px;
 }
+
 .avatar-photo {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.avatar-photo img{
+
+.avatar-photo img {
   width: 200px;
-  height:200px;
+  height: 200px;
   border-radius: 50%;
   margin: 20px;
   /* src: local('/LogoUU.png'); */
-  
+
 }
+
 .avatar-info {
   margin: 10px;
 }
+
 .avatar-info p {
   margin-top: 40px;
 }
+
 .info-boxes section {
   text-align: center;
   font-size: larger;
 }
+
 .info-boxes-box {
   justify-items: center;
 }
+
 .stud-avatar-boxes {
   flex-direction: row;
 }
+
 .divers {
   display: flex;
   flex-direction: column;
 }
+
 .stud-avatar-boxes .tabled {
   padding: 20px 100px;
 }
+
 .assign-instructor div select {
   height: 30px;
   margin-bottom: 30px;
 }
+
 .assign-instructor div {
   display: contents;
 }
-.emergency input{
+
+.emergency input {
   margin-left: 10px;
   margin-bottom: 5px;
 }
-.change-password .buttons{
+
+.change-password .buttons {
   align-self: self-end;
 }
+
 .filter-by select {
   margin-right: 20px;
 }
@@ -353,28 +427,31 @@ nav {
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-.reset-password-form input{
 
-}
-.sent-from section{
+.reset-password-form input {}
+
+.sent-from section {
   align-self: center;
 }
-.sent-from img{
- width: 50px;
- margin: 10px;
- /* background: #000; */
- border-radius: 50%;
+
+.sent-from img {
+  width: 50px;
+  margin: 10px;
+  /* background: #000; */
+  border-radius: 50%;
 }
-.message-holder{
-  border: 1px solid #000 ;
+
+.message-holder {
+  border: 1px solid #000;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
   max-height: 350px;
   padding: 5px;
-  min-height:300px;
+  min-height: 300px;
 }
-.sent-message{
+
+.sent-message {
   /* justify-self: end; */
   align-self: flex-end;
   width: fit-content;
@@ -388,7 +465,8 @@ nav {
   box-shadow: 0 0 10px rgb(112, 214, 10);
   margin-top: 5px;
 }
-.received-message{
+
+.received-message {
   width: fit-content;
   background-color: aqua;
   border: 2px solid #000;
@@ -401,108 +479,124 @@ nav {
   padding: 0 3px;
 
 }
-.message-send-btn{
 
-}
+.message-send-btn {}
+
 .my-register-form input {
-  
+
   width: 190px;
   margin-right: 20px;
   margin-bottom: 10px;
 }
+
 /*--------------------------------------- Mobile ---------------------------------------*/
 
 @media (max-width: 912px) {
   .side-bar {
     background-color: aqua;
   }
+
   .tab-content .tab-pane .table {
     overflow-x: hidden;
   }
+
   .tab-pane div {
     overflow: hidden;
   }
 }
 
 /*--------------------------------------- Footer ---------------------------------------*/
-.footer{
+.footer {
   padding: 0 10px;
 }
-.footer section{
+
+.footer section {
   font-size: large;
   font-weight: 700;
   margin-left: 60px;
 }
-.footer ul li{
+
+.footer ul li {
   list-style: none;
   margin-top: 10px;
 }
-.footer ul li a{
+
+.footer ul li a {
   /* color: #000; */
   text-decoration: none;
 }
-.footer ul li i{
+
+.footer ul li i {
   margin-left: 10px;
   font-size: 20px;
 }
 
 /*--------------------------------------- alert ---------------------------------------*/
-.alert-by-me{
+.alert-by-me {
   position: fixed !important;
   /* top: 200px; */
   padding-top: 150px;
   width: 100%;
-  background-color:rgba(20, 20,20, 0.1);
-  height: 100%;  
+  background-color: rgba(20, 20, 20, 0.1);
+  height: 100%;
   display: flex;
   justify-content: center;
 }
-.alert-by-me .alert{
+
+.alert-by-me .alert {
   width: 400px;
   height: 200px;
 }
+
 /*--------------------------------------- schedule-maker ---------------------------------------*/
 
-.schedule-items .infos{
+.schedule-items .infos {
   min-width: min-content;
   max-width: min-content;
 }
-.schedule-items .info-but{
+
+.schedule-items .info-but {
   min-width: min-content;
   max-width: min-content;
 }
-.schedule-items .info-but button{
-  margin-left:10px;
+
+.schedule-items .info-but button {
+  margin-left: 10px;
   height: fit-content;
   /* height: 25px; */
   padding: 0 5px;
   min-height: min-content;
-  background:rgb(158, 6, 6);
+  background: rgb(158, 6, 6);
 }
+
 /*--------------------------------------- profile ---------------------------------------*/
 
-.profile img{
-    width: 300px;
+.profile img {
+  width: 300px;
 }
+
 /* .profile input{
   disabled: true;
 } */
 /*--------------------------------------- Dialog ---------------------------------------*/
-.diag-parax{
+.diag-parax {
   border-radius: 10px;
 
   /* box-shadow: 1px 1px 10px gold; */
 
 }
-.diag-header{
+
+.diag-header {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid black;
 }
-.diag-title{
+
+.diag-title {
   font-size: xx-large;
 }
-.diag-close{
+
+.diag-close {
   /* content: 'X'; */
   height: min-content;
   padding: 0px 5px;
@@ -511,7 +605,8 @@ nav {
   border-radius: 30%;
   color: crimson;
 }
-.diag{
+
+.diag {
   min-width: 500px;
   /* height: 500px; */
   border-radius: 10px;
@@ -520,9 +615,70 @@ nav {
   padding: 10px;
   /* background-color: ; */
 }
-.diag h5{
+
+.diag h5 {
   color: rgb(146, 3, 3);
 }
-.diag h4{
+
+.diag h4 {
   text-align: center;
+}
+
+
+/* ============================================ loading ======================================== */
+.loadingDiag {
+  border:0;
+  background: 0;
+}
+
+.loader {
+  width: 60px;
+}
+
+.loader-wheel {
+  animation: spin 1s infinite linear;
+  border: 2px solid rgba(30, 30, 30, 0.5);
+  border-left: 4px solid #fff;
+  border-radius: 50%;
+  height: 50px;
+  margin-bottom: 10px;
+  width: 50px;
+}
+
+.loader-text {
+  color: rgb(56, 56, 255);
+  font-family: arial, sans-serif;
+}
+
+.loader-text:after {
+  content: 'Loading';
+  animation: load 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load {
+  0% {
+    content: 'Loading';
+  }
+
+  33% {
+    content: 'Loading.';
+  }
+
+  67% {
+    content: 'Loading..';
+  }
+
+  100% {
+    content: 'Loading...';
+  }
 }
