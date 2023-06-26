@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Modal } from "react-bootstrap";
+import { baseUrl } from "../../globalConst";
 
 export default function LibrarianViewResource() {
   const [resource, setResource] = useState();
   const [search, setSearch] = useState();
   const [SearchBy, setSearchBy] = useState();
-
+  const [toBeEdited, setToBeEdited] = useState();
   const [deleteItem, setdeleteItem] = useState();
+  const [editedRes, setEditedRes] = useState({ status: "not yet" });
 
   const [deleteShow, setDeleteShow] = useState(false);
 
@@ -91,10 +93,46 @@ export default function LibrarianViewResource() {
     }
   };
   const EditResource = (props) => {
-    const tobe = props.tobeEdit;
-    if (typeof tobe === "undefined") {
+    useEffect(() => {
+      if (editedRes.status === "success") {
+        closeHandler("EditDiag");
+        alert("Resource Updated Successfully");
+        setEditedRes({ status: "done" });
+        getResource();
+      }
+    }, [editedRes]);
+    const saveTheEdited = async (e) => {
+      e.preventDefault();
+      // alert("Save");
+      // alert(`Are you sure you`);
+      const delFD = new FormData();
+      delFD.append("ResId", document.getElementById("ResId").value);
+      delFD.append("ResName", document.getElementById("ResName").value);
+      delFD.append("ResCategory", document.getElementById("ResCategory").value);
+      delFD.append("ResAuthor", document.getElementById("ResAuthor").value);
+      delFD.append(
+        "ResPublishedYear",
+        document.getElementById("ResPublishedYear").value
+      );
+      delFD.append(
+        "ResDescription",
+        document.getElementById("ResDescription").value
+      );
+      const fetchData = await fetch(baseUrl + "deleteResource.php", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: delFD,
+      });
+      const resData = await fetchData.json();
+      setEditedRes(resData);
+      // console.warn(resData);
+    };
+
+    if (toBeEdited) {
       return (
-        <form>
+        <form onSubmit={(e) => saveTheEdited(e)}>
           <div className="resource-com">
             <div>
               <div className="">
@@ -103,17 +141,19 @@ export default function LibrarianViewResource() {
                   className="form-control"
                   type="text"
                   disabled
-                  // onChange={(e) => setTitle(e.target.value)}
+                  // value="hello"
+                  defaultValue={toBeEdited.R_FILENAME}
                 />
               </div>
-
+              <input type="number" id="ResId" hidden value={toBeEdited.R_ID} />
               <div className="d-flex">
                 <div className="col">
                   Name:
                   <input
                     className="form-control"
+                    defaultValue={toBeEdited.R_Name}
                     type="text"
-                    // onChange={(e) => setTitle(e.target.value)}
+                    id="ResName"
                   />
                 </div>
                 <div className="col ms-2">
@@ -121,7 +161,8 @@ export default function LibrarianViewResource() {
                   <input
                     className="form-control"
                     type="text"
-                    // onChange={(e) => setCategory(e.target.value)}
+                    id="ResCategory"
+                    defaultValue={toBeEdited.R_CATEGORY}
                   />
                 </div>
               </div>
@@ -129,17 +170,19 @@ export default function LibrarianViewResource() {
                 <div className="col">
                   Author:{" "}
                   <input
+                    defaultValue={toBeEdited.R_Author}
                     className="form-control"
+                    id="ResAuthor"
                     type="text"
-                    // onChange={(e) => setAuthor(e.target.value)}
                   />
                 </div>
                 <div className="col ms-2">
                   Published Year:
                   <input
                     className="form-control"
+                    defaultValue={toBeEdited.R_published_Year}
+                    id="ResPublishedYear"
                     type="number"
-                    // onChange={(e) => setpublishedYear(e.target.value)}
                   />
                 </div>
               </div>
@@ -148,7 +191,8 @@ export default function LibrarianViewResource() {
                 Description:
                 <textarea
                   name="description"
-                  id=""
+                  defaultValue={toBeEdited.R_DESCRIPTION}
+                  id="ResDescription"
                   cols="50"
                   rows="7"
                 ></textarea>
@@ -159,14 +203,14 @@ export default function LibrarianViewResource() {
             <Button variant="danger" type="reset">
               Cancel
             </Button>
-            <Button type="submit">Add</Button>
+            <Button type="submit">Save</Button>
           </div>
         </form>
       );
     }
   };
   const fil = () => {
-    if (typeof resource !== "undefined") {
+    if (resource) {
       if (resource.status === "success") {
         resource.data.map((book) => {
           books.push(
@@ -178,12 +222,12 @@ export default function LibrarianViewResource() {
                   <div>Category:{book.R_CATEGORY}</div>
                 </div>
                 <div className="col">
-                  <div>Author:{book.R_AUTHOR}</div>
+                  <div>Author:{book.R_Author}</div>
                   <div>Description:{book.R_DESCRIPTION}</div>
                 </div>
               </div>
               <div className="col download">
-                <Button onClick={()=>editHandler()}>Edit</Button>
+                <Button onClick={() => editHandler(book)}>Edit</Button>
                 <Button variant="danger" onClick={() => deleteHandler(book)}>
                   Delete
                 </Button>
@@ -308,7 +352,8 @@ export default function LibrarianViewResource() {
       );
     }
   };
-  const editHandler = () => {
+  const editHandler = (resource) => {
+    setToBeEdited(resource);
     const diag = document.getElementById("EditDiag");
     diag.close();
     diag.showModal();

@@ -6,6 +6,7 @@ export default function StudentGrade() {
   const [loggerInfo, setLoggerInfo] = useState();
   const [res, setRes] = useState({ status: "not yet" });
   const [tcredit, setTcredit] = useState(0);
+   const [totGr, setTotGr] = useState(0);
   const getLogger = () => {
     let logger = JSON.parse(window.sessionStorage.getItem("logger"));
     // console.log("logger => GetLogger " + (loggerInfo)?loggerInfo.id:null);
@@ -25,9 +26,26 @@ export default function StudentGrade() {
       dep = await dep.json();
       setRes(dep);
       console.warn(dep);
-      // setSections(dep);
+      
     }
   };
+  const gradeCalculator=(grade)=>{
+    // let ltrGrd='';
+    
+    if (grade === 'A') {
+       return 4;
+    } else if (grade === 'B') {
+      return 3;
+    } if (grade === 'C') {
+      return 2;
+    } if (grade === 'D') {
+      return 1;
+    } if (grade === 'F') {
+      return 0;
+    }else{
+      return "Over 100";
+    }
+  }
   const gradeFiller = () => {
     if (res.status === "success") {
       const tempGrade = [];
@@ -47,13 +65,26 @@ export default function StudentGrade() {
       return(tempGrade)
     }
   };
+  
   useEffect(() => {
     if (loggerInfo) {
-      // getGrade();
+      getGrade();
     } else {
       getLogger();
     }
   }, [loggerInfo]);
+  useEffect(()=>{
+    if(res.status === "success"){
+      let tempGrade=0;
+      let tempCredit=0;
+      let cGpa=0;
+      res.data.map((gr)=>{
+        // alert(gr.C_Credit_hour)
+        tempCredit=tempCredit+gr.C_Credit_hour
+      })
+      setTcredit(tempCredit);
+    }
+  },[res])
   return (
     <Container className="border comp-body-container">
       <h3>Grade Summary</h3>
@@ -79,9 +110,10 @@ export default function StudentGrade() {
           <td></td>
           <td></td>
           <td></td>
+          <td></td>
           <td>Total Cr.hr: {tcredit}</td>
-          <td>Total Co.hr: 21</td>
-          <td>CGPA: 4</td>
+          {/* <td>Total Co.hr: 21</td> */}
+          <td>CGPA: {res.status==="success"?res.CGPA:0}</td>
         </tfoot>
       </Table>
     </Container>

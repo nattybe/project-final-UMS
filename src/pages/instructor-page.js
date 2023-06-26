@@ -8,6 +8,7 @@ import StudentList from "../Comp/instructor/i-StudentList";
 import InstructorNotify from "../Comp/instructor/i-Notify";
 import InstructorGrade from "../Comp/instructor/i-grade";
 import InstructorDashboard from "../Comp/instructor/i-dashboard";
+import Schedule from "../Comp/instructor/schedule";
 
 export default class InstructorPage extends Component {
   render() {
@@ -67,11 +68,13 @@ export default class InstructorPage extends Component {
             </Nav>
             <Tab.Content>
               <Tab.Pane eventKey="first">
-                <InstructorDashboard />  
+                <InstructorDashboard />
               </Tab.Pane>
-              <Tab.Pane eventKey="second"><InstructorGrade/></Tab.Pane>
+              <Tab.Pane eventKey="second">
+                <InstructorGrade />
+              </Tab.Pane>
               <Tab.Pane eventKey="third">
-                <StudentSchedule />
+                <Schedule />
               </Tab.Pane>
               <Tab.Pane eventKey="fourth">
                 <StudentResource />
@@ -82,7 +85,9 @@ export default class InstructorPage extends Component {
               <Tab.Pane eventKey="sixth">
                 <StudentList />
               </Tab.Pane>
-              <Tab.Pane eventKey="seventh"><InstructorNotify /></Tab.Pane>
+              <Tab.Pane eventKey="seventh">
+                <InstructorNotify />
+              </Tab.Pane>
             </Tab.Content>
           </Tab.Container>
         </div>

@@ -90,6 +90,23 @@ export default function StudentList() {
       // }
     }
   };
+  const gradeCalculator=(grade)=>{
+    // let ltrGrd='';
+    
+    if (grade < 40) {
+       return 'F';
+    } else if (grade < 50) {
+      return 'D';
+    } if (grade < 65) {
+      return 'C';
+    } if (grade < 80) {
+      return 'B';
+    } if (grade < 100) {
+      return 'A';
+    }else{
+      return "Over 100";
+    }
+  }
   const studFiller = () => {
     if (studentsList.length > 0) {
       const cour = [<option>...</option>];
@@ -101,7 +118,6 @@ export default function StudentList() {
             <td>
               <input
                 type="number"
-                // onChange={(e) => addgrade(std.id, std, e.target.value)}
                 max={100}
                 min={0}
                 required
@@ -109,6 +125,8 @@ export default function StudentList() {
                 Name="grade-input"
                 id={std.id}
               />
+            </td>
+            <td>
             </td>
           </tr>
         );
@@ -124,6 +142,7 @@ export default function StudentList() {
       gradedStuds.push({
         ...studs,
         grade: document.getElementById(studs.id).value,
+        letterGrade: gradeCalculator(document.getElementById(studs.id).value)
       });
     });
     // console.warn(gradedStuds);

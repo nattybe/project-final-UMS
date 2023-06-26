@@ -1,8 +1,8 @@
 import React, { Component, useEffect, useState } from "react";
-import bootstrap, { Button, Table } from "react-bootstrap";
+import  { Button, Table } from "react-bootstrap";
 import { baseUrl } from "../../globalConst";
-function StudentSchedule() {
-  const [schedule, setSchedule] = useState({ status: "not yet" });
+function Schedule() {
+  const [schedule, setSchedule] = useState();
   const [loggerInfo, setLoggerInfo] = useState();
 
   const getLogger = () => {
@@ -10,7 +10,6 @@ function StudentSchedule() {
     // console.log("logger => GetLogger " + (loggerInfo)?loggerInfo.id:null);
     setLoggerInfo(logger);
   };
-
   const scheduleFiller = () => {
     if (typeof schedule !== "undefined") {
       const tempschedule = [];
@@ -43,7 +42,7 @@ function StudentSchedule() {
     if (loggerInfo) {
       console.log("getProgram started");
       const fd = new FormData();
-      fd.append("getScheduleForStudent", loggerInfo.section);
+      fd.append("getScheduleForInstructor", loggerInfo.id);
       let dep = await fetch(baseUrl + "CreateSchedule.php", {
         method: "POST",
         headers: {
@@ -66,11 +65,11 @@ function StudentSchedule() {
   return (
     <div className="container comp-body-container border">
       <h3>Schedule</h3>
-      <Table striped bordered hover>
+      <Table striped bordered hover responsive>
         <tbody>{scheduleFiller()}</tbody>
       </Table>
     </div>
   );
 }
 
-export default StudentSchedule;
+export default Schedule;

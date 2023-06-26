@@ -3,7 +3,6 @@ import { Button, Table } from "react-bootstrap";
 import { baseUrl } from "../../globalConst";
 
 function Enroll() {
-  const [loggerInfo, setLoggerInfo] = useState();
   const [offeing, setOffeing] = useState();
   const [offCourses, setOffCourses] = useState([]);
 
@@ -40,50 +39,28 @@ function Enroll() {
     // console.log("logger => GetLogger " + logger);
     setLoggerInfo(logger);
   };
+  const [loggerInfo, setLoggerInfo] = useState();
   const getOfferingCourses = async () => {
-    // console.log(loggerInfo);
-    if (typeof loggerInfo !== "undefined") {
-      // console.log("getOfCourse started");
-      const formdata = new FormData();
-      formdata.append("getOfferingCourse", loggerInfo.section);
-      let dep = await fetch(baseUrl + "enroll.php", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
-        body: formdata,
-      });
-      let depa = await dep.json();
-      // setOffCourses(dep);
-      if (typeof depa !== "undefined") {
-        if (depa.status === "success") {
-          setOffeing(depa.data.offering);
-          setOffCourses(depa.data.courses);
-          // console.warn({
-          //   from: "ASS",
-          //   courses: offCourses,
-          //   offering: offeing,
-          // });
-        }
+    // alert(loggerInfo)
+    if (loggerInfo) {
+      // if (typeof loggerInfo.section==="number") {
+        const formdata = new FormData();
+        formdata.append("getOfferingCourse", loggerInfo.section);
+        let dep = await fetch(baseUrl + "enroll.php", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+          },
+          body: formdata,
+        });
+        let depa = await dep.json();
+        if (typeof depa !== "undefined") {
+          if (depa.status === "success") {
+            setOffeing(depa.data.offering);
+            setOffCourses(depa.data.courses);
+          }
+        // }
       }
-      // console.error(
-      //   "getMessages :",
-      //   loggerInfo.id,
-      //   " SeTab :",
-      //   loggerInfo.loginas,
-      //   " ReTab: ",
-      //   cont.auth,
-      //   " ReId:   ",
-      //   cont.id
-      // );
-      // if (messages.status === "success") {
-      //   // console.warn(messages);
-      //   // console.log("from deps " + deps);
-      // } else {
-      //   // console.warn('undefiend: '+deps);
-      //   // console.log("undefiend: " + deps);
-      // }
-    } else {
     }
   };
   const offeringCoursesFiller = () => {
@@ -140,35 +117,7 @@ function Enroll() {
         body: formdata,
       });
       setOfferingCoursesForAdd(await dep.json());
-      // setOffCourses(dep);
-      // if (typeof depa !== "undefined") {
-      //   if (depa.status === "success") {
-      //     setOffeing(depa.data.offering);
-      //     setOffCourses(depa.data.courses);
-      //     console.warn({
-      //       from: "ASS",
-      //       courses: offCourses,
-      //       offering: offeing,
-      //     });
-      //   }
-      // }
-      // console.error(
-      //   "getMessages :",
-      //   loggerInfo.id,
-      //   " SeTab :",
-      //   loggerInfo.loginas,
-      //   " ReTab: ",
-      //   cont.auth,
-      //   " ReId:   ",
-      //   cont.id
-      // );
-      // if (messages.status === "success") {
-      //   // console.warn(messages);
-      //   // console.log("from deps " + deps);
-      // } else {
-      //   // console.warn('undefiend: '+deps);
-      //   // console.log("undefiend: " + deps);
-      // }
+      // alert("can't get the payment server try again later")
     } else {
     }
   };
@@ -231,22 +180,23 @@ function Enroll() {
   useEffect(() => {
     if (typeof loggerInfo === "undefined") {
       getLogger();
+    } else {
+      getOfferingCourses();
     }
   }, [loggerInfo]);
-  useEffect(() => {
-    getOfferingCourses();
-  }, [loggerInfo]);
+  // useEffect(() => {
+  //   getOfferingCourses();
+  // }, [loggerInfo]);
   useEffect(() => {
     getOfferingCoursesForAdd();
   }, []);
   useEffect(() => {
-    
     if (res.status === "success") {
       // alert("Successs");
       if (res.what === "Payment response") {
         // alert("Payment response");
-        let link =res.data;
-        window.open(link.data.checkout_url,'_self');
+        let link = res.data;
+        window.open(link.data.checkout_url, "_self");
         // console.info({ resPOS: link });
         setPayLink(link.data.checkout_url);
         document.getElementById("payerDiag").close();
@@ -382,7 +332,7 @@ function Enroll() {
           </Table>
         </div>
       </dialog>
-      <dialog id="payerDiag" >
+      <dialog id="payerDiag">
         <iframe src={payLink} width="400" height="900" title="pay"></iframe>
       </dialog>
       <h3>Enroll for the coming semester</h3>

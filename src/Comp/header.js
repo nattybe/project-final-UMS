@@ -52,8 +52,8 @@ function Header() {
     window.sessionStorage.removeItem("logger");
     // <a href="/home" id="LinkLogin"></a>
     // documnet.getElementById("LinkLogin").click();
-    // window.open("/", "_self");
-    navigator("/");
+    window.open("/", "_self");
+    // navigator("/");
   };
   const loginer = () => {
     // che.append(<Profile/>)
@@ -107,7 +107,7 @@ function Header() {
     let dep = await fetch(baseUrl + "Notify.php", {
       method: "POST",
       headers: {
-        // Accept: "application/json",
+        Accept: "application/json",
       },
       body: fd,
     });
@@ -186,7 +186,7 @@ function Header() {
             <Profile />
           </dialog>
           {/* <Button onClick={loginer}>Showdiag</Button> */}
-          <Dropdown>
+          {/* <Dropdown>
             <Dropdown.Toggle variant="danger" id="dropdown-basic">
               Navigate
             </Dropdown.Toggle>
@@ -219,7 +219,7 @@ function Header() {
                 <Link to="/department">department</Link>
               </Dropdown.Item>
             </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown> */}
         </div>
         <div className="nav-links">
           <Modal show={show} onHide={handleClose}>

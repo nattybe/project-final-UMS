@@ -8,17 +8,45 @@ function ViewGrades() {
   const [programs, setPrograms] = useState({ status: "not yet" });
   const [courses, setCourses] = useState({ status: "not yet" });
   const [grades, setGrades] = useState({ status: "not yet" });
-  const [res, setRes] = useState({status: "not yet" });
+  const [res, setRes] = useState({ status: "not yet" });
+  const [resForEdit, setResForEdit] = useState({ status: "not yet" });
+
+  const [gradeShow, setgradeShow] = useState(true);
 
   const [selectedProgram, setSelectedProgram] = useState();
   const [selectedSections, setSelectedSections] = useState();
   const [selectedCourse, setSelectedCourse] = useState();
+  const [editedGrades, setEditedGrades] = useState([]);
+
+  const gradeCalculator=(grade)=>{
+    // let ltrGrd='';
+    
+    if (grade < 40) {
+       return 'F';
+    } else if (grade < 50) {
+      return 'D';
+    } if (grade < 65) {
+      return 'C';
+    } if (grade < 80) {
+      return 'B';
+    } if (grade < 100) {
+      return 'A';
+    }else{
+      return "Over 100";
+    }
+  }
   const getLogger = () => {
     let logger = JSON.parse(window.sessionStorage.getItem("logger"));
     // console.log("logger => GetLogger " + (loggerInfo)?loggerInfo.id:null);
     setLoggerInfo(logger);
   };
-
+  const setaddGradeshow = () => {
+    if (gradeShow) {
+      setgradeShow(false);
+    } else {
+      setgradeShow(true);
+    }
+  };
   const getProgram = async () => {
     if (typeof loggerInfo.DM_Id !== "undefined") {
       console.log("getProgram started");
@@ -180,8 +208,20 @@ function ViewGrades() {
           <tr>
             <td>{grade.G_Student_Id}</td>
             <td>{grade.fname + " " + grade.lname}</td>
-            <td>{grade.G_Percentile_Grade}</td>
-            <td>{grade.G_Letter_Grade}</td>
+            <td>
+              <input
+                type="number"
+                // onChange={(e) => addgrade(std.id, std, e.target.value)}
+                max={100}
+                min={0}
+                required
+                disabled
+                defaultValue={grade.G_Percentile_Grade}
+                Name="grade-input"
+                id={grade.G_Id}
+              />
+            </td>
+            {/* <td>grade.G_Percentile_Grade</td> */}
           </tr>
         );
       });
@@ -209,6 +249,37 @@ function ViewGrades() {
       setRes(dep);
     }
   };
+  const saveGrade=()=>{
+    const gradedStuds=[];
+    grades.data.map((grades) => {
+      gradedStuds.push({
+        gdId:grades.G_Id,
+        grade: document.getElementById(grades.G_Id).value,
+        letterGrade: gradeCalculator(document.getElementById(grades.G_Id).value)
+      });
+    });
+    console.warn({ Editedgrad: gradedStuds});
+    sendGrade(gradedStuds)
+  }
+  const sendGrade = async (gradedStuds) => {
+    if (grades.data.length === gradedStuds.length) {
+      const formdata = new FormData();
+      formdata.append("SaveEditedGrade", JSON.stringify(gradedStuds));
+      let dep = await fetch(baseUrl + "grade.php", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formdata,
+      });
+      dep = await dep.json();
+      setResForEdit(dep);
+      // console.warn(dep);
+      // setSections(dep);
+    }else{
+      // alert("not equal")
+    }
+  };
   useEffect(() => {
     if (loggerInfo) {
       getProgram();
@@ -222,16 +293,42 @@ function ViewGrades() {
   useEffect(() => {
     getCourses();
   }, [selectedSections]);
+  // useEffect(() => {
+  //   getGrade();
+  // }, [selectedCourse]);
   useEffect(() => {
-    getGrade();
-  }, [selectedCourse]);
-  useEffect(()=>{
-    if (res.status === 'success') {
-      alert(res.data+' students grade approved');
-    }else if(res.status === 'failed'){
-      alert(' all the grades in thi sections are approved already');
+    if (res.status === "success") {
+      alert(res.data + " students grade approved");
+    } else if (res.status === "failed") {
+      alert(" 2 grades are edited are you sure you want to save them?");
     }
-  },[res])
+  }, [res]);
+  useEffect(()=>{
+    if(resForEdit.status==="success"){
+      if(resForEdit.data<1){
+        alert("No Changes Detected")
+      }else{
+        alert(resForEdit.data+" Grades have been edited")
+      }
+      // setResForEdit({stutes:"Edited"})
+    }
+  },[resForEdit])
+  useEffect(() => {
+    if (gradeShow) {
+      document
+        .getElementsByName("grade-input")
+        .forEach((element) => element.setAttribute("disabled", "disabled"));
+      document.getElementById("SaveGrade").setAttribute("disabled", "disabled");
+    } else {
+      document
+        .getElementsByName("grade-input")
+        .forEach((element) => (element.style.display = "block"));
+      document
+        .getElementsByName("grade-input")
+        .forEach((element) => element.removeAttribute("disabled"));
+      document.getElementById("SaveGrade").removeAttribute("disabled");
+    }
+  }, [gradeShow]);
   return (
     <div className="comp-body-container">
       <h3>View Grades</h3>
@@ -252,7 +349,7 @@ function ViewGrades() {
               {programFiller()}
             </select>
           </div>
-          <div className="m-1 ms-1">
+          <div className="m-1">
             <section>Choose Section</section>
             <select
               name="choose-section"
@@ -276,9 +373,29 @@ function ViewGrades() {
           </div>
           {/* <Button className="h-75">Get Grade</Button> */}
           {/* <div></div> */}
-          <Button className="h-75" variant="success" onClick={()=>approveGrade()}>
-            Approve
-          </Button>
+          <div className="h-75 mt-3">
+            <Button
+              className="h-75  me-2"
+              variant="success"
+              onClick={() => getGrade()}
+            >
+              Get grade
+            </Button>
+            <Button
+              className="h-75"
+              variant="success"
+              onClick={() => approveGrade()}
+            >
+              Approve
+            </Button>
+            <Button
+              className="h-75 ms-2"
+              variant="warning"
+              onClick={() => setaddGradeshow()}
+            >
+              Edit
+            </Button>
+          </div>
         </div>
         <Table striped bordered hover>
           <thead>
@@ -290,6 +407,22 @@ function ViewGrades() {
             </tr>
           </thead>
           <tbody>{gradeFiller()}</tbody>
+          <tfoot className="">
+            <tr>
+            <td></td>
+            <td></td>
+              <td colSpan={3}>
+                <Button
+                  className=" ms-2"
+                  id="SaveGrade"
+                  variant="success"
+                  onClick={() => saveGrade()}
+                >
+                  Save
+                </Button>
+              </td>
+            </tr>
+          </tfoot>
         </Table>
       </div>
     </div>

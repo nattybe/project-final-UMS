@@ -30,7 +30,7 @@ function Body() {
       console.log(error.message);
       console.log(error.stack);
     } finally {
-      alert("The Finally!");
+      // alert("The Finally!");
       // handleClose();
     }
   };

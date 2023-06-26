@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container } from "react-bootstrap";
 import { baseUrl } from "../../globalConst";
+import { useNavigate } from "react-router";
 // import Profile from "../profile";
 // import EditUser from "./editUser";
 
 function ViewUser() {
   const [toBeEdited, setToBeEdited] = useState();
-// ToDo: the formdata must get the information by document.getElementById because the onChange event won't be called
+  const [toBeDeleted, setToBeDeleted] = useState();
+  const [deleteRes, setDeleteRes] = useState({ status: "not yet" });
+
+  const nav = useNavigate();
+  const contacter = (cont) => {
+    nav("/messages", { state: cont });
+  };
+  // ToDo: the formdata must get the information by document.getElementById because the onChange event won't be called
   const EditUser = (props) => {
     const user = toBeEdited;
     const [stdFName, setStdFName] = useState();
@@ -44,68 +52,79 @@ function ViewUser() {
     const [usrPosition, setusrPosition] = useState();
 
     const [res, setRes] = useState();
+    const [editedUserRes, setEditedUserRes] = useState({status: 'not yet'});
+    const formCreator = () => {
+      const fd = new FormData();
+      fd.append("fname", document.getElementById("userfirstName").value);
+      fd.append("lname", document.getElementById("userLName").value);
+      fd.append("mname", document.getElementById("userMname").value);
 
-    const cf = () => {
-      const formData = new FormData();
+      fd.append("sex", document.getElementById("userSex").value);
+      fd.append("age", document.getElementById("userAge").value);
+      fd.append(
+        "nationality",
+        document.getElementById("userNationality").value
+      );
 
-      formData.append("UpDateUser", true);
-      formData.append("i_fname", stdFName);
-      formData.append("i_mname", stdMName);
-      formData.append("i_lname", stdLName);
-      formData.append("i_age", stdAge);
-      formData.append("i_sex", stdSex);
-      formData.append("i_nationality", stdNationality);
-      formData.append("i_city", stdCity);
-      // formData.append("i_photo", stdPhoto);
-      // formData.append("i_country", stdCountry);
-      formData.append("i_subcity", stdSubCity);
-      formData.append("i_woreda", stdWoreda);
-      formData.append("i_hno", stdHouseNo);
-      formData.append("i_phone_no1", stdPhone);
-      formData.append("i_phone_no2", stdPhone2);
-      // formData.append("i_password", );
+      fd.append("country", document.getElementById("userCountry").value);
+      fd.append("city", document.getElementById("userCity").value);
+      fd.append("subcity", document.getElementById("userSubCity").value);
+      fd.append("woreda", document.getElementById("userWoreda").value);
+      fd.append("HNo", document.getElementById("useHouseNo").value);
 
-      formData.append("userAuth", view);
-      formData.append("i_email", stdEmail);
-      formData.append("i_qualification", usrQualification);
-      formData.append("i_position", usrPosition);
-      formData.append("i_ec_firstname", stdEmergencyFName);
-      formData.append("i_ec_middlename", stdEmergencyMName);
-      formData.append("i_ec_lastname", stdEmergencyLName);
-      formData.append("i_ec_country", stdEmergencyCountry);
-      formData.append("i_ec_city", stdEmergencyCity);
-      formData.append("i_ec_subcity", stdEmergencySubCity);
-      formData.append("i_ec_woreda", stdEmergencyWoreda);
-      formData.append("i_ec_houseno", stdEmergencyHouseNo);
-      formData.append("i_ec_phonenumber1", stdEmergencyPhone);
-      formData.append("i_ec_phonenumber2", stdEmergencyPhone2);
-      // formData.append("department", stdDepartment);
-      // formData.append("submit", "submit");
+      fd.append("phone1", document.getElementById("userPhoneNo").value);
+      fd.append("phone2", document.getElementById("userPhoneNo2").value);
+      fd.append("email1", document.getElementById("userEmail").value);
+      fd.append("email2", document.getElementById("userEmail2").value);
 
-      // console.log("SNE: "+formData.get("i_ec_phonenumber1"));
-      return formData;
+      fd.append(
+        "userQualification",
+        document.getElementById("userQualification").value
+      );
+      fd.append("userPosition", document.getElementById("userPosition").value);
+
+      fd.append("Efname", document.getElementById("userEFirstName").value);
+      fd.append("Emname", document.getElementById("userEMiddleName").value);
+      fd.append("Elname", document.getElementById("userELastName").value);
+
+      fd.append("Ecountry", document.getElementById("userECountry").value);
+      fd.append("Ecity", document.getElementById("userECity").value);
+      fd.append("Esubcity", document.getElementById("userESubCity").value);
+      fd.append("Eworeda", document.getElementById("userEWoreda").value);
+      fd.append("Ehno", document.getElementById("userEHouseNo").value);
+
+      fd.append("Ephone1", document.getElementById("userEPhoneNo1").value);
+      fd.append("Ephone2", document.getElementById("userEPhoneNo2").value);
+      return fd;
     };
-    const requested = async () => {
-      const formData = cf();
-      let recie = await fetch(baseUrl + "RegisterUser.php", {
+  
+    const submitEditedUser = async (e) => {
+      e.preventDefault();
+      const formData = formCreator();
+
+      formData.append("SaveEditedUser", user.id);
+      formData.append("auth", view);
+      let dep = await fetch(baseUrl + "RegisterUser.php", {
         method: "POST",
         headers: {
           Accept: "application/json",
         },
         body: formData,
       });
-      // recie=await recie.json();
-      setRes(await recie.json());
-      if (typeof res !== "undefined") {
-        console.log("Status: " + res.status);
-        console.log("Res: " + JSON.stringify(res));
+      let depa = await dep.json();
+      console.warn(depa);
+      setEditedUserRes(depa);
+    };
+    useEffect(()=>{
+      if(editedUserRes.status==="success"){
+        if(editedUserRes.Data===1){
+          alert("Success")
+        }else{
+          alert("no Change detected")
+        }
+        setEditedUserRes({status:"the aftermath"})
       }
-    };
-    const submithandler = (e) => {
-      e.preventDefault();
-      // alert("Submitted " + stdPhoto + " " + stdSex);
-    };
-
+    })
     if (typeof toBeEdited !== "undefined") {
       let userad = {
         CGPA: 4,
@@ -160,7 +179,7 @@ function ViewUser() {
           {/* <h3>Edit User</h3> */}
           {/* <button onClick={() => {}}>clo</button> */}
           <div className="">
-            <form action="">
+            <form action="" onSubmit={e=>submitEditedUser(e)}>
               <div className="d-flex">
                 <img
                   src={baseUrl + "user-photo/" + user.photo}
@@ -172,12 +191,10 @@ function ViewUser() {
                     <div className="first-name">
                       <section>First Name </section>
                       <input
-                        id="firstNames"
+                        id="userfirstName"
                         type="text"
                         name="first"
                         defaultValue={user.fname}
-                        // value={stdFName}
-                        // id="first"
                         placeholder="First Name"
                         onChange={(e) => {
                           setStdFName(e.target.value);
@@ -189,7 +206,7 @@ function ViewUser() {
                       <input
                         type="text"
                         name="middle"
-                        id="middle"
+                        id="userMname"
                         defaultValue={user.mname}
                         placeholder="Middle Name"
                         onChange={(e) => {
@@ -204,7 +221,7 @@ function ViewUser() {
                         defaultValue={user.lname}
                         type="text"
                         name="last"
-                        id="last"
+                        id="userLName"
                         placeholder="Last Name"
                         onChange={(e) => {
                           setStdLName(e.target.value);
@@ -218,7 +235,7 @@ function ViewUser() {
                       <section>Sex</section>
                       <select
                         name="sex"
-                        id="sex"
+                        id="userSex"
                         onChange={(e) => {
                           setStdSex(e.target.value);
                         }}
@@ -234,7 +251,7 @@ function ViewUser() {
                         placeholder="69"
                         defaultValue={user.age}
                         name="age"
-                        id="age"
+                        id="userAge"
                         onChange={(e) => {
                           setStdAge(e.target.value);
                         }}
@@ -247,7 +264,7 @@ function ViewUser() {
                         placeholder="Nice"
                         defaultValue={user.Nationality}
                         name="nationality"
-                        id="nationality"
+                        id="userNationality"
                         onChange={(e) => {
                           setStdNationality(e.target.value);
                         }}
@@ -262,7 +279,7 @@ function ViewUser() {
                       type="text"
                       name="Country"
                       defaultValue={user.Nationality}
-                      id="Country"
+                      id="userCountry"
                       placeholder="Country"
                       onChange={(e) => {
                         setStdCountry(e.target.value);
@@ -275,7 +292,7 @@ function ViewUser() {
                       defaultValue={user.city}
                       type="text"
                       name="first"
-                      id="first"
+                      id="userCity"
                       placeholder="city"
                       onChange={(e) => {
                         setStdCity(e.target.value);
@@ -288,7 +305,7 @@ function ViewUser() {
                       type="text"
                       defaultValue={user.subcity}
                       name="first"
-                      id="first"
+                      id="userSubCity"
                       placeholder="Subcity"
                       onChange={(e) => {
                         setStdSubCity(e.target.value);
@@ -300,7 +317,7 @@ function ViewUser() {
                     <input
                       type="number"
                       name="first"
-                      id="first"
+                      id="userWoreda"
                       defaultValue={user.woreda}
                       placeholder="Woreda"
                       onChange={(e) => {
@@ -314,23 +331,22 @@ function ViewUser() {
                       type="text"
                       name="first"
                       defaultValue={user.HNO}
-                      id="first"
+                      id="useHouseNo"
                       placeholder="H.no"
                       onChange={(e) => {
                         setStdHouseNo(e.target.value);
                       }}
                     />
                   </div>
-                  
                 </div>
                 <div className="contact ms-3 p-2 border">
                   <div className="phone-no">
                     <section>Phone No</section>
                     <input
                       type="tel"
-                      name="phone"
+                      name="userPhoneNoNo"
                       defaultValue={user.phone_no1}
-                      id="first"
+                      id="userPhoneNo"
                       placeholder="0987654321"
                       onChange={(e) => {
                         setStdPhone(e.target.value);
@@ -341,8 +357,8 @@ function ViewUser() {
                     <section>Phone No 2</section>
                     <input
                       type="text"
-                      name="phone"
-                      id="first"
+                      name="userPhone1"
+                      id="userPhoneNo2"
                       defaultValue={user.phone_no2}
                       placeholder="0987654322"
                       onChange={(e) => {
@@ -356,7 +372,7 @@ function ViewUser() {
                       type="email"
                       defaultValue={user.email}
                       name="email"
-                      id="first"
+                      id="userEmail"
                       placeholder="example@unity.com"
                       onChange={(e) => {
                         setStdEmail(e.target.value);
@@ -368,7 +384,7 @@ function ViewUser() {
                     <input
                       type="email"
                       name="email"
-                      id="first"
+                      id="userEmail2"
                       placeholder="example@unity.com"
                       onChange={(e) => {
                         setStdEmail2(e.target.value);
@@ -380,8 +396,8 @@ function ViewUser() {
                     <input
                       className="form-"
                       type="text"
-                      name="phone"
-                      id="first"
+                      name="userQualification"
+                      id="userQualification"
                       defaultValue={user.qualification}
                       placeholder="Qualification"
                       onChange={(e) => {
@@ -394,7 +410,7 @@ function ViewUser() {
                     <input
                       type="text"
                       name="phone"
-                      id="first"
+                      id="userPosition"
                       placeholder="position"
                       defaultValue={user.position}
                       onChange={(e) => {
@@ -412,8 +428,8 @@ function ViewUser() {
                       <section>First Name</section>
                       <input
                         type="text"
-                        name="first"
-                        id="first"
+                        name="userFirstName"
+                        id="userEFirstName"
                         defaultValue={user.fname}
                         placeholder="First Name"
                         onChange={(e) => {
@@ -426,7 +442,7 @@ function ViewUser() {
                       <input
                         type="text"
                         name="middle"
-                        id="middle"
+                        id="userEMiddleName"
                         defaultValue={user.emergency_contact_fmiddlename}
                         placeholder="Middle Name"
                         onChange={(e) => {
@@ -440,7 +456,7 @@ function ViewUser() {
                         type="text"
                         name="last"
                         defaultValue={user.emergency_contact_lastname}
-                        id="last"
+                        id="userELastName"
                         placeholder="Last Name"
                         onChange={(e) => {
                           setStdEMergencyLName(e.target.value);
@@ -455,7 +471,7 @@ function ViewUser() {
                       <input
                         type="text"
                         name="first"
-                        id="first"
+                        id="userECountry"
                         placeholder="Country"
                         // defaultValue={user.emeNa}
                         onChange={(e) => {
@@ -469,7 +485,7 @@ function ViewUser() {
                         type="text"
                         defaultValue={user.emergency_contact_city}
                         name="first"
-                        id="first"
+                        id="userECity"
                         placeholder="City"
                         onChange={(e) => {
                           setStdEMergencyCity(e.target.value);
@@ -482,7 +498,7 @@ function ViewUser() {
                         type="text"
                         defaultValue={user.emergency_contact_subcity}
                         name="first"
-                        id="first"
+                        id="userESubCity"
                         placeholder="Subcity"
                         onChange={(e) => {
                           setStdEMergencySubCity(e.target.value);
@@ -496,7 +512,7 @@ function ViewUser() {
                           defaultValue={user.emergency_contact_woreda}
                           type="number"
                           name="first"
-                          id="first"
+                          id="userEWoreda"
                           placeholder="Country"
                           onChange={(e) => {
                             setStdEMergencyWoreda(e.target.value);
@@ -509,7 +525,7 @@ function ViewUser() {
                           type="text"
                           defaultValue={user.emergency_contact_HNO}
                           name="first"
-                          id="first"
+                          id="userEHouseNo"
                           placeholder="H.no"
                           onChange={(e) => {
                             setStdEMergencyHouseNo(e.target.value);
@@ -525,7 +541,7 @@ function ViewUser() {
                         defaultValue={user.emergency_contact_phone_no1}
                         type="text"
                         name="phone"
-                        id="first"
+                        id="userEPhoneNo1"
                         placeholder="0987654323"
                         onChange={(e) => {
                           setStdEMergencyPhone(e.target.value);
@@ -538,7 +554,7 @@ function ViewUser() {
                         type="text"
                         defaultValue={user.emergency_contact_phone_no2}
                         name="phone"
-                        id="first"
+                        id="userEPhoneNo2"
                         placeholder="0987654324"
                         onChange={(e) => {
                           setStdEMergencyPhone2(e.target.value);
@@ -570,6 +586,7 @@ function ViewUser() {
       );
     }
   };
+
   const SingleUser = (props) => {
     const user = props.user;
     return (
@@ -592,18 +609,22 @@ function ViewUser() {
         <div className="item student-item border shadow bg-light m-1 mt-4">
           <div className="text-center">
             <img
+              // src={"avatar.jpg"}
               src={"http://localhost/proje/user-photo/" + user.photo}
               alt=""
             />
+            {/* <section>ID: ----</section> */}
             <section>ID: {user.id}</section>
           </div>
           <div className="mt-3">
-            <p>Name: {user.fname}</p>
+            {/* <p>Name: ----------------</p> */}
+            <p>Name: {user.fname + " " + user.lname}</p>
             <p>
+              {/* Age:------&nbsp;&nbsp;&nbsp; Sex:------- */}
               Age: {user.age}&nbsp;&nbsp;&nbsp; Sex: {user.sex}
             </p>
-            <p>Address: {user.address}</p>
-            <p>Authority: {user.Department}</p>
+            <p>Position: {user.position}</p>
+            <p>Qualification: {user.qualification}</p>
           </div>
           <div></div>
           <div></div>
@@ -625,6 +646,7 @@ function ViewUser() {
                 className="m-2"
                 variant="danger"
                 onClick={() => {
+                  deleteUsrHandler(user);
                   console.log(user);
                 }}
               >
@@ -633,7 +655,13 @@ function ViewUser() {
               <Button
                 className="m-2 bg-success"
                 onClick={() => {
-                  // setStudents(std);
+                  contacter({
+                    id: user.id,
+                    fname: user.fname,
+                    lname: user.lname,
+                    auth: view,
+                    position: view,
+                  });
                 }}
               >
                 Contact
@@ -692,7 +720,7 @@ function ViewUser() {
     // }
     searchFD.append("view", view);
     const url = "http://localhost/proje/viewUser.php";
-    console.log("url set: ", url);
+    // console.log("url set: ", url);
     const fetchData = await fetch(url, {
       method: "POST",
       headers: {
@@ -710,10 +738,6 @@ function ViewUser() {
   const editHandler = (user) => {
     document.getElementById("EditUserDiag").showModal();
     setToBeEdited(user);
-    // diag.innerHTML = "<EditUser user={user}/>";
-    // diag.appendChild(editor)
-    // diag.close();
-    // diag.showModal();
   };
   const closeHandler = (diagId) => {
     const diag = document.getElementById(diagId);
@@ -989,6 +1013,63 @@ function ViewUser() {
       );
     }
   };
+  const deleteFiller = () => {
+    if (toBeDeleted) {
+      return (
+        <>
+          <div className="diag-body">
+            <section>Are you sure you want to delete this student?</section>
+            <h5>Id: {toBeDeleted.id}</h5>
+            <h5>Name: {toBeDeleted.fname + " " + toBeDeleted.lname}</h5>
+            <div className="buttons">
+              <Button
+                onClick={() => {
+                  setToBeDeleted();
+                  closeHandler("DeleteUserDiag");
+                }}
+              >
+                Cancel
+              </Button>
+              <Button variant="danger" onClick={(e) => deleteHandler()}>
+                Delete
+              </Button>
+            </div>
+          </div>
+        </>
+      );
+    }
+  };
+  const deleteUsrHandler = (user) => {
+    const diag = document.getElementById("DeleteUserDiag");
+    diag.close();
+    diag.showModal();
+    setToBeDeleted(user);
+  };
+  const deleteHandler = async () => {
+    if (toBeDeleted) {
+      // if (typeof loggerInfo.section==="number") {
+      const formdata = new FormData();
+      formdata.append("deleteUserById", toBeDeleted.id);
+      formdata.append("auth", view);
+      let dep = await fetch(baseUrl + "useMngmt.php", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formdata,
+      });
+      let depa = await dep.json();
+      setDeleteRes(depa);
+    }
+  };
+
+  useEffect(() => {
+    if (deleteRes.status === "success") {
+      closeHandler("DeleteUserDiag");
+      alert("Successfully deleted a User");
+      getUsers();
+    }
+  }, [deleteRes]);
   return (
     <Container className="border comp-body-container">
       <h3>Users</h3>
@@ -1042,6 +1123,19 @@ function ViewUser() {
             <div className="diag-body">
               <EditUser user={toBeEdited} />
             </div>
+          </dialog>
+          <dialog id="DeleteUserDiag" className="diag-parax">
+            <div className="diag-header">
+              <div className="diag-title">Delete Student</div>
+              <span
+                role="button"
+                onClick={() => closeHandler("DeleteUserDiag")}
+                className="diag-close"
+              >
+                X
+              </span>
+            </div>
+            {deleteFiller()}
           </dialog>
         </div>
       </div>

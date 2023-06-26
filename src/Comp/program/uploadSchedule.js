@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { baseUrl } from "../../globalConst";
-import {  } from "";
+// import {  } from "";
 function UploadSchedule() {
   const fakeschedule = [
     { section: "N1(2020)", course: "CSCI101", empty: true },
@@ -48,8 +48,9 @@ function UploadSchedule() {
   const [department, setDepartment] = useState({ status: "not yet" });
   const [time, setTime] = useState({ status: "not yet" });
   const [room, setRoom] = useState({ status: "not yet" });
-  const [schedule, setSchedule] = useState({});
+  const [schedule, setSchedule] = useState();
   const [res, setRes] = useState({ status: "not yet" });
+  const [resDel, setResDel] = useState({status: "not yet" });
 
   const [selectedProgram, setSelectedProgram] = useState();
   const [selectedDepartment, setSelectedDepartment] = useState();
@@ -328,7 +329,7 @@ function UploadSchedule() {
         );
       });
     }
-    console.warn("Time Filled");
+    // console.warn("Time Filled");
     return tempbatc;
   };
   const getRoom = async () => {
@@ -366,17 +367,50 @@ function UploadSchedule() {
     }
     return tempbatc;
   };
+  const removeSchedule = async (Sc_ID) => {
+    const formdata = new FormData();
+    formdata.append("RemoveScheduleById", Sc_ID);
+    let dep = await fetch(baseUrl + "CreateSchedule.php", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: formdata,
+    });
+    dep = await dep.text();
+    // console.warn(dep)
+    setResDel(dep);
+    getSchedule();
+  };
   const scheduleFiller = () => {
     if (typeof schedule !== "undefined") {
       const tempschedule = [];
       for (let [key, value] of Object.entries(schedule)) {
         const tempRow = [];
         for (let [subKey, subValue] of Object.entries(value)) {
-          tempRow.push(<td><p>{subValue.Sc_Course_Code}</p></td>);
+          tempRow.push(
+            <td className="bg-info schedule-items">
+              <div className="info-but">
+                <div className="infos">
+                  <section>{subValue.C_Code}</section>
+                  <section>{subValue.T_Time}</section>
+                  <section>
+                    {subValue.Se_Name + "(" + subValue.Se_Year + ")"}
+                  </section>
+                </div>
+                <Button onClick={()=>removeSchedule(subValue.Sc_ID)}>Remove</Button>
+              </div>
+            </td>
+          );
         }
-        tempschedule.push(<tr><td>{key}</td>{tempRow}</tr>)
+        tempschedule.push(
+          <tr>
+            <td>{key}</td>
+            {tempRow}
+          </tr>
+        );
       }
-      return tempschedule
+      return tempschedule;
     }
   };
   useEffect(() => {
@@ -398,7 +432,6 @@ function UploadSchedule() {
   useEffect(() => {
     getCourse();
   }, [selectedSection]);
-
   useEffect(() => {
     // alert('oh')
     getTimes();
@@ -406,6 +439,12 @@ function UploadSchedule() {
   useEffect(() => {
     getRoom();
   }, [selectedTime]);
+  useEffect(() => {
+    if(resDel.status==="success"){
+      alert("Schedule Removed Success");
+      setResDel({status: "not yet"});
+    }
+  }, [resDel])
   const assignHandler = async () => {
     if (
       typeof selectedTime !== "undefined" &&
@@ -565,117 +604,13 @@ function UploadSchedule() {
             </thead>
             <thead>
               <tr>
-                <th>#</th>
-                <th colSpan={10}>Period</th>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
                 <th>
                   <section>Room</section>
                 </th>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-                <th>6</th>
-                <th>7</th>
-                <th>8</th>
-                <th>9</th>
-                <th>10</th>
               </tr>
             </thead>
             <tbody>
-            {scheduleFiller()}
-              <tr>
-                <td>regular (1)</td>
-                {fakeschedule.map((sch) => {
-                  if (sch.empty) {
-                    return (
-                      <td className="bg-info schedule-items">
-                        <div className="info-but">
-                          <div className="infos">
-                            <section>{sch.section}</section>
-                            <section>{sch.course}</section>
-                          </div>
-                          <Button>Remove</Button>
-                        </div>
-                      </td>
-                    );
-                  } else {
-                    return (
-                      <td className="bg-info">
-                        <h4>Available</h4>
-                      </td>
-                    );
-                  }
-                })}
-              </tr>
-              <tr>
-                <td>regular (2)</td>
-                {fakeschedule2.map((sch) => {
-                  if (sch.empty) {
-                    return (
-                      <td className="bg-info schedule-items">
-                        <div className="info-but">
-                          <div className="infos">
-                            <section>{sch.section}</section>
-                            <section>{sch.course}</section>
-                          </div>
-                          <Button>Remove</Button>
-                        </div>
-                      </td>
-                    );
-                  } else {
-                    return (
-                      <td className="bg-info">
-                        <h4>Available</h4>
-                      </td>
-                    );
-                  }
-                })}
-              </tr>
-              <tr>
-                <td>lab (3)</td>
-                {fakeschedule3.map((sch) => {
-                  if (sch.empty) {
-                    return (
-                      <td className="bg-info schedule-items">
-                        <div className="info-but">
-                          <div className="infos">
-                            <section>{sch.section}</section>
-                            <section>{sch.course}</section>
-                          </div>
-                          <Button>Remove</Button>
-                        </div>
-                      </td>
-                    );
-                  } else {
-                    return (
-                      <td className="bg-info">
-                        <h4>Available</h4>
-                      </td>
-                    );
-                  }
-                })}
-              </tr>
-              <tr>
-                <td>1</td>
-                {fakeschedule.map((sch) => {
-                  return (
-                    <td className="bg-primary schedule-items">
-                      <div className="info-but">
-                        <div className="infos">
-                          <section>Section</section>
-                          <section>Course</section>
-                        </div>
-                        <Button>Remove</Button>
-                      </div>
-                    </td>
-                  );
-                })}
-              </tr>
+              {scheduleFiller()}
             </tbody>
           </Table>
         </div>

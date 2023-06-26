@@ -9,38 +9,44 @@ import StudentCurrentCourse from "../Comp/std/s-currentcourse";
 import Enroll from "../Comp/std/enroll";
 import { useNavigate } from "react-router-dom";
 function StudentPage() {
-
+  const [counter, setCounter] = useState(0);
   const [loggerInfo, setLoggerInfo] = useState();
-  const nav=useNavigate();
-  useEffect(()=>{
-    const searchParams = new URLSearchParams(window.location.search);
-    const param2 = searchParams.get('PaymentSuccess');
-    // console.warn({"this is the ":param2});
-    if(param2){
-      // nav("/student?PaymentSuccess=" + param2)
-      
-    }  
-  },[])
-  const getLogger = () => {
-    let logger = JSON.parse(window.sessionStorage.getItem("logger"));
-    console.log("logger => GetLogger " + logger);
-    setLoggerInfo(logger);
-  };
-
+  const nav = useNavigate();
   useEffect(() => {
-    if (loggerInfo) {
-      // alert("from"+loggerInfo.S_ID);
-      // console.log(loggerInfo);
-    } else {
-      getLogger();
+    const searchParams = new URLSearchParams(window.location.search);
+    const param2 = searchParams.get("PaymentSuccess");
+    // console.warn({"this is the ":param2});
+    if (param2) {
+      // nav("/student?PaymentSuccess=" + param2)
     }
-  }, [loggerInfo]);
+  }, []);
+  const getLogger = () => {
+    if (typeof loggerInfo === "undefined") {
+      let logger = JSON.parse(window.sessionStorage.getItem("logger"));
+      // console.log("logger => GetLogger " + logger);
+      setLoggerInfo(logger);
+      // alert(loggerInfo);
+    }
+  };
+  useEffect(() => {
+    if (typeof loggerInfo === "undefined") {
+    //   let cou = counter;
+    //   if (cou < 10) {
+    //     cou++;
+    //     setCounter(cou);
+        getLogger();
+    //     alert("false: " + cou);
+    //   } else {
+    //     alert("true");
+      }
+    // }
+  }, [loggerInfo,]);
   return (
     <React.StrictMode>
       <div className="main">
-      <dialog id="paymentsuc">
-        <h3 className="muted success">Payment Successfull</h3>
-      </dialog>
+        <dialog id="paymentsuc">
+          <h3 className="muted success">Payment Successfull</h3>
+        </dialog>
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
           <Nav variant="pills" className="flex-column">
             <Nav.Item className="side-buttons">

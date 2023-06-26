@@ -106,7 +106,7 @@ nav {
 }
 
 .side-buttons .nav-link {
-  background: #000;
+  background-color: white;
   font-size: large;
 }
 
@@ -623,7 +623,11 @@ nav {
 .diag h4 {
   text-align: center;
 }
-
+.home-page-background{ 
+  margin-right: 10px;
+  text-align: justify;
+  /* text-justify:distribute; */
+}
 
 /* ============================================ loading ======================================== */
 .loadingDiag {

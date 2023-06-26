@@ -8,6 +8,7 @@ import InstructorNotify from "../Comp/instructor/i-Notify";
 import AssignInstructor from "../Comp/department/assignInstructor";
 import ViewGrades from "../Comp/department/depViewGrades";
 import EditOfferingCourse from "../Comp/department/editOfferingCourse";
+import StudentContact from "../Comp/std/s-contact";
 // import CreateDegree from "../Comp/std/createDegree";
 
 function DepartmentPage() {
@@ -89,6 +90,15 @@ function DepartmentPage() {
                 Grades
               </Nav.Link>
             </Nav.Item>
+            
+            <Nav.Item className="side-buttons">
+              <Nav.Link
+                eventKey="fifth"
+                className="side-buttons border border-2 border-dark"
+              >
+                Contact
+              </Nav.Link>
+            </Nav.Item>
             <Nav.Item className="side-buttons">
               <Nav.Link
                 eventKey="Notify"
@@ -117,6 +127,10 @@ function DepartmentPage() {
             <Tab.Pane eventKey="ViewCourse">
               <ProgramViewCourse />
             </Tab.Pane>
+            
+            <Tab.Pane eventKey="fifth">
+                <StudentContact />
+              </Tab.Pane>
             <Tab.Pane eventKey="Notify">
               <InstructorNotify />
             </Tab.Pane>

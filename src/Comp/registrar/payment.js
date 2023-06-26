@@ -1,17 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Table } from "react-bootstrap";
+import { baseUrl } from "../../globalConst";
+import { useEffect } from "react";
 
 function Payment() {
+  const [res, setRes] = useState({ status: "not yet" });
+  const [first, setFirst] = useState();
+  const getPayment = async (e) => {
+    // e.preventDefault();
+    const formData = new FormData();
+    formData.append(
+      "GetPayment",
+      document.getElementById("paymentStatus").value
+    );
+    let dep = await fetch(baseUrl + "getPayment.php", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: formData,
+    });
+
+    let depa = await dep.json();
+    console.warn(depa);
+    setRes(depa);
+  };
+  useEffect(() => {
+    getPayment();
+  }, [first]);
+  const paymentFiiler = () => {
+    if (res.status === "success") {
+      const tempRows = [];
+      res.data.map((payments) => {
+        tempRows.push(
+          <tr>
+            <td>{payments.id}</td>
+            <td>{payments.fname+" "+payments.lname}</td>
+            <td>{payments.sex}</td>
+            <td>{payments.D_Name}</td>
+            <td>{payments.Se_Name}</td>
+            <td>{payments.P_Id}</td>
+            {/* <td>Department</td> */}
+          </tr>
+        );
+      });
+      return tempRows
+    }
+  };
   return (
     <div className="comp-body-container p-2">
       <h3>Payment</h3>
       <div className="d-flex form-control">
         <div>
           <section>Payment status</section>
-          <select name="" id="">
-            <option value="">All</option>
-            <option value="">Paid</option>
-            <option value="">Unpaid</option>
+          <select
+            name=""
+            id="paymentStatus"
+            onChange={(e) => setFirst(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="1">Paid</option>
+            <option value="0">Unpaid</option>
           </select>
         </div>
         {/* <Button></Button>
@@ -31,51 +80,7 @@ function Payment() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>123</td>
-            <td>Gelila Dangacehw</td>
-            <td>F</td>
-            <td>Computer Science</td>
-            <td>N6</td>
-            <td>2341423</td>
-            {/* <td>Department</td> */}
-          </tr>
-          <tr>
-            <td>421</td>
-            <td>Fanuel Aysheshim</td>
-            <td>M</td>
-            <td>Computer Science</td>
-            <td>N6</td>
-            <td>1344126</td>
-            {/* <td>Department</td> */}
-          </tr>
-          <tr>
-            <td>311</td>
-            <td>Fikir Addis</td>
-            <td>F</td>
-            <td>Marketing Managment</td>
-            <td>N1</td>
-            <td>893808</td>
-            {/* <td>Department</td> */}
-          </tr>
-          <tr>
-            <td>642</td>
-            <td>Elsa Birhanu</td>
-            <td>F</td>
-            <td>Architecture</td>
-            <td>N3</td>
-            <td>24531</td>
-            {/* <td>Department</td> */}
-          </tr>
-          <tr>
-            <td>6743</td>
-            <td>Beza Dangachew</td>
-            <td>F</td>
-            <td>Civil Enginering</td>
-            <td>N1</td>
-            <td>24253</td>
-            {/* <td>Department</td> */}
-          </tr>
+        {paymentFiiler()}
         </tbody>
       </Table>
     </div>
