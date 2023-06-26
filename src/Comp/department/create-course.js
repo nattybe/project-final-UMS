@@ -145,19 +145,19 @@ function ProgramCreateCourse() {
               id=""
               onChange={(e) => setCPre(e.target.value)}
               required
-              className="form-control"
+              className="form-select"
             >
               <option value="Null">none</option>
               {courseFiller()}
               {/* <option value="">MGMT 123</option> */}
             </select>
           </div>
-          <div className="PCC-itmes ms-3">
+          {/* <div className="PCC-itmes ms-3">
             <section>Department:</section>
             <select name="" id="" className="form-control">
               <option value="">Marketing Managment</option>
             </select>
-          </div>
+          </div> */}
         </div>
         <div className="col d-flex  mt-4">
           <div className="PCC-itmes">

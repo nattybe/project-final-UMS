@@ -8,9 +8,36 @@ import { Link } from "react-router-dom";
 
 function HomePage() {
   const nav = useNavigate();
+
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const param2 = searchParams.get("PaymentSuccess");
+    const logger=searchParams.get("LoginAs");
+    if (logger) {
+      switch (logger) { 
+        case "department":
+          // window.open("/department", "_self");
+          nav("/department");
+          break;
+        case "instructors":
+          nav("/instructor");
+          break;
+        case "students":
+          nav("/student");
+          break;
+        case "registrars":
+          nav("/registrar");
+          break;
+        case "librarian":
+          nav("/librarian");
+          break;
+        case "program_officers":
+          nav("/programoffice");
+          break;
+        default:
+          break;
+      }
+    }
     // console.warn({"this is the ":param2});
     if (param2) {
       nav("/student?PaymentSuccess=" + param2);

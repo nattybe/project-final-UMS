@@ -42,7 +42,7 @@ function Header() {
   useEffect(() => {
     if (loggerInfo) {
       // alert(loggerInfo.S_ID);
-      console.log(loggerInfo);
+      // console.log(loggerInfo);
     } else {
       getLogger();
     }
@@ -64,6 +64,9 @@ function Header() {
     const che = document.getElementById("loginer");
     che.close();
   };
+  const profile=()=>{
+    navigator('/profile')
+  }
   const logger = () => {
     if (loggerInfo) {
       return (
@@ -78,8 +81,9 @@ function Header() {
               {loggerInfo.fname + " " + loggerInfo.lname}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item className="ms-0 ps-0">
-                <Link to="/profile" className="ms-0 ps-0" /> Profile
+              <Dropdown.Item  className="ms-0 ps-0">
+              <span  className="ms-4 ps-0"  onClick={profile}>Profile</span>
+                {/* <Link  to="/profile" className="ms-0 ps-0" /> Profile */}
               </Dropdown.Item>
               <Dropdown.Item className="ms-2 ps-3" onClick={logout}>
                 Logout
@@ -186,7 +190,7 @@ function Header() {
             <Profile />
           </dialog>
           {/* <Button onClick={loginer}>Showdiag</Button> */}
-          {/* <Dropdown>
+          <Dropdown>
             <Dropdown.Toggle variant="danger" id="dropdown-basic">
               Navigate
             </Dropdown.Toggle>
@@ -219,7 +223,7 @@ function Header() {
                 <Link to="/department">department</Link>
               </Dropdown.Item>
             </Dropdown.Menu>
-          </Dropdown> */}
+          </Dropdown>
         </div>
         <div className="nav-links">
           <Modal show={show} onHide={handleClose}>

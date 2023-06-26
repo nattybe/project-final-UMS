@@ -62,7 +62,6 @@ function UploadSchedule() {
   const [selectedDate, setSelectedDate] = useState("MON");
 
   // const [selectedInstr, setSelectedInstr] = useState();
-  const fart = { hello: { name: "John", age: 12 } };
   const getSchedule = async () => {
     if (typeof selectedDate !== "undefined") {
       const formdata = new FormData();
@@ -465,12 +464,13 @@ function UploadSchedule() {
         body: fd,
       });
       // console.log(dep.json());
-      dep = await dep.text();
+      dep = await dep.json();
       console.warn(dep);
       setRes(dep);
       if (room.status === "success") {
         // console.warn(room);
         alert("Success !!!");
+        getSchedule()
       }
     } else {
       alert("Empty Fields!!!");

@@ -42,30 +42,32 @@ function Body() {
       const logginas = { loginas: Res.loginas };
       dataf = Object.assign(dataf, logginas);
       window.sessionStorage.setItem("logger", JSON.stringify(dataf));
-      // window.open("/", "_self");
-      switch (logginas.loginas) {
-        case "department":
-          // window.open("/department", "_self");
-          navigate("/department");
-          break;
-        case "instructors":
-          navigate("/instructor");
-          break;
-        case "students":
-          navigate("/student");
-          break;
-        case "registrars":
-          navigate("/registrar");
-          break;
-        case "librarian":
-          navigate("/librarian");
-          break;
-        case "program_officers":
-          navigate("/programoffice");
-          break;
-        default:
-          break;
-      }
+      
+      window.open("/?LoginAs="+logginas.loginas, "_self");
+
+      // switch (logginas.loginas) { 
+      //   case "department":
+      //     // window.open("/department", "_self");
+      //     navigate("/department");
+      //     break;
+      //   case "instructors":
+      //     navigate("/instructor");
+      //     break;
+      //   case "students":
+      //     navigate("/student");
+      //     break;
+      //   case "registrars":
+      //     navigate("/registrar");
+      //     break;
+      //   case "librarian":
+      //     navigate("/librarian");
+      //     break;
+      //   case "program_officers":
+      //     navigate("/programoffice");
+      //     break;
+      //   default:
+      //     break;
+      // }
     } else {
       // alert("hello world!");
     }

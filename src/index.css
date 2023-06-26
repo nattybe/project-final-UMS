@@ -574,7 +574,10 @@ nav {
 .profile img {
   width: 300px;
 }
-
+.profile input:disabled,.profile select:disabled{
+  color: #000;
+  background: #f6f7ff;
+}
 /* .profile input{
   disabled: true;
 } */

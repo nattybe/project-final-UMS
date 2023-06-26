@@ -44,21 +44,22 @@ function Enroll() {
     // alert(loggerInfo)
     if (loggerInfo) {
       // if (typeof loggerInfo.section==="number") {
-        const formdata = new FormData();
-        formdata.append("getOfferingCourse", loggerInfo.section);
-        let dep = await fetch(baseUrl + "enroll.php", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-          },
-          body: formdata,
-        });
-        let depa = await dep.json();
-        if (typeof depa !== "undefined") {
-          if (depa.status === "success") {
-            setOffeing(depa.data.offering);
-            setOffCourses(depa.data.courses);
-          }
+      const formdata = new FormData();
+      formdata.append("getOfferingCourse", loggerInfo.section);
+      let dep = await fetch(baseUrl + "enroll.php", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formdata,
+      });
+      let depa = await dep.json();
+      console.warn({ofering: depa});
+      if (typeof depa !== "undefined") {
+        if (depa.status === "success") {
+          setOffeing(depa.data.offering);
+          setOffCourses(depa.data.courses);
+        }
         // }
       }
     }
@@ -288,7 +289,8 @@ function Enroll() {
       });
 
       let ress = await res.json();
-      // console.warn(ress);
+      console.warn({hello:ress});
+
       // console.warn("here comes the response");
       // console.warn({createLast:JSON.parse(ress.data)});
       setRes(ress);
@@ -340,17 +342,17 @@ function Enroll() {
         <div className="d-flex p-2">
           <div className="">
             <section>
-              Year: <span>2</span>
+              {/* Year: <span>2</span> */}
             </section>
           </div>
           <div className="">
             <section>
-              Semester: <span>1</span>
+              {/* Semester: <span>1</span> */}
             </section>
           </div>
           <div className="">
             <section>
-              payment Code: <span>16754</span>
+              {/* payment Code: <span>16754</span> */}
             </section>
           </div>
           <div>
